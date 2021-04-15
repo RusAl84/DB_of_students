@@ -4,6 +4,7 @@
 using namespace std;
 class StudentClass
 {
+public:
 	string SurName;
 	string Name;
 	string MiddleName;
@@ -14,5 +15,4 @@ class StudentClass
 	string Sex;
 	BirthDateClass BirthDate;
 	ExamsResultsClass ExamsResults;
-
 };
