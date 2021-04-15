@@ -145,6 +145,7 @@
     <ClInclude Include="BirthDateClass.h" />
     <ClInclude Include="ExamsResultsClass.h" />
     <ClInclude Include="StudentClass.h" />
+    <ClInclude Include="StudentDBClass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

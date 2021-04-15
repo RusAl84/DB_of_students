@@ -2,9 +2,9 @@
 class BirthDateClass
 {
 public:
-	int Day;
-	int Month;
-	int Year;
+	short Day;
+	short Month;
+	short Year;
 
 };
 
