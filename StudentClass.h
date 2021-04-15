@@ -13,7 +13,7 @@ public:
 	string Group;
 	string —redit—ardNumber;
 	string Sex;
-	int YearOfAdmission;
+	int StartYear;
 	BirthDateClass BirthDate;
 	ExamsResultsClass ExamsResults;
 };
