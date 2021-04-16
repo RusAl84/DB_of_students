@@ -11,7 +11,7 @@ public:
 	string faculty;
 	string department;
 	string group;
-	string creditÑardNumber;
+	string recordÑardNumber;
 	string sex;
 	int startYear;
 	BirthDateClass birthDate;
