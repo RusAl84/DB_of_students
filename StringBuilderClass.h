@@ -76,6 +76,14 @@ public:
 
 
 	int getValueInt(string inString){
+		string tmpString = "";
+		int lengthName = 0;
+		tmpString = inString[5] + inString[6] + inString[7];
+		lengthName = std::stoi(tmpString);
+		string	lengthValue = "";
+		tmpString = inString[20] + inString[21] + inString[22];
+		int lengthValue = std::stoi(tmpString);;
+		int offset = 28;
 		return 0;
 	}
 
