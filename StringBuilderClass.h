@@ -59,7 +59,27 @@ public:
 	}
 
 	string getName(string inString) {
-		return "";
+		string tmpString = "000";
+		int lengthName = 0;
+		tmpString[0] = inString[5];
+		tmpString[1] = inString[6];
+		tmpString[2] = inString[7];
+		//cout << endl << tmpString << endl;
+		lengthName = atoi(tmpString.c_str());
+		tmpString = "000";
+		tmpString[0] = inString[20];
+		tmpString[1] = inString[21];
+		tmpString[2] = inString[22];
+		int lengthValue = 0;
+		lengthValue = atoi(tmpString.c_str());
+		int offset = 28;
+		string valueString(lengthName, ' ');
+		for (int i = 0; i < lengthName; i++) {
+			valueString[i] = inString[i + offset-1];
+		}
+		cout << endl << valueString << endl;
+
+		return valueString;
 	}
 
 	string getType(string inString) {
@@ -76,20 +96,32 @@ public:
 
 
 	int getValueInt(string inString){
-		string tmpString = "";
+		string tmpString = "000";
 		int lengthName = 0;
-		tmpString = inString[5] + inString[6] + inString[7];
-		lengthName = std::stoi(tmpString);
-		string	lengthValue = "";
-		tmpString = inString[20] + inString[21] + inString[22];
-		int lengthValue = std::stoi(tmpString);;
+		tmpString[0] = inString[5];
+		tmpString[1] = inString[6];
+		tmpString[2] = inString[7];
+		//cout << endl << tmpString << endl;
+		lengthName = atoi(tmpString.c_str());
+		tmpString = "000";
+		tmpString[0] = inString[20];
+		tmpString[1] = inString[21];
+		tmpString[2] = inString[22];
+		int lengthValue = 0;
+		lengthValue = atoi(tmpString.c_str());
 		int offset = 28;
-		return 0;
+		string valueString(lengthValue, '0'); 
+		for(int i = 0; i<lengthValue;i++){
+			valueString[i] = inString[i +offset + lengthName];
+		}
+		cout << endl << valueString << endl;
+		return atoi(valueString.c_str());
 	}
 
 	string getValueStr(string inString) {
 		return "";
 	}
+
 
 };
 
