@@ -15,5 +15,6 @@ int main()
     cout << endl << s2 << "  " << sb.getType(s2) << endl;
 
 
+
 }
 
