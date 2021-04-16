@@ -8,10 +8,11 @@ int main()
 
     setlocale(LC_ALL, "Russian");
     StringBuilderClass sb = StringBuilderClass();
+    cout << endl;
     string s1 = sb.setParam("MersovMersovMersov:-:-", "МужикМужикМужикМужикМужик;)");
     string s2 = sb.setParam("MersovMersovMersov:-:-", 1001);
-    cout << endl << sb.getType(s1) << endl;
-    cout << endl << sb.getType(s2) << endl;
+    cout << endl << s1 << "  " << sb.getType(s1) << endl;
+    cout << endl << s2 << "  " << sb.getType(s2) << endl;
 
 
 }

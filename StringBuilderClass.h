@@ -5,7 +5,7 @@ class StringBuilderClass
 {
 public:
 	string setParam(string name, string value) {
-		string outString = "name: 000; value:str:000 -: ";
+		string outString = "name:000; value:str:000 -: ";
 						//  0123456789012345678901234567
 		int offset = outString.length(); //28
 		//cout << offset;
@@ -27,7 +27,6 @@ public:
 		}
 		outString = outString + name + "=" + value;
 		//cout << outString;
-
 		return outString;
 	}
 
@@ -55,8 +54,7 @@ public:
 		}
 
 		outString = outString + name + "=" + value;
-		cout << outString;
-
+		//cout << outString;
 		return outString;
 	}
 
