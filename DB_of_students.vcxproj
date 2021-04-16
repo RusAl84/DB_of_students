@@ -145,6 +145,7 @@
     <ClInclude Include="BirthDateClass.h" />
     <ClInclude Include="ExamsResultsClass.h" />
     <ClInclude Include="FileManagerClass.h" />
+    <ClInclude Include="StringBuilderClass.h" />
     <ClInclude Include="StudentClass.h" />
     <ClInclude Include="StudentDBClass.h" />
   </ItemGroup>

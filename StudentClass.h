@@ -5,15 +5,15 @@ using namespace std;
 class StudentClass
 {
 public:
-	string SurName;
-	string Name;
-	string MiddleName;
-	string Faculty;
-	string Department;
-	string Group;
-	string —redit—ardNumber;
-	string Sex;
-	int StartYear;
-	BirthDateClass BirthDate;
-	ExamsResultsClass ExamsResults;
+	string surName;
+	string name;
+	string middleName;
+	string faculty;
+	string department;
+	string group;
+	string credit—ardNumber;
+	string sex;
+	int startYear;
+	BirthDateClass birthDate;
+	ExamsResultsClass examsResults;
 };

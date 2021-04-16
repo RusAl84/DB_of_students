@@ -3,9 +3,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "StringBuilderClass.h"
 using namespace std;
 
-class FileManagerClass
+class FileManagerClass: public StringBuilderClass
 {
 public:
     string FileName = "";

@@ -38,7 +38,7 @@ public:
 	void print_SurName() {
 		node* curr = head;
 		while (curr) {
-			cout << curr->data.SurName << endl;
+			cout << curr->data.surName << endl;
 			curr = curr->next;
 		}
 	}
