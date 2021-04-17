@@ -111,7 +111,7 @@ public:
 		lengthValue = atoi(tmpString.c_str());
 		int offset = 28;
 		string valueString(lengthValue, '0'); 
-		for(int i = 0; i<lengthValue;i++){
+		for(int i = 0; i < lengthValue;i++){
 			valueString[i] = inString[i +offset + lengthName];
 		}
 		cout << endl << valueString << endl;
