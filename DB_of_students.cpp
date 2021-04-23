@@ -8,7 +8,7 @@ int main()
 
 
     setlocale(LC_ALL, "Russian");
-    std::cout << "Курсовая работа запущена"\n";
+    std::cout << "Курсовая работа запущена...\n";
     //StringBuilderClass sb = StringBuilderClass();
     //cout << endl;
     //string s1 = sb.setParam("surName", "Ярошенко");
