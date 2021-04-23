@@ -1,6 +1,7 @@
 #include <string>
 #include "BirthDateClass.h"
 #include "ExamsResultsClass.h"
+#include "StringBuilderClass.h"
 using namespace std;
 class StudentClass
 {
@@ -35,5 +36,10 @@ public:
 		examsResults.addData(1, 1, "Яыки программирования 2", 5);
 		examsResults.addData(1, 2, "Математика 2", 5);
 		examsResults.addData(1, 3, "Физкультура 2", true);
+	}
+
+	void a() {
+		StringBuilderClass sb = StringBuilderClass();
+		string s1 = sb.setParam("surName", "Ярошенко");
 	}
 };

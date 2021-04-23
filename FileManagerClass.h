@@ -27,8 +27,7 @@ public:
         {
             outFile << "### Start Record" << std::endl;
             setlocale(LC_ALL, "Russian");
-            StringBuilderClass sb = StringBuilderClass();
-            string s1 = sb.setParam("surName", "ярошенко");
+
             StudentClass stud = StudentClass();
             stud.addRusakov();
 
