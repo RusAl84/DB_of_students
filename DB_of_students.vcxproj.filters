@@ -18,9 +18,6 @@
     <ClCompile Include="DB_of_students.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="StringMasClass.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExamsResultsClass.h">

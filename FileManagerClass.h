@@ -26,12 +26,17 @@ public:
         if (outFile.is_open())
         {
             outFile << "### Start Record" << std::endl;
-            setlocale(LC_ALL, "Russian");
+            //setlocale(LC_ALL, "Russian");
 
             StudentClass stud = StudentClass();
             stud.addRusakov();
-
-
+            stud.UpdateMasString();
+            stud.getInitStringRecord();
+            string resulString = stud.getStringRecord();
+            while (resulString.length() > 0) {
+                outFile << resulString << std::endl;
+                resulString = stud.getStringRecord();
+            }
             outFile << "### End Record" << std::endl;
         }
         outFile.close();

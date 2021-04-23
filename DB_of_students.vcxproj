@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DB_of_students.cpp" />
-    <ClCompile Include="StringMasClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BirthDateClass.h" />

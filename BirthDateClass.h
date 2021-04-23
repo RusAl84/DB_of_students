@@ -21,5 +21,10 @@ public:
 		return Year;
 	}
 
+	string getString() {
+		return std::to_string(Day)+"_"+std::to_string(Month)+"_"+std::to_string(Year);
+	}
+
+
 };
 
