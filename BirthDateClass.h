@@ -11,5 +11,15 @@ public:
 		Month = _Month;
 		Year = _Year;
 	}
+	int getDay() {
+		return Day;
+	}	
+	int getMonth() {
+		return Month;
+	}	
+	int getYear() {
+		return Year;
+	}
+
 };
 

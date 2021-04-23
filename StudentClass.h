@@ -2,10 +2,11 @@
 #include "BirthDateClass.h"
 #include "ExamsResultsClass.h"
 #include "StringBuilderClass.h"
+#include "StringMasClass.h"
 using namespace std;
 class StudentClass
 {
-public:
+private:
 	string surName;
 	string name;
 	string middleName;
@@ -18,6 +19,10 @@ public:
 	int startYear;
 	BirthDateClass birthDate;
 	ExamsResultsClass examsResults;
+	StringMasClass stringMas;
+
+public:
+
 
 	void addRusakov() {
 		surName = "Русаков";
@@ -38,8 +43,34 @@ public:
 		examsResults.addData(1, 3, "Физкультура 2", true);
 	}
 
-	void a() {
+	void UpdateMasString() {
+
+		stringMas.Erase();
 		StringBuilderClass sb = StringBuilderClass();
-		string s1 = sb.setParam("surName", "Ярошенко");
+		string tmpString = sb.setParam("surName", surName);
+		stringMas.Add(tmpString);
+		string tmpString = sb.setParam("name", name);
+		stringMas.Add(tmpString);		
+		string tmpString = sb.setParam("middleName", middleName);
+		stringMas.Add(tmpString);		
+		string tmpString = sb.setParam("faculty", faculty);
+		stringMas.Add(tmpString);
+		string tmpString = sb.setParam("department", department);
+		stringMas.Add(tmpString);
+		string tmpString = sb.setParam("group", group);
+		stringMas.Add(tmpString);		
+		int intSex = 1;
+		if (sex)
+			intSex = 1;
+		else
+			intSex = 0;
+		string tmpString = sb.setParam("sex", intSex);
+		stringMas.Add(tmpString);		
+		string tmpString = sb.setParam("startYear", startYear);
+		stringMas.Add(tmpString);
+
+
+
+
 	}
 };

@@ -18,6 +18,9 @@
     <ClCompile Include="DB_of_students.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="StringMasClass.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExamsResultsClass.h">
@@ -36,6 +39,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="StringBuilderClass.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="StringMasClass.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
