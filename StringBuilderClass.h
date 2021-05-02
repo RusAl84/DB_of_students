@@ -140,7 +140,9 @@ public:
 		//cout << endl << valueString << endl;
 		return valueString;
 	}
+	void split() {
 
+	}
 
 };
 
