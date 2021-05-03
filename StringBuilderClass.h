@@ -78,7 +78,6 @@ public:
 			valueString[i] = inString[i + offset - 1];
 		}
 		//cout << endl << valueString << endl;
-
 		return valueString;
 	}
 

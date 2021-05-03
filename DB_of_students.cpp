@@ -4,6 +4,7 @@
 #include "FileManagerClass.h"
 #include "ClassMenu.h"
 #include "StudentDBClass.h"
+#include "StudentClass.h"
 int main()
 {
     setlocale(LC_ALL, "Russian");
@@ -26,6 +27,8 @@ int main()
 
     StudentDBClass sdb = StudentDBClass();
     sdb.FileName = "d:\\DB.txt";
+    sdb.loadDataFromFile();
+
     cout << sdb.GetRecordCount() << endl;
     ClassMenu mainMenu = ClassMenu();
     mainMenu.count = 5;
@@ -34,8 +37,38 @@ int main()
     mainMenu.items[2]->assign("Выбрать файл для загрузки БД студентов");
     mainMenu.items[3]->assign("Сохранить БД студентов в файл");
     mainMenu.items[4]->assign("Выход");
-    mainMenu.run();
-    cout << endl << mainMenu.selectedItem << endl;
+    int resultSelectedItem = 0;
+    int exitInt = 4;
+    StudentClass Rusakov = StudentClass();
+    Rusakov.addRusakov();
+    Rusakov.faculty = "Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...";
+    while (resultSelectedItem != exitInt) {
+        mainMenu.run();
+        resultSelectedItem = mainMenu.getSelectedItem();
+        switch (resultSelectedItem) {
+        case 0:
+            system("cls"); 
+            cout << "*** Список студентов ***" << endl;
+            //HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+            //SetConsoleTextAttribute(hConsole, 15);
+            sdb.printAllSurName();
+            resultSelectedItem = exitInt;
+            break;
+        case 1:
+            system("cls");
+
+            cout << sizeof(Rusakov)*10000 << endl;
+            //HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+            //SetConsoleTextAttribute(hConsole, 15);
+            //sdb.printAllSurName();
+            resultSelectedItem = exitInt;
+            break;
+        default:
+            break;
+        }
+
+    }
+
     _getch();
 
 

@@ -12,6 +12,8 @@ const string endRecordString = "### End Record";
 class FileManagerClass: public StringBuilderClass
 {
 public:
+
+
     string FileName = "";
     FileManagerClass() {
         FileName = "";

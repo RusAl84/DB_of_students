@@ -16,6 +16,9 @@ public:
         selectedItem = 0;
         count = 0;
     }
+    int getSelectedItem() {
+        return selectedItem;
+    }
     void setDown() {
         selectedItem++;
         if (selectedItem > count - 1)

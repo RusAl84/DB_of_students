@@ -70,7 +70,7 @@ public:
 					//examsResults_sem_num_n - название экзамена или зачета
 					stringMas.Add(sb.setParam("examsResults_" + std::to_string(sem) + "_" + std::to_string(num) + "_n", examsResults.getName(sem, num)));
 					//examsResults_sem_num_m - оценка
-					stringMas.Add(sb.setParam("examsResults_" + std::to_string(sem) + "_" + std::to_string(num) + "_m", std::to_string(examsResults.getMark(sem, num))));
+					stringMas.Add(sb.setParam("examsResults_" + std::to_string(sem) + "_" + std::to_string(num) + "_m", std::to_string(examsResults.getMark(sem, num)))); 
 				}
 		//stringMas.dislay();
 	}
