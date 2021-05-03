@@ -6,8 +6,10 @@
 #include "StringBuilderClass.h"
 #include "StudentClass.h"
 using namespace std;
+const string startRecordString = "### Start Record";
+const string endRecordString = "### End Record";
 
-class FileManagerClass /*: public StringBuilderClass*/
+class FileManagerClass: public StringBuilderClass
 {
 public:
     string FileName = "";
@@ -22,7 +24,7 @@ public:
         outFile.open(FileName, std::ios::app); // окрываем файл для записи
         if (outFile.is_open())
         {
-            outFile << "### Start Record" << std::endl;
+            outFile << startRecordString << std::endl;
             //setlocale(LC_ALL, "Russian");
 
             StudentClass stud = StudentClass();
@@ -34,7 +36,7 @@ public:
                 outFile << resulString << std::endl;
                 resulString = stud.getStringRecord();
             }
-            outFile << "### End Record" << std::endl;
+            outFile << endRecordString << std::endl;
         }
         outFile.close();
     }
@@ -47,6 +49,7 @@ public:
             while (getline(inFile, line))
             {
                 //std::cout << line << std::endl;
+                if (strcmp(line.c_str(), startRecordString.c_str())==0)
                 count++;
             }
         }

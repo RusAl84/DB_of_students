@@ -32,6 +32,11 @@ public:
 		return true;
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
+
+	void LoadDataFromFile() {
+
+	}
+
 	void setData(Node* tNode, StudentClass* st) {
 		tNode->surName = "st->surName";
 		tNode->name = "st->name";
