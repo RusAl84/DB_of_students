@@ -1,13 +1,14 @@
 #pragma once
+struct ExamsRecords {
+	string Name;
+	int Mark; // 1 - зачет
+			  // 0 - не зачет    
+			  // 2,3,4,5 - оценки
+	bool isEmpty; // заполнено ли поле?
+};
 class ExamsResultsClass
 {
-	struct ExamsRecords {
-		string Name;
-		int Mark; // 1 - зачет
-				  // 0 - не зачет    
-				  // 2,3,4,5 - оценки
-		bool isEmpty; // заполнено ли поле?
-	};
+
 //private:
 //	ExamsRecords data[9][10];
 public:

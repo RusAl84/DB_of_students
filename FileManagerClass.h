@@ -7,19 +7,16 @@
 #include "StudentClass.h"
 using namespace std;
 
-class FileManagerClass : public StringBuilderClass
+class FileManagerClass /*: public StringBuilderClass*/
 {
 public:
     string FileName = "";
-
     FileManagerClass() {
         FileName = "";
     }
-
     FileManagerClass(string _FileName) {
         FileName = _FileName;
     }
-
     void AddRusakovRecord() {
         std::ofstream outFile;          // поток для записи
         outFile.open(FileName, std::ios::app); // окрываем файл для записи
@@ -41,10 +38,21 @@ public:
         }
         outFile.close();
     }
-    void GetRecordCount() {
-
+    int GetRecordCount() {
+        string line;
+        int count=0;
+        std::ifstream inFile(FileName); // окрываем файл для чтения
+        if (inFile.is_open())
+        {
+            while (getline(inFile, line))
+            {
+                //std::cout << line << std::endl;
+                count++;
+            }
+        }
+        inFile.close();     // закрываем файл
+        return count;
     }
-
     static void display(string FileName) {
         string line;
         ifstream inFile(FileName); // окрываем файл для чтения

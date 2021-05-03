@@ -1,12 +1,14 @@
+#pragma once
 #include <string>
 #include "BirthDateClass.h"
 #include "ExamsResultsClass.h"
 #include "StringBuilderClass.h"
 #include "StringMasClass.h"
 using namespace std;
+
 class StudentClass
 {
-private:
+public:
 	string surName;
 	string name;
 	string middleName;
@@ -21,9 +23,9 @@ private:
 	ExamsResultsClass examsResults;
 	StringMasClass stringMas;
 
-public:
-	
-
+	 StudentClass() {
+		addRusakov();
+	}
 	void addRusakov() {
 		surName = "Русаков";
 		name = "Алексей";
@@ -72,13 +74,13 @@ public:
 				}
 		//stringMas.dislay();
 	}
-
 	string getStringRecord() {
 		return stringMas.getNext();
 	}
-
 	bool getInitStringRecord() {
 		return stringMas.getInit();
 	}
-
+	string getSurName() {
+		return surName;
+	}
 };

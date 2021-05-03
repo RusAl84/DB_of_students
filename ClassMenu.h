@@ -14,6 +14,7 @@ public:
 
     ClassMenu() {
         selectedItem = 0;
+        count = 0;
     }
     void setDown() {
         selectedItem++;

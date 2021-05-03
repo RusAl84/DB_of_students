@@ -1,47 +1,95 @@
 #pragma once
 #include "StudentClass.h"
 #include <iostream>
+#include "FileManagerClass.h"
 using namespace std;
-class StudentDBClass
+struct Node
 {
-	struct node
-	{
-		StudentClass data;
-		node* next;
-		node* prev;
-	};
+	string surName;
+	string name;
+	string middleName;
+	string faculty;
+	string department;
+	string group;
+	string recordÑardNumber;
+	bool sex; // true - ìàëü÷èê
+			  // false - äåâî÷êà
+	int startYear;
+	string birthDateString;
+	ExamsRecords data[9][10];
+	Node* next;
+};
 
-	static node* head;
+class StudentDBClass : public FileManagerClass
+{
+private:
+	static Node* head;
+	static Node* getNextNode;
 	static int count;
 public:
-	bool Add(StudentClass st) {
+	bool Erase() {
+		head = NULL;
+		return true;
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	}
+	void setData(Node* tNode, StudentClass* st) {
+		tNode->surName = "st->surName";
+		tNode->name = "st->name";
+		tNode->middleName = "st->middleName";
+		//string st.faculty; //ïî àíàëîãèè
+		//string st.department;
+		//string st.group;
+		//string st.recordÑardNumber;
+		//bool st.sex; 
+		//int st.startYear;
+		//string birthDateString;
+		//ExamsRecords data[9][10];
 
+	}
+	bool Add(StudentClass* st) {
 		if (!head)
 		{
-			head = new node;
-			head->data = st;
+			
+			head = new Node();
+			//head->surName = st->surName;
+			setData(head, st);
+			//head->data = st;
 			head->next = NULL;
-			head->prev = NULL;
-
+			count++;
+			return true;
 		}
 		else
 		{
-			node* tmp = new node;
-			tmp->data = st;
+			Node* tmp = new Node();
+			setData(tmp, st);
+			//tmp->data = st;
 			tmp->next = head;
-			tmp->prev = NULL;
 			head = tmp;
-			head->next->next->prev = head->next;
+			count++;
+			return true;
 		}
+		return false;
 	}
+	//bool getInit() {
+	//	return getNextNode = head;
+	//}
+	//Node getNext() {
+	//	Node tmpSt;
+	//	if (getNextNode) {
+	//		tmpSt = getNextNode->data;
+	//		getNextNode = getNextNode->next;
+	//	}
+	//	return tmpSt;
+	//}
 
-	void print_SurName() {
-		node* curr = head;
+	void print_AllSurName() {
+		Node* curr = head;
 		while (curr) {
-			cout << curr->data.surName << endl;
+			cout << curr->surName << endl;
 			curr = curr->next;
 		}
 	}
 	
 };
+
 

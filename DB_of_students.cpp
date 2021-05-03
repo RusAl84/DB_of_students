@@ -3,11 +3,9 @@
 #include "StringBuilderClass.h"
 #include "FileManagerClass.h"
 #include "ClassMenu.h"
-
+#include "StudentDBClass.h"
 int main()
 {
-
-
     setlocale(LC_ALL, "Russian");
     std::cout << "Курсовая работа запущена...\n";
     //StringBuilderClass sb = StringBuilderClass();
@@ -19,25 +17,29 @@ int main()
 
     //sb.getName(s2);
     //sb.getValueInt(s2);
-    StringBuilderClass sb = StringBuilderClass();
-    string tmpString = "27_12_1984";
-    
-    cout << sb.split(tmpString,'_',2)<< endl;
 
+    //FileManagerClass fb = FileManagerClass("d:\\DB.txt");
+    //fb.AddRusakovRecord();
+    //StringBuilderClass sb = StringBuilderClass();
+    //string tmpString = "27_12_1984";
+    //cout << sb.split(tmpString,'_',2)<< endl;
+
+    StudentDBClass sdb = StudentDBClass();
+    sdb.FileName = "d:\\DB.txt";
+    cout << sdb.GetRecordCount() << endl;
     ClassMenu mainMenu = ClassMenu();
     mainMenu.count = 5;
-    mainMenu.items[0]->assign("Выбрать файл для загрузки БД студентов");
-    mainMenu.items[1]->assign("Сохранить БД студентов в файл");
-    mainMenu.items[2]->assign("Вывести список студентов");
-    mainMenu.items[3]->assign("Добавить студента");
+    mainMenu.items[0]->assign("Вывести на экран список студентов");
+    mainMenu.items[1]->assign("Добавить данные о студенте в БД");
+    mainMenu.items[2]->assign("Выбрать файл для загрузки БД студентов");
+    mainMenu.items[3]->assign("Сохранить БД студентов в файл");
     mainMenu.items[4]->assign("Выход");
     mainMenu.run();
     cout << endl << mainMenu.selectedItem << endl;
     _getch();
 
 
-    //FileManagerClass fb = FileManagerClass("d:\\DB.txt");
-    //fb.AddRusakovRecord();
+
 
 }
 
