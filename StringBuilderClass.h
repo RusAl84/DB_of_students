@@ -140,7 +140,17 @@ public:
 		//cout << endl << valueString << endl;
 		return valueString;
 	}
-	void split() {
+	void split(string inString, char delimiter, int num) {
+		string outString = "";
+		int numDelimeter = 0;
+		for (int i = 0; i <= inString.length(); i++) {
+			if (inString[i] == delimiter) { 
+				numDelimeter++; }
+			if (numDelimeter == num) {
+
+			}
+
+		}
 
 	}
 
