@@ -27,15 +27,15 @@ int main()
     StudentDBClass sdb = StudentDBClass();
     sdb.FileName = "d:\\DB.txt";
     cout << sdb.GetRecordCount() << endl;
-    //ClassMenu mainMenu = ClassMenu();
-    //mainMenu.count = 5;
-    //mainMenu.items[0]->assign("Вывести на экран список студентов");
-    //mainMenu.items[1]->assign("Добавить данные о студенте в БД");
-    //mainMenu.items[2]->assign("Выбрать файл для загрузки БД студентов");
-    //mainMenu.items[3]->assign("Сохранить БД студентов в файл");
-    //mainMenu.items[4]->assign("Выход");
-    //mainMenu.run();
-    //cout << endl << mainMenu.selectedItem << endl;
+    ClassMenu mainMenu = ClassMenu();
+    mainMenu.count = 5;
+    mainMenu.items[0]->assign("Вывести на экран список студентов");
+    mainMenu.items[1]->assign("Добавить данные о студенте в БД");
+    mainMenu.items[2]->assign("Выбрать файл для загрузки БД студентов");
+    mainMenu.items[3]->assign("Сохранить БД студентов в файл");
+    mainMenu.items[4]->assign("Выход");
+    mainMenu.run();
+    cout << endl << mainMenu.selectedItem << endl;
     _getch();
 
 

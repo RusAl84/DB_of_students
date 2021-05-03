@@ -26,15 +26,14 @@ public:
         {
             outFile << startRecordString << std::endl;
             //setlocale(LC_ALL, "Russian");
-
             StudentClass stud = StudentClass();
             stud.addRusakov();
             stud.UpdateMasString();
             stud.getInitStringRecord();
-            string resulString = stud.getStringRecord();
-            while (resulString.length() > 0) {
-                outFile << resulString << std::endl;
-                resulString = stud.getStringRecord();
+            string resultString = stud.getStringRecord();
+            while (resultString.length() > 0) {
+                outFile << resultString << std::endl;
+                resultString = stud.getStringRecord();
             }
             outFile << endRecordString << std::endl;
         }
