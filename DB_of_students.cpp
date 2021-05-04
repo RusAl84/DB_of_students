@@ -19,6 +19,7 @@ int main()
     //sb.getName(s2);
     //sb.getValueInt(s2);
 
+
     //FileManagerClass fb = FileManagerClass("d:\\DB.txt");
     //fb.AddRusakovRecord();
     //StringBuilderClass sb = StringBuilderClass();
