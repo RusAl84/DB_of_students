@@ -19,6 +19,7 @@ public:
 	bool sex; // true - мальчик
 			  // false - девочка
 	int startYear;
+	int id;
 	BirthDateClass birthDate;
 	ExamsResultsClass examsResults;
 	StringMasClass stringMas;
@@ -27,6 +28,7 @@ public:
 		addRusakov();
 	}
 	void addRusakov() {
+		id = 0;
 		surName = "Русаков";
 		name = "Алексей";
 		middleName = "Михайлович";

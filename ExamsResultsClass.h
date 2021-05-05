@@ -8,7 +8,6 @@ struct ExamsRecords {
 };
 class ExamsResultsClass
 {
-
 //private:
 //	ExamsRecords data[9][10];
 public:
@@ -18,13 +17,13 @@ public:
 			for (int j = 0; j < 10; j++)
 				data[i][j].isEmpty = true;
 	}
-	bool add(int sem, int num, string Item, int Mark) {
+	bool add(int sem, int num, string Item, int Mark) {  //Для оценок
 		data[sem][num].isEmpty = false;
 		data[sem][num].Name = Item;
 		data[sem][num].Mark = Mark;
 		return true;
 	}
-	bool add(int sem, int num, string Item, bool zach) {
+	bool add(int sem, int num, string Item, bool zach) { //Для зачетов
 		data[sem][num].isEmpty = false;
 		data[sem][num].Name = Item;
 		if (zach)

@@ -8,7 +8,7 @@ using namespace std;
 class ClassMenu
 {
 public:
-    string items[30][50];
+    string items[300][50];
     int selectedItem;
     int count;
 

@@ -15,8 +15,10 @@ struct StudentNode
 	string birthDateString;
 	bool sex; // true - Ï‡Î¸˜ËÍ
 			  // false - ‰Â‚Ó˜Í‡
+	bool isNULL;
 	int startYear;
-	//ExamsRecords data[9][10];
+	int id;
+	//ExamsRecords data[9][10];  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
 	StudentNode* next;
 };
 
@@ -32,6 +34,9 @@ public:
 		getNextNode = NULL;
 		count = 0;
 	}
+	~StudentDBClass() {
+		Erase();
+	}
 	bool Erase() {
 		head = NULL;
 		return true;
@@ -45,6 +50,7 @@ public:
 		{
 			bool isRecord = false;
 			StudentNode* st = new StudentNode();
+			int studentId = 0;
 			while (getline(inFile, line))
 			{
 				if (strcmp(startRecordString.c_str(), line.c_str()) == 0) {
@@ -53,6 +59,7 @@ public:
 				}
 				if (strcmp(endRecordString.c_str(), line.c_str()) == 0) {
 					isRecord = false;
+					studentId++;
 					Add(st);
 					/// add
 
@@ -64,30 +71,38 @@ public:
 					{
 						string value = getValueStr(line);
 						//cout << value << endl;
-						//string faculty;
-						//string department;
-						//string group;
-						//string record—ardNumber;
-						//string birthDateString;
-
 						if (strcmp("surName", valueName.c_str()) == 0)
 							st->surName = value;
-						//if (strcmp("name", valueName.c_str()) == 0)
-						//	st.name = value;
-						//if (strcmp("middleName", valueName.c_str()) == 0)
-						//	st.middleName = value;
+						if (strcmp("name", valueName.c_str()) == 0)
+							st->name = value;
+						if (strcmp("middleName", valueName.c_str()) == 0)
+						    st->middleName = value;
+						if (strcmp("faculty", valueName.c_str()) == 0)
+							st->faculty = value;
+						if (strcmp("department", valueName.c_str()) == 0)
+							st->department = value;						
+						if (strcmp("group", valueName.c_str()) == 0)
+							st->group = value;						
+						if (strcmp("record—ardNumber", valueName.c_str()) == 0)
+							st->record—ardNumber = value;
+						if (strcmp("birthDateString", valueName.c_str()) == 0)
+							st->birthDateString = value;
+						//!!!! ExamsRecords
 						//!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Ì‡‰Ó ·˚ ÔÓ‰ÓÎÊËÚ¸ 
 					}
 					else // “Ó„‰‡ ˇ‚ÌÓ int ÌÓ Ì‡‰Ó ÔÓ‚ÂËÚ¸
 					{
 						int value = getValueInt(line);
-						//if (strcmp("sex", valueName.c_str()) == 0)
-						//	if (value == 0)
-						//		st.sex = false;
-						//	else
-						//		st.sex = true;
-						//if (strcmp("startYear", valueName.c_str()) == 0)
-						//	st.startYear = value;
+						if (strcmp("id", valueName.c_str()) == 0)
+							st->id = studentId;  // ÒÂÈ˜‡Ò Á‰ÂÒ¸ ÔÓˇ‰ÍÓ‚˚È ÌÓÏÂ Á‡ÔËÒË ‚ Ù‡ÈÎÂ
+						//‰ÓÎÊÌÓ ·˚Ú¸ value ıÓÓ¯Ó ·˚, ÌÓ Î‡‰ÌÓ;) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+						if (strcmp("startYear", valueName.c_str()) == 0)
+							st->id = value;
+						if (strcmp("sex", valueName.c_str()) == 0)
+							if (value == 0)
+								st->sex = false;
+							else
+								st->sex = true;
 					}
 				}
 			}
@@ -99,14 +114,18 @@ public:
 		tNode->surName = st->surName;
 		tNode->name = st->name;
 		tNode->middleName = st->middleName;
-		//string st.faculty; //ÔÓ ‡Ì‡ÎÓ„ËË  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-		//string st.department;
-		//string st.group;
-		//string st.record—ardNumber;
-		//bool st.sex; 
-		//int st.startYear;
-		//string birthDateString;
+		tNode->faculty = st->faculty;
+		tNode->department = st->department;
+		tNode->group = st->group;
+		tNode->record—ardNumber = st->record—ardNumber;
+		tNode->sex = st->sex;
+		tNode->startYear = st->startYear;
+		tNode->birthDateString = st->birthDateString;
+		// //ÔÓ ‡Ì‡ÎÓ„ËË  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
 		//ExamsRecords data[9][10];
+
+
+		tNode->isNULL = false;
 
 	}
 	bool Add(StudentNode *st) {
@@ -132,17 +151,20 @@ public:
 		}
 		return false;
 	}
-	//bool getInit() {
-	//	return getNextNode = head;
-	//}
-	//Node getNext() {
-	//	Node tmpSt;
-	//	if (getNextNode) {
-	//		tmpSt = getNextNode->data;
-	//		getNextNode = getNextNode->next;
-	//	}
-	//	return tmpSt;
-	//}
+	bool getInit() {
+		return getNextNode = head;
+	}
+
+	StudentNode getNext() {
+		StudentNode tmpSt;
+		tmpSt.isNULL = true;
+		if (getNextNode) {
+			//tmpSt = getNextNode->data;
+			setData(&tmpSt, getNextNode);
+			getNextNode = getNextNode->next;
+		}
+		return tmpSt;
+	}
 
 	void printAllSurName() {
 		StudentNode* curr = NULL;
