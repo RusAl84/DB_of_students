@@ -12,12 +12,12 @@ int main()
     SetConsoleCP(1251); // Ввод с консоли в кодировке 1251
     SetConsoleOutputCP(1251);
     std::cout << "Курсовая работа запущена...\n";
-    bool isTest = true;
+    bool isTest = false;
     if (isTest) {
         StudentNode* sn = new StudentNode();
         StudentClass* st = new StudentClass();
-        //st->editStudent(sn);
-        st->editExamsResults(sn);
+        st->editStudent(sn);
+        //st->editExamsResults(sn);
 
 
         //StringBuilderClass sb = StringBuilderClass();
@@ -40,11 +40,11 @@ int main()
     else
     {
 
-    StudentDBClass sdb = StudentDBClass();
-    sdb.FileName = "d:\\DB.txt";
-    sdb.loadDataFromFile();
+    StudentDBClass* sdb = new StudentDBClass();
+    sdb->FileName = "d:\\DB.txt";
+    sdb->loadDataFromFile();
 
-    cout << sdb.GetRecordCount() << endl;
+    //cout << sdb->GetRecordCount() << endl;
     ClassMenu* mainMenu = new ClassMenu();
     mainMenu->addTitleItem("Главное меню");
     mainMenu->addItem("Вывести на экран список студентов");
@@ -63,7 +63,9 @@ int main()
     int resultStudentSelectedItem = 1;
     studentsMenu->addItem("Выход");
     const int exitIntStudentMenu = 0;
-    StudentNode sn;
+    StudentNode* sn = new StudentNode;
+    StudentClass* st = new StudentClass();
+    int curCount;
     while (resultSelectedItem != exitInt) {
         mainMenu->run();
         resultSelectedItem = mainMenu->getSelectedItem();
@@ -72,22 +74,41 @@ int main()
             //system("cls"); 
             //cout << "*** Список студентов ***" << endl;
             //sdb.printAllSurName();
-            sdb.getInit();
-            sn = sdb.getNext();
-            while (sn.isNULL==false){
-                string tmpString = sn.surName + " " + sn.name + " " + sn.middleName + " " + sn.group;
-                studentsMenu->addItem(tmpString); //добавить в енб студентов
-                sn = sdb.getNext();
+            sdb->getInit();
+            sn = sdb->getNext();
+            while (sn->isNULL==false){
+                string tmpString = sn->surName + " " + sn->name + " " + sn->middleName + " " + sn->group;
+                studentsMenu->addItem(tmpString); //добавить в меню студентов
+                sn = sdb->getNext();
             }
             while (resultStudentSelectedItem != exitIntStudentMenu) {
                 studentsMenu->run();
                 resultStudentSelectedItem = studentsMenu->getSelectedItem();
+                int curCount = 0;
+                int count = sdb->getCount();
+                if ((resultStudentSelectedItem > 0) and (resultStudentSelectedItem < count)) {
+                    sdb->getInit();
+                    sn = sdb->getNext();
+                    while (sn->isNULL == false) {
+                        if (curCount == resultStudentSelectedItem)
+                        {
+                            st->editStudent(sn);
+                                //
+                            break;
+                         }
+                        else 
+                        { sn = sdb->getNext(); } 
+                        curCount++;
+                    }
+                }
+                /// загружать данные из списка и отображать
             }
             //resultSelectedItem = exitInt;
             break;
         case 1:
-            system("cls");
-
+            //system("cls");
+            
+            st->editStudent(sn);
             resultSelectedItem = exitInt;
             break;        
         case 2:

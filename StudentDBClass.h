@@ -137,12 +137,16 @@ public:
 		return getNextNode = head;
 	}
 
-	StudentNode getNext() {
-		StudentNode tmpSt;
-		tmpSt.isNULL = true;
+	int getCount() {
+		return count;
+	}
+
+	StudentNode * getNext() {
+		StudentNode* tmpSt = new StudentNode;
+		tmpSt->isNULL = true;
 		if (getNextNode) {
 			//tmpSt = getNextNode->data;
-			setData(&tmpSt, getNextNode);
+			setData(tmpSt, getNextNode);
 			getNextNode = getNextNode->next;
 		}
 		return tmpSt;
