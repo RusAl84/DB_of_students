@@ -136,11 +136,9 @@ public:
 	bool getInit() {
 		return getNextNode = head;
 	}
-
 	int getCount() {
 		return count;
 	}
-
 	StudentNode * getNext() {
 		StudentNode* tmpSt = new StudentNode;
 		tmpSt->isNULL = true;
@@ -151,7 +149,6 @@ public:
 		}
 		return tmpSt;
 	}
-
 	void printAllSurName() {
 		StudentNode* curr = NULL;
 		curr = head;
