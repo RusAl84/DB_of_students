@@ -3,25 +3,6 @@
 #include <iostream>
 #include "FileManagerClass.h"
 using namespace std;
-struct StudentNode
-{
-	string surName;
-	string name;
-	string middleName;
-	string faculty;
-	string department;
-	string group;
-	string recordÑardNumber;
-	string birthDateString;
-	bool sex; // true - ìàëü÷èê
-			  // false - äåâî÷êà
-	bool isNULL;
-	int startYear;
-	int id;
-	//ExamsRecords data[9][10];  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-	StudentNode* next;
-};
-
 class StudentDBClass : public FileManagerClass
 {
 private:
@@ -42,6 +23,7 @@ public:
 		return true;
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
+
 	void loadDataFromFile() {
 		string line;
 		int count = 0;

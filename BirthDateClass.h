@@ -20,19 +20,13 @@ public:
 	int getYear() {
 		return Year;
 	}
-
 	string getString() {
-		return std::to_string(Day)+"_"+std::to_string(Month)+"_"+std::to_string(Year);
+		return std::to_string(Day)+"."+std::to_string(Month)+"."+std::to_string(Year);
 	}
-	string getPringString() {
-		return std::to_string(Day) + "." + std::to_string(Month) + "." + std::to_string(Year);
-	}
-
 	void setOfString(string inString) {
-		Day = atoi(split(inString, '_', 0).c_str());
-		Month = atoi(split(inString, '_', 1).c_str());
-		Year = atoi(split(inString, '_', 2).c_str());
+		Day = atoi(split(inString, '.', 0).c_str());
+		Month = atoi(split(inString, '.', 1).c_str());
+		Year = atoi(split(inString, '.', 2).c_str());
 	}
-
 };
 

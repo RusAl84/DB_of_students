@@ -43,7 +43,7 @@ public:
 		data = inString;
 		return data;
 	}
-	int setDataInt() {
+	int setDataInt(int startRange, int endRange) {
 		draw();
 		string inString = "";
 		while (inString.length() == 0) {
@@ -51,6 +51,15 @@ public:
 			if (not isDigit(inString)){
 				inString = "";
 				cout << "Ошибка: Ожидалось число.";
+				_getch();
+				continue;
+			}
+			int tmpInt = atoi(inString.c_str());
+			if ((tmpInt < startRange) or (tmpInt > endRange)) {
+				inString = "";
+				cout << "Ошибка: выход из заданного диапозона";
+				_getch();
+				continue;
 			}
 		}
 		data = inString;
@@ -68,5 +77,6 @@ public:
 	}
 
 	friend void drawLineUP(int size);
+	friend void drawLineDown(int size);
 };
 

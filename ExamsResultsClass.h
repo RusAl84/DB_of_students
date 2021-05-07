@@ -11,35 +11,37 @@ class ExamsResultsClass
 //private:
 //	ExamsRecords data[9][10];
 public:
-	ExamsRecords data[9][10];
+	//ExamsRecords data[9][10];
 	ExamsResultsClass() {
-		for (int i = 0; i < 9; i++)
-			for (int j = 0; j < 10; j++)
-				data[i][j].isEmpty = true;
+		//for (int i = 0; i < 9; i++)
+		//	for (int j = 0; j < 10; j++)
+		//		data[i][j].isEmpty = true;
 	}
-	bool add(int sem, int num, string Item, int Mark) {  //Для оценок
-		data[sem][num].isEmpty = false;
-		data[sem][num].Name = Item;
-		data[sem][num].Mark = Mark;
-		return true;
+	ExamsRecords add(string Item, int Mark) {  //Для оценок
+		ExamsRecords er;
+		er.isEmpty = false;
+		er.Name = Item;
+		er.Mark = Mark;
+		return er;
 	}
-	bool add(int sem, int num, string Item, bool zach) { //Для зачетов
-		data[sem][num].isEmpty = false;
-		data[sem][num].Name = Item;
+	ExamsRecords add(string Item, bool zach) { //Для зачетов
+		ExamsRecords er;
+		er.isEmpty = false;
+		er.Name = Item;
 		if (zach)
-			data[sem][num].Mark = 1;
+			er.Mark = 1;
 		else
-			data[sem][num].Mark = 0;
-		return true;
+			er.Mark = 0;
+		return er;
 	}
-	bool isEmpty(int sem, int num) {
-		return data[sem][num].isEmpty;
-	}
-	string getName(int sem, int num) {
-		return data[sem][num].Name;
-	}	
-	int getMark(int sem, int num) {
-		return data[sem][num].Mark;
-	}
+	//bool isEmpty(int sem, int num) {
+	//	return data[sem][num].isEmpty;
+	//}
+	//string getName(int sem, int num) {
+	//	return data[sem][num].Name;
+	//}	
+	//int getMark(int sem, int num) {
+	//	return data[sem][num].Mark;
+	//}
 };
 

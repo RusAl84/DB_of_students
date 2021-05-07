@@ -14,42 +14,10 @@ int main()
     std::cout << "Курсовая работа запущена...\n";
     bool isTest = true;
     if (isTest) {
-        ClassMenu* studDataMenu = new ClassMenu();
-        
-        int resultStudDataMenu = 1;
-        const int exitStudDataMenu = 0;
-        StudentNode *sn = new StudentNode();
-        ClassEdit* ce = new  ClassEdit();
-        studDataMenu->addItem("Выход");
-        studDataMenu->addItem("Добавить/изменить фамилию:");
-        studDataMenu->addItem("Добавить/изменить имя:");
-        studDataMenu->addItem("Добавить/изменить отчество:");
-        while (resultStudDataMenu != exitStudDataMenu) {
-            studDataMenu->eraseTitle();
-            studDataMenu->addTitleItem("Изменение/добавление данных о студенте:");
-            studDataMenu->addTitleItem("Фамилия: " + sn->surName + " Имя: " + sn->name + " Отчество: " + sn->middleName);
-            studDataMenu->run();
-            resultStudDataMenu = studDataMenu->getSelectedItem();
-            switch (resultStudDataMenu) {
-            case 0:
-                resultStudDataMenu = exitStudDataMenu;
-                break;
-            case 1:
-                ce->setLabel("Введите фамилию:");
-                sn->surName = ce->setDataString();
-                break;            
-            case 2:
-                ce->setLabel("Введите имя:");
-                sn->name = ce->setDataString();
-                break;            
-            case 3:
-                ce->setLabel("Введите отчество:");
-                sn->middleName = ce->setDataString();
-                break;
-            default:
-                break;
-            }
-        }
+        StudentNode* sn = new StudentNode();
+        StudentClass* st = new StudentClass();
+        //st->editStudent(sn);
+        st->editExamsResults(sn);
 
 
         //StringBuilderClass sb = StringBuilderClass();
