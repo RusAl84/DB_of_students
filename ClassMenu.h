@@ -7,27 +7,38 @@
 using namespace std;
 class ClassMenu
 {
+private:
+    int itemsCount;
+    int titleItemCount;
 public:
     string items[300][50];
+    string TitelStrings[50][60];
     int selectedItem;
-    int count;
-
     ClassMenu() {
         selectedItem = 0;
-        count = 0;
+        itemsCount = 0;
+        titleItemCount = 0;
     }
     int getSelectedItem() {
         return selectedItem;
     }
+    void addItem(string inString) {
+        items[itemsCount]->assign(inString.c_str());
+        itemsCount++;
+    }
+    void addTitleItem(string inString) {
+        TitelStrings[titleItemCount]->assign(inString.c_str());
+        titleItemCount++;
+    }
     void setDown() {
         selectedItem++;
-        if (selectedItem > count - 1)
+        if (selectedItem > itemsCount - 1)
             selectedItem = 0;
     }
     void setUp() {
         selectedItem--;
         if (selectedItem < 0)
-            selectedItem = count - 1;
+            selectedItem = itemsCount - 1;
     }
 
     //где <A> и <B> Ч шестнадцатеричные цифры Ч перва€ задает цвет фона, а втора€ Ч цвет переднего плана(цвет шрифта).
@@ -53,8 +64,18 @@ public:
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         int maxLength = getMaxLength();
         drawLineUP(maxLength + 6);
-        for (int i = 0; i < 5; i++) {
-
+        for (int i = 0; i < titleItemCount; i++) {
+            SetConsoleTextAttribute(hConsole, 15);
+            string tmpString = "";
+            tmpString = "|   ";
+            tmpString = tmpString + TitelStrings[i]->c_str();
+            while (tmpString.length() < maxLength + 7)
+                tmpString += " ";
+            tmpString += "|";
+            cout << tmpString << endl;
+        }
+        drawLineDown(maxLength + 7);
+        for (int i = 0; i < itemsCount; i++) {
             if (i == selectedItem) {
                 
                 SetConsoleTextAttribute(hConsole, 15);

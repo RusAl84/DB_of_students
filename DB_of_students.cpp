@@ -31,13 +31,13 @@ int main()
     sdb.loadDataFromFile();
 
     cout << sdb.GetRecordCount() << endl;
-    ClassMenu mainMenu = ClassMenu();
-    mainMenu.count = 5;
-    mainMenu.items[0]->assign("Вывести на экран список студентов");
-    mainMenu.items[1]->assign("Добавить данные о студенте в БД");
-    mainMenu.items[2]->assign("Выбрать файл для загрузки БД студентов");
-    mainMenu.items[3]->assign("Сохранить БД студентов в файл");
-    mainMenu.items[4]->assign("Выход");
+    ClassMenu* mainMenu = new ClassMenu();
+    mainMenu->addItem("Вывести на экран список студентов");
+    mainMenu->addItem("Добавить данные о студенте в БД");
+    mainMenu->addItem("Выбрать файл для загрузки БД студентов");
+    mainMenu->addItem("Сохранить БД студентов в файл");
+    mainMenu->addItem("Выход");
+    mainMenu->addTitleItem("Главное меню");
     int resultSelectedItem = 0;
     int exitInt = 4;
     //StudentClass Rusakov = StudentClass();
@@ -46,27 +46,26 @@ int main()
     ClassMenu* studentsMenu = new ClassMenu();
     StudentNode sn;
     int resultStudentSelectedItem = 1;
-    int studentCount = 0;
-    studentsMenu->items[0]->assign("Выход");
+    //int studentCount = 0;
+    studentsMenu->addItem("Выход");
     const int exitIntStudentMenu = 0;
     while (resultSelectedItem != exitInt) {
-        mainMenu.run();
-        resultSelectedItem = mainMenu.getSelectedItem();
+        mainMenu->run();
+        resultSelectedItem = mainMenu->getSelectedItem();
         switch (resultSelectedItem) {
         case 0:
             //system("cls"); 
             //cout << "*** Список студентов ***" << endl;
             //sdb.printAllSurName();
-            
             sdb.getInit();
             sn = sdb.getNext();
             while (sn.isNULL==false){
                 string tmpString = sn.surName + " " + sn.name + " " + sn.middleName + " " + sn.group;
-                studentsMenu->items[studentCount+1]->assign(tmpString);
+                studentsMenu->addItem(tmpString); //добавить в енб студентов
                 sn = sdb.getNext();
-                studentCount++;
+                /*studentCount++;*/
             }
-            studentsMenu->count = studentCount+1;
+            /*studentsMenu->count = studentCount+1;*/
             while (resultStudentSelectedItem != exitIntStudentMenu) {
                 studentsMenu->run();
                 resultStudentSelectedItem = studentsMenu->getSelectedItem();
