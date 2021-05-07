@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BirthDateClass.h" />
+    <ClInclude Include="ClassEdit.h" />
     <ClInclude Include="ClassMenu.h" />
     <ClInclude Include="ExamsResultsClass.h" />
     <ClInclude Include="FileManagerClass.h" />

@@ -5,26 +5,72 @@
 #include "ClassMenu.h"
 #include "StudentDBClass.h"
 #include "StudentClass.h"
+#include "ClassEdit.h"
 int main()
 {
     setlocale(LC_ALL, "Russian");
+    SetConsoleCP(1251); // Ввод с консоли в кодировке 1251
+    SetConsoleOutputCP(1251);
     std::cout << "Курсовая работа запущена...\n";
-    //StringBuilderClass sb = StringBuilderClass();
-    //cout << endl;
-    //string s1 = sb.setParam("surName", "Ярошенко");
-    //string s2 = sb.setParam("startYear", 2020);
-    //cout << endl << s1 << "  " << sb.getType(s1) << endl;
-    //cout << endl << s2 << "  " << sb.getType(s2) << endl;
+    bool isTest = true;
+    if (isTest) {
+        ClassMenu* studDataMenu = new ClassMenu();
+        
+        int resultStudDataMenu = 1;
+        const int exitStudDataMenu = 0;
+        StudentNode *sn = new StudentNode();
+        ClassEdit* ce = new  ClassEdit();
+        studDataMenu->addItem("Выход");
+        studDataMenu->addItem("Добавить/изменить фамилию:");
+        studDataMenu->addItem("Добавить/изменить имя:");
+        studDataMenu->addItem("Добавить/изменить отчество:");
+        while (resultStudDataMenu != exitStudDataMenu) {
+            studDataMenu->eraseTitle();
+            studDataMenu->addTitleItem("Изменение/добавление данных о студенте:");
+            studDataMenu->addTitleItem("Фамилия: " + sn->surName + " Имя: " + sn->name + " Отчество: " + sn->middleName);
+            studDataMenu->run();
+            resultStudDataMenu = studDataMenu->getSelectedItem();
+            switch (resultStudDataMenu) {
+            case 0:
+                resultStudDataMenu = exitStudDataMenu;
+                break;
+            case 1:
+                ce->setLabel("Введите фамилию:");
+                sn->surName = ce->setDataString();
+                break;            
+            case 2:
+                ce->setLabel("Введите имя:");
+                sn->name = ce->setDataString();
+                break;            
+            case 3:
+                ce->setLabel("Введите отчество:");
+                sn->middleName = ce->setDataString();
+                break;
+            default:
+                break;
+            }
+        }
 
-    //sb.getName(s2);
-    //sb.getValueInt(s2);
+
+        //StringBuilderClass sb = StringBuilderClass();
+        //cout << endl;
+        //string s1 = sb.setParam("surName", "Ярошенко");
+        //string s2 = sb.setParam("startYear", 2020);
+        //cout << endl << s1 << "  " << sb.getType(s1) << endl;
+        //cout << endl << s2 << "  " << sb.getType(s2) << endl;
+
+        //sb.getName(s2);
+        //sb.getValueInt(s2);
 
 
-    //FileManagerClass fb = FileManagerClass("d:\\DB.txt");
-    //fb.AddRusakovRecord();
-    //StringBuilderClass sb = StringBuilderClass();
-    //string tmpString = "27_12_1984";
-    //cout << sb.split(tmpString,'_',2)<< endl;
+        //FileManagerClass fb = FileManagerClass("d:\\DB.txt");
+        //fb.AddRusakovRecord();
+        //StringBuilderClass sb = StringBuilderClass();
+        //string tmpString = "27_12_1984";
+        //cout << sb.split(tmpString,'_',2)<< endl;
+    }
+    else
+    {
 
     StudentDBClass sdb = StudentDBClass();
     sdb.FileName = "d:\\DB.txt";
@@ -32,23 +78,24 @@ int main()
 
     cout << sdb.GetRecordCount() << endl;
     ClassMenu* mainMenu = new ClassMenu();
+    mainMenu->addTitleItem("Главное меню");
     mainMenu->addItem("Вывести на экран список студентов");
     mainMenu->addItem("Добавить данные о студенте в БД");
     mainMenu->addItem("Выбрать файл для загрузки БД студентов");
     mainMenu->addItem("Сохранить БД студентов в файл");
     mainMenu->addItem("Выход");
-    mainMenu->addTitleItem("Главное меню");
+
     int resultSelectedItem = 0;
     int exitInt = 4;
     //StudentClass Rusakov = StudentClass();
     //Rusakov.addRusakov();
     //Rusakov.faculty = "Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...";
     ClassMenu* studentsMenu = new ClassMenu();
-    StudentNode sn;
+    studentsMenu->addTitleItem("Список студентов");
     int resultStudentSelectedItem = 1;
-    //int studentCount = 0;
     studentsMenu->addItem("Выход");
     const int exitIntStudentMenu = 0;
+    StudentNode sn;
     while (resultSelectedItem != exitInt) {
         mainMenu->run();
         resultSelectedItem = mainMenu->getSelectedItem();
@@ -63,9 +110,7 @@ int main()
                 string tmpString = sn.surName + " " + sn.name + " " + sn.middleName + " " + sn.group;
                 studentsMenu->addItem(tmpString); //добавить в енб студентов
                 sn = sdb.getNext();
-                /*studentCount++;*/
             }
-            /*studentsMenu->count = studentCount+1;*/
             while (resultStudentSelectedItem != exitIntStudentMenu) {
                 studentsMenu->run();
                 resultStudentSelectedItem = studentsMenu->getSelectedItem();
@@ -73,6 +118,11 @@ int main()
             //resultSelectedItem = exitInt;
             break;
         case 1:
+            system("cls");
+
+            resultSelectedItem = exitInt;
+            break;        
+        case 2:
             system("cls");
 
             //cout << sizeof(Rusakov)*10000 << endl;
@@ -89,7 +139,7 @@ int main()
 
     _getch();
 
-
+    }
 
 
 }
