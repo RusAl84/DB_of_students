@@ -108,15 +108,20 @@ public:
     }
     void run() {
         char ch = ' ';
+        draw();
         while (ch != 13) {
-            draw();
             Sleep(100);
             ch = _getch();
             //cout << endl << ch <<endl;
-            if (ch == 80)  // вниз
+            if (ch == 80) {// вниз
                 setDown();
-            if (ch == 72)
+                draw();
+            }
+            if (ch == 72) {
                 setUp();
+                draw();
+            }
+                
         }
 
     }
