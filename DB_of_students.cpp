@@ -12,12 +12,12 @@ int main()
     SetConsoleCP(1251); // Ввод с консоли в кодировке 1251
     SetConsoleOutputCP(1251);
     std::cout << "Курсовая работа запущена...\n";
-    bool isTest = false;
-    if (isTest) {
+    bool isDebug = true;
+    if (isDebug) {
         StudentNode* sn = new StudentNode();
         StudentClass* st = new StudentClass();
-        st->editStudent(sn);
-        //st->editExamsResults(sn);
+        //st->editStudent(sn);
+        st->editExamsResults(sn);
 
 
         //StringBuilderClass sb = StringBuilderClass();

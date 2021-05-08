@@ -98,6 +98,13 @@ public:
     void eraseTitle() {
         titleItemCount = 0;
     }
+    void eraseItem() {
+        itemsCount = 0;
+    }
+    void eraseAll() {
+        eraseTitle();
+        eraseItem();
+    }
     int getSelectedItem() {
         return selectedItem;
     }

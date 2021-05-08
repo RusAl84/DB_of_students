@@ -248,9 +248,7 @@ public:
 				msMenu->addTitleItem("Ïğîñìîòğ/èçìåíåíèå/äîáàâëåíèå äàííûõ î îöåíêàõ");
 				msMenu->addTitleItem("Äàííûå ñåññèè ¹" + std::to_string(curSess));
 				msMenu->addItem("Âûõîä");
-				msMenu->addItem("Äîáàâèòü çàïèñü");
-				msMenu->addItem("Èçìåíèòü çàïèñü");
-				msMenu->addItem("Óäàëèòü çàïèñü");
+				
 				resultS = 1;
 				while (resultS != exitS) {
 					msMenu->run();
