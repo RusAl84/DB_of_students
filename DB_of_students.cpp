@@ -16,7 +16,10 @@ int main()
     if (isDebug) {
         StudentNode* sn = new StudentNode();
         StudentClass* st = new StudentClass();
-        //st->editStudent(sn);
+        st->addRusakov();
+        sn = st->getStudentNode();
+        st->editStudent(sn);
+        
         st->editExamsResults(sn);
 
 

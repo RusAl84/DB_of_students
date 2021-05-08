@@ -43,58 +43,63 @@ private:
 	//int id;
 	//BirthDateClass birthDate;
 	//ExamsResultsClass examsResults;
-	StudentNode sn;
+	StudentNode *sn;
 	StringMasClass stringMas;
 public:
 	 StudentClass() {
-		addRusakov();
+		 sn = new StudentNode();
+		 addRusakov();
 	}
+	 StudentNode* getStudentNode() {
+		 return sn;
+	 }
+
 	void addRusakov() {
-		sn.id = 0;
-		sn.surName = "Русаков";
-		sn.name = "Алексей";
-		sn.middleName = "Михайлович";
-		sn.faculty = "10.05.04 Информационно-аналитические системы безопасности";
-		sn.department = "Институт комплексной безопасности и специального приборостроения";
-		sn.group = "БИСО-01-21";
-		sn.recordСardNumber = "20Б0857";
-		sn.sex = true;
-		sn.startYear = 2021;
-		sn.birthDateString = "27.12.1984";
+		sn->id = 0;
+		sn->surName = "Русаков";
+		sn->name = "Алексей";
+		sn->middleName = "Михайлович";
+		sn->faculty = "10.05.04 Информационно-аналитические системы безопасности";
+		sn->department = "Институт комплексной безопасности и специального приборостроения";
+		sn->group = "БИСО-01-21";
+		sn->recordСardNumber = "20Б0857";
+		sn->sex = true;
+		sn->startYear = 2021;
+		sn->birthDateString = "27.12.1984";
 		ExamsResultsClass* er = new ExamsResultsClass();
-		sn.examsRecordsData[0][0] = er->add("Яыки программирования 1", 5);
-		sn.examsRecordsData[0][1] = er->add("Математика 1", 5);
-		sn.examsRecordsData[0][2] = er->add("Физкультура 1", true);		
-		sn.examsRecordsData[1][0] = er->add("Яыки программирования 2", 5);
-		sn.examsRecordsData[1][1] = er->add("Математика 2", 5);
-		sn.examsRecordsData[1][2] = er->add("Физкультура 2", true);
+		er->add(0, "Яыки программирования 1", 5);
+		er->add(0, "Математика 1", 5);
+		er->add(0, "Физкультура 1", true);
+		er->add(1, "Яыки программирования 2", 5);
+		er->add(1, "Математика 2", 5);
+		er->add(1, "Физкультура 2", true);
 	}
 	void UpdateMasString() {
 		stringMas.Erase();
 		StringBuilderClass sb = StringBuilderClass();
-		stringMas.Add(sb.setParam("surName", sn.surName));
-		stringMas.Add(sb.setParam("name", sn.name));
-		stringMas.Add(sb.setParam("middleName", sn.middleName));
-		stringMas.Add(sb.setParam("faculty", sn.faculty));
-		stringMas.Add(sb.setParam("department", sn.department));
-		stringMas.Add(sb.setParam("group", sn.group));
+		stringMas.Add(sb.setParam("surName", sn->surName));
+		stringMas.Add(sb.setParam("name", sn->name));
+		stringMas.Add(sb.setParam("middleName", sn->middleName));
+		stringMas.Add(sb.setParam("faculty", sn->faculty));
+		stringMas.Add(sb.setParam("department", sn->department));
+		stringMas.Add(sb.setParam("group", sn->group));
 		int intSex = 1;
-		if (sn.sex)
+		if (sn->sex)
 			intSex = 1;
 		else
 			intSex = 0;
 		stringMas.Add(sb.setParam("sex", intSex));
-		stringMas.Add(sb.setParam("startYear", sn.startYear));
-		stringMas.Add(sb.setParam("birthDate", sn.birthDateString)); //27.12.1984
+		stringMas.Add(sb.setParam("startYear", sn->startYear));
+		stringMas.Add(sb.setParam("birthDate", sn->birthDateString)); //27.12.1984
 		int sem = 0;
 		int num = 0;
 		for (int sem=0;sem<9;sem++)
 			for (int num=0;num<10;num++)
-				if (not sn.examsRecordsData[sem][num].isEmpty ){
+				if (not sn->examsRecordsData[sem][num].isEmpty ){
 					//examsResults_sem_num_n - название экзамена или зачета
-					stringMas.Add(sb.setParam("examsResults_" + std::to_string(sem) + "_" + std::to_string(num) + "_n", sn.examsRecordsData[sem][num].Name));
+					stringMas.Add(sb.setParam("examsResults_" + std::to_string(sem) + "_" + std::to_string(num) + "_n", sn->examsRecordsData[sem][num].name));
 					//examsResults_sem_num_m - оценка
-					stringMas.Add(sb.setParam("examsResults_" + std::to_string(sem) + "_" + std::to_string(num) + "_m", std::to_string(sn.examsRecordsData[sem][num].Mark)));
+					stringMas.Add(sb.setParam("examsResults_" + std::to_string(sem) + "_" + std::to_string(num) + "_m", std::to_string(sn->examsRecordsData[sem][num].mark)));
 				}
 		//stringMas.dislay();
 	}
@@ -219,6 +224,7 @@ public:
 		}
 	}
 	void editExamsResults(StudentNode* sn) {
+		sn->examsRecordsData;
 		ClassMenu* sesMenu = new ClassMenu();
 		int result = 1;
 		const int exit = 0;
@@ -247,6 +253,19 @@ public:
 				msMenu->eraseAll();
 				msMenu->addTitleItem("Просмотр/изменение/добавление данных о оценках");
 				msMenu->addTitleItem("Данные сессии №" + std::to_string(curSess));
+				for (int i = 0; i < 9; i++) 
+					for(int j=0;j<10;j++)
+						if (not sn->examsRecordsData[i][j].isEmpty)
+						{
+							string markString = "";
+							int markInt= sn->examsRecordsData[i][j].mark;
+							if (markInt == 0) markString = "не зачтено";
+							if (markInt == 1) markString = "зачтено";
+							if ((markInt >= 2) and (markInt <= 5)) {
+								markString = std::to_string(markInt);
+							}	
+							msMenu->addTitleItem("Предмет: " + sn->examsRecordsData[i][j].name + " Оценка: " + markString);
+						}
 				msMenu->addItem("Выход");
 				msMenu->addItem("Добавить запись");
 				msMenu->addItem("Изменить запись");
