@@ -34,7 +34,9 @@ public:
 			drawLineDown(maxLength + 7);
 	}
 
-	string setDataString() {
+	string setDataString(string dataString) {
+		data = dataString;
+		label = label + " Предыдущее значение: " + dataString;
 		draw();
 		string inString = "";
 		while (inString.length()==0){

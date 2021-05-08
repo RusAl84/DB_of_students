@@ -73,6 +73,15 @@ public:
 		er->add(1, "Яыки программирования 2", 5);
 		er->add(1, "Математика 2", 5);
 		er->add(1, "Физкультура 2", true);
+		setExamsResultsData(er,sn);
+	}
+	void setExamsResultsData(ExamsResultsClass* er, StudentNode* sn) {
+		for (int i = 0; i < 9; i++)
+			for (int j = 0; j < 10; j++) {
+				sn->examsRecordsData[i][j].isEmpty = er->data[i][j].isEmpty;
+				sn->examsRecordsData[i][j].mark = er->data[i][j].mark;
+				sn->examsRecordsData[i][j].name = er->data[i][j].name;
+			}
 	}
 	void UpdateMasString() {
 		stringMas.Erase();
@@ -140,17 +149,17 @@ public:
 		const int exitStudDataMenu = 0;
 		ClassEdit* ce = new  ClassEdit();
 		studDataMenu->addItem("Выход");   //0
-		studDataMenu->addItem("Добавить/изменить фамилию:"); //1
-		studDataMenu->addItem("Добавить/изменить имя:");   //2
-		studDataMenu->addItem("Добавить/изменить отчество:");   //3
-		studDataMenu->addItem("Добавить/изменить институт:");   //4
-		studDataMenu->addItem("Добавить/изменить кафедру:");   //5
-		studDataMenu->addItem("Добавить/изменить группу:");   //6
-		studDataMenu->addItem("Добавить/изменить номер зачетной книжки:");   //7
-		studDataMenu->addItem("Добавить/изменить пол:");   //
-		studDataMenu->addItem("Добавить/изменить год поступления в ВУЗ:");   //8
-		studDataMenu->addItem("Добавить/изменить дату рождения:");   //9
-		studDataMenu->addItem("Добавить/изменить оценки:");   //10
+		studDataMenu->addItem("Добавить/изменить фамилию"); //1
+		studDataMenu->addItem("Добавить/изменить имя");   //2
+		studDataMenu->addItem("Добавить/изменить отчество");   //3
+		studDataMenu->addItem("Добавить/изменить институт");   //4
+		studDataMenu->addItem("Добавить/изменить кафедру");   //5
+		studDataMenu->addItem("Добавить/изменить группу");   //6
+		studDataMenu->addItem("Добавить/изменить номер зачетной книжки");   //7
+		studDataMenu->addItem("Добавить/изменить пол");   //
+		studDataMenu->addItem("Добавить/изменить год поступления в ВУЗ");   //8
+		studDataMenu->addItem("Добавить/изменить дату рождения");   //9
+		studDataMenu->addItem("Добавить/изменить оценки");   //10
 		int day, month, year;
 		while (resultStudDataMenu != exitStudDataMenu) {
 			studDataMenu->eraseTitle();
@@ -171,35 +180,35 @@ public:
 				break;
 			case 1:
 				ce->setLabel("Введите фамилию");
-				sn->surName = ce->setDataString();
+				sn->surName = ce->setDataString(sn->surName);
 				break;
 			case 2:
 				ce->setLabel("Введите имя");
-				sn->name = ce->setDataString();
+				sn->name = ce->setDataString(sn->name);
 				break;
 			case 3:
 				ce->setLabel("Введите отчество");
-				sn->middleName = ce->setDataString();
+				sn->middleName = ce->setDataString(sn->middleName);
 				break;
 			case 4:
 				ce->setLabel("Введите название институту");
-				sn->faculty = ce->setDataString();
+				sn->faculty = ce->setDataString(sn->faculty);
 				break;
 			case 5:
 				ce->setLabel("Введите название кафедры");
-				sn->department = ce->setDataString();
+				sn->department = ce->setDataString(sn->department);
 				break;
 			case 6:
 				ce->setLabel("Введите группу");
-				sn->group = ce->setDataString();
+				sn->group = ce->setDataString(sn->group);
 				break;
 			case 7:
 				ce->setLabel("Введите номер зачетной книжки");
-				sn->recordСardNumber = ce->setDataString();
+				sn->recordСardNumber = ce->setDataString(sn->recordСardNumber);
 				break;
 			case 8:
 				ce->setLabel("Введите пол");
-				sn->sex = editSex();
+				sn->sex = editSex();        ////
 				break;
 			case 9:
 				ce->setLabel("Введите год поступления в ВУЗ");
@@ -216,7 +225,8 @@ public:
 				break;
 			case 11:
 				ce->setLabel("Просмотреть/ изменить оценки");
-				/*sn->recordСardNumber = ce->setDataString();*/
+				sn = getStudentNode();
+				editExamsResults(sn);
 				break;
 			default:
 				break;
@@ -224,7 +234,8 @@ public:
 		}
 	}
 	void editExamsResults(StudentNode* sn) {
-		sn->examsRecordsData;
+		string st= sn->examsRecordsData[0][0].name;
+
 		ClassMenu* sesMenu = new ClassMenu();
 		int result = 1;
 		const int exit = 0;
@@ -253,19 +264,18 @@ public:
 				msMenu->eraseAll();
 				msMenu->addTitleItem("Просмотр/изменение/добавление данных о оценках");
 				msMenu->addTitleItem("Данные сессии №" + std::to_string(curSess));
-				for (int i = 0; i < 9; i++) 
-					for(int j=0;j<10;j++)
-						if (not sn->examsRecordsData[i][j].isEmpty)
-						{
-							string markString = "";
-							int markInt= sn->examsRecordsData[i][j].mark;
-							if (markInt == 0) markString = "не зачтено";
-							if (markInt == 1) markString = "зачтено";
-							if ((markInt >= 2) and (markInt <= 5)) {
-								markString = std::to_string(markInt);
-							}	
-							msMenu->addTitleItem("Предмет: " + sn->examsRecordsData[i][j].name + " Оценка: " + markString);
-						}
+				for(int i=0;i<9;i++)
+					if (not sn->examsRecordsData[curSess-1][i].isEmpty)
+					{
+						string markString = "";
+						int markInt= sn->examsRecordsData[curSess - 1][i].mark;
+						if (markInt == 0) markString = "не зачтено";
+						if (markInt == 1) markString = "зачтено";
+						if ((markInt >= 2) and (markInt <= 5)) {
+							markString = std::to_string(markInt);
+						}	
+						msMenu->addTitleItem("Предмет: " + sn->examsRecordsData[curSess - 1][i].name + " Оценка: " + markString);
+					}
 				msMenu->addItem("Выход");
 				msMenu->addItem("Добавить запись");
 				msMenu->addItem("Изменить запись");
@@ -274,10 +284,13 @@ public:
 				while (resultS != exitS) {
 					msMenu->run();
 					resultS = msMenu->getSelectedItem();
-					/*if ((resultS>=1) and (resultS <= 9))*/
-
+					switch (resultS) {
+					case 1:
+						break;
+					default:
+						break;
+					}
 				}
-				
 			}
 			result = curSess;
 			

@@ -1,4 +1,5 @@
 #pragma once
+
 struct ExamsRecords {
 	string name;
 	int mark; // 1 - зачет
@@ -8,10 +9,10 @@ struct ExamsRecords {
 };
 class ExamsResultsClass
 {
-private:
-	ExamsRecords data[9][10];
+//private:
+//	 ExamsRecords data[9][10];
 public:
-	//ExamsRecords data[9][10];
+	ExamsRecords data[9][10];
 	ExamsResultsClass() {
 		emptpy();
 	}
@@ -47,14 +48,18 @@ public:
 		else
 			return false;
 	}
-	void setData(ExamsRecords* er) {	
-		for (int i = 0; i < 9; i++)
-			for (int j = 0; j < 10; j++) {
-				er->isEmpty=data[i][j].isEmpty;
-				er->mark=data[i][j].mark;
-				er->name=data[i][j].name;
-			}	
-	}
+	//void setData(StudentNode* sn) {
+	//	for (int i = 0; i < 9; i++)
+	//		for (int j = 0; j < 10; j++) {
+	//			sn->examsRecordsData[i][j].isEmpty =data[i][j].isEmpty;
+	//			sn->examsRecordsData[i][j].mark=data[i][j].mark;
+	//			sn->examsRecordsData[i][j].name=data[i][j].name;
+	//		}	
+	//}
+
+
+
+
 	int getFirstEmptyRow(int sessNum) {
 		for (int i = 0; i < 10; i++) {
 			bool flag = data[sessNum][i].isEmpty;

@@ -18,8 +18,7 @@ int main()
         StudentClass* st = new StudentClass();
         st->addRusakov();
         sn = st->getStudentNode();
-        st->editStudent(sn);
-        
+        //st->editStudent(sn);
         st->editExamsResults(sn);
 
 
@@ -52,8 +51,8 @@ int main()
     mainMenu->addTitleItem("Главное меню");
     mainMenu->addItem("Вывести на экран список студентов");
     mainMenu->addItem("Добавить данные о студенте в БД");
-    mainMenu->addItem("Выбрать файл для загрузки БД студентов");
     mainMenu->addItem("Сохранить БД студентов в файл");
+    mainMenu->addItem("Выбрать файл для загрузки БД студентов");
     mainMenu->addItem("Выход");
 
     int resultSelectedItem = 0;
