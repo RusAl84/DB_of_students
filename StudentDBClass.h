@@ -48,6 +48,9 @@ public:
 					continue;
 				}
 				if (isRecord) {
+					for (int i = 0; i < 9; i++)
+						for (int j = 0; j < 10; j++)
+							sn->examsRecordsData[i][j].isEmpty = true;
 					string valueName = getName(line);
 					if (strcmp(getType(line).c_str(), "str") == 0)
 					{
@@ -107,7 +110,40 @@ public:
 			inFile.close();     // закрываем файл
 		}
 	}
-
+	void saveDataToFile() {
+		std::ofstream outFile;          // поток для записи
+       
+		string tmpFileName = "d:\\db1.txt";
+		ifstream iff(tmpFileName); //если файл есть удаляем
+		if (iff.bad() == false) 
+		{
+			remove(tmpFileName.c_str());
+		}
+        outFile.open(tmpFileName, std::ios::app); // окрываем файл для записи
+		// outFile.open(FileName, std::ios::app); // окрываем файл для записи
+        if (outFile.is_open())
+        {
+            
+            StudentClass st = StudentClass();
+			int recordsCount = GetRecordCount();
+			StudentNode* sn;
+			for (int i = 0; i < recordsCount;i++) {
+            //st.addRusakov();
+				outFile << startRecordString << std::endl;
+				sn = getStudentNode(i);
+				st.UpdateMasString(sn);
+				st.getInitStringRecord();
+				string resultString = st.getStringRecord();
+				while (resultString.length() > 0) {
+					outFile << resultString << std::endl;
+					resultString = st.getStringRecord();
+				}
+				outFile << endRecordString << std::endl;
+			}
+            
+        }
+        outFile.close();
+	}
 	void setData(StudentNode* tNode, StudentNode* st) {
 		tNode->surName = st->surName;
 		tNode->name = st->name;

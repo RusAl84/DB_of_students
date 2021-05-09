@@ -12,8 +12,6 @@ const string endRecordString = "### End Record";
 class FileManagerClass: public StringBuilderClass
 {
 public:
-
-
     string FileName = "";
     FileManagerClass() {
         FileName = "";
@@ -22,24 +20,24 @@ public:
         FileName = _FileName;
     }
     void AddRusakovRecord() {
-        std::ofstream outFile;          // поток для записи
-        outFile.open(FileName, std::ios::app); // окрываем файл для записи
-        if (outFile.is_open())
-        {
-            outFile << startRecordString << std::endl;
-            //setlocale(LC_ALL, "Russian");
-            StudentClass stud = StudentClass();
-            stud.addRusakov();
-            stud.UpdateMasString();
-            stud.getInitStringRecord();
-            string resultString = stud.getStringRecord();
-            while (resultString.length() > 0) {
-                outFile << resultString << std::endl;
-                resultString = stud.getStringRecord();
-            }
-            outFile << endRecordString << std::endl;
-        }
-        outFile.close();
+        //std::ofstream outFile;          // поток для записи
+        //outFile.open(FileName, std::ios::app); // окрываем файл для записи
+        //if (outFile.is_open())
+        //{
+        //    outFile << startRecordString << std::endl;
+        //    //setlocale(LC_ALL, "Russian");
+        //    StudentClass stud = StudentClass();
+        //    st.addRusakov();
+        //    stud.UpdateMasString();
+        //    stud.getInitStringRecord();
+        //    string resultString = stud.getStringRecord();
+        //    while (resultString.length() > 0) {
+        //        outFile << resultString << std::endl;
+        //        resultString = stud.getStringRecord();
+        //    }
+        //    outFile << endRecordString << std::endl;
+        //}
+        //outFile.close();
     }
     int GetRecordCount() {
         string line;

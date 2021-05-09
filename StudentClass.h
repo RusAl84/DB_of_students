@@ -82,7 +82,7 @@ public:
 				sn->examsRecordsData[i][j].name = er->data[i][j].name;
 			}
 	}
-	void UpdateMasString() {
+	void UpdateMasString(StudentNode* sn) {
 		stringMas.Erase();
 		StringBuilderClass sb = StringBuilderClass();
 		stringMas.Add(sb.setParam("surName", sn->surName));

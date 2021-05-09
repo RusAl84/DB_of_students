@@ -52,10 +52,10 @@ int main()
     mainMenu->addItem("Просмотреть список студетов (удалить или изменить данные)"); //0
     mainMenu->addItem("Добавить данные о студенте в БД"); //1
     mainMenu->addItem("Сохранить БД студентов в файл"); //2
-    mainMenu->addItem("Выбрать файл для загрузки БД студентов"); //3
+    //mainMenu->addItem("Выбрать файл для загрузки БД студентов"); //3
     mainMenu->addItem("Выход"); //4
     int resultSelectedItem = 0;
-    int exitInt = 4;
+    int exitInt = 3;
     ClassMenu* studentsMenu = new ClassMenu();
     studentsMenu->addTitleItem("Список студентов");
     int resultStudentSelectedItem = 1;
@@ -95,15 +95,10 @@ int main()
             st->editStudent(sn);
             sdb->Add(sn);
             break;        
-        case 2:
-            system("cls");
-            //cout << sizeof(Rusakov)*10000 << endl;
-            //HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-            //SetConsoleTextAttribute(hConsole, 15);
-            //sdb.printAllSurName();
-            resultSelectedItem = exitInt;
+        case 2: //Сохранить в файл
+            sdb->saveDataToFile();
             break;
-        case 4:
+        case 3: //Выход
             resultSelectedItem = exitInt;
             break;
         default:
