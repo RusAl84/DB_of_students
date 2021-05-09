@@ -20,7 +20,6 @@ struct StudentNode
 	string birthDateString;
 	bool sex; // true - мальчик
 			  // false - девочка
-	bool isNULL;
 	int startYear;
 	int id;
 	ExamsRecords examsRecordsData[9][10];  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
@@ -225,7 +224,7 @@ public:
 				break;
 			case 11:
 				ce->setLabel("Просмотреть/ изменить оценки.");
-				sn = getStudentNode();
+				//sn = getStudentNode();
 				editExamsResults(sn);
 				break;
 			default:

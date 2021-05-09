@@ -31,7 +31,7 @@ public:
 		if (inFile.is_open())
 		{
 			bool isRecord = false;
-			StudentNode* st = new StudentNode();
+			StudentNode* sn = new StudentNode();
 			int studentId = 0;
 			while (getline(inFile, line))
 			{
@@ -42,7 +42,7 @@ public:
 				if (strcmp(endRecordString.c_str(), line.c_str()) == 0) {
 					isRecord = false;
 					studentId++;
-					Add(st);
+					Add(sn);
 					/// add
 
 					continue;
@@ -54,37 +54,53 @@ public:
 						string value = getValueStr(line);
 						//cout << value << endl;
 						if (strcmp("surName", valueName.c_str()) == 0)
-							st->surName = value;
+							sn->surName = value;
 						if (strcmp("name", valueName.c_str()) == 0)
-							st->name = value;
+							sn->name = value;
 						if (strcmp("middleName", valueName.c_str()) == 0)
-						    st->middleName = value;
+						    sn->middleName = value;
 						if (strcmp("faculty", valueName.c_str()) == 0)
-							st->faculty = value;
+							sn->faculty = value;
 						if (strcmp("department", valueName.c_str()) == 0)
-							st->department = value;						
+							sn->department = value;						
 						if (strcmp("group", valueName.c_str()) == 0)
-							st->group = value;						
+							sn->group = value;						
 						if (strcmp("recordСardNumber", valueName.c_str()) == 0)
-							st->recordСardNumber = value;
+							sn->recordСardNumber = value;
 						if (strcmp("birthDateString", valueName.c_str()) == 0)
-							st->birthDateString = value;
-						//!!!! ExamsRecords
-						//!!!!!!!!!!!!!!!!!!!!!!!!!!!!! надо бы продолжить 
+							sn->birthDateString = value;
+						// ExamsRecords
+						for(int i=0;i<9;i++)
+							for (int j = 0; j < 10; j++) {
+								//examsResults_0_2_n
+											// i j
+								string testNameString = "";
+								testNameString = testNameString + "examsResults_" + std::to_string(i) + "_" + std::to_string(j) + "_n";
+								string testMarkString = "";
+								testMarkString = testMarkString + "examsResults_" + std::to_string(i) + "_" + std::to_string(j) + "_m";
+								if (strcmp(testNameString.c_str(), valueName.c_str()) == 0){
+									sn->examsRecordsData[i][j].name = value;
+									sn->examsRecordsData[i][j].isEmpty = false;
+								}
+								if (strcmp(testMarkString.c_str(), valueName.c_str()) == 0){
+									sn->examsRecordsData[i][j].mark = atoi(value.c_str());
+									sn->examsRecordsData[i][j].isEmpty = false;
+								}
+							}
 					}
 					else // Тогда явно int но надо проверить
 					{
 						int value = getValueInt(line);
 						if (strcmp("id", valueName.c_str()) == 0)
-							st->id = studentId;  // сейчас здесь порядковый номер записи в файле
+							sn->id = studentId;  // сейчас здесь порядковый номер записи в файле
 						//должно быть value хорошо бы, но ладно;) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 						if (strcmp("startYear", valueName.c_str()) == 0)
-							st->id = value;
+							sn->id = value;
 						if (strcmp("sex", valueName.c_str()) == 0)
 							if (value == 0)
-								st->sex = false;
+								sn->sex = false;
 							else
-								st->sex = true;
+								sn->sex = true;
 					}
 				}
 			}
@@ -103,12 +119,13 @@ public:
 		tNode->sex = st->sex;
 		tNode->startYear = st->startYear;
 		tNode->birthDateString = st->birthDateString;
-		// //по аналогии  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
+		// //по аналогии
 		//ExamsRecords data[9][10];
-
-
-		tNode->isNULL = false;
-
+		for(int i=0;i<9;i++)
+			for (int j = 0; j < 10; j++) {
+				tNode->examsRecordsData[i][j] = st->examsRecordsData[i][j];
+			}
+		//tNode->isNULL = false;
 	}
 	bool Add(StudentNode *st) {
 		if (!head)
@@ -133,21 +150,11 @@ public:
 		}
 		return false;
 	}
-	bool getInit() {
+	StudentNode* getInit() {
 		return getNextNode = head;
 	}
 	int getCount() {
 		return count;
-	}
-	StudentNode * getNext() {
-		StudentNode* tmpSt = new StudentNode;
-		tmpSt->isNULL = true;
-		if (getNextNode) {
-			//tmpSt = getNextNode->data;
-			setData(tmpSt, getNextNode);
-			getNextNode = getNextNode->next;
-		}
-		return tmpSt;
 	}
 	void printAllSurName() {
 		StudentNode* curr = NULL;
@@ -156,6 +163,24 @@ public:
 			cout << curr->surName << endl;
 			curr = curr->next;
 		}
+	}
+
+	StudentNode* getStudentNode(int num) {
+		StudentNode* curr = NULL;
+		curr = head;
+		int ind = 0;
+		while (curr) {
+			//cout << curr->surName << endl;
+			if (ind == num) {
+				return curr;
+				break;
+			}
+			else {
+				curr = curr->next;
+				ind++;
+			}
+		}
+		return NULL;
 	}
 	
 };

@@ -12,7 +12,7 @@ int main()
     SetConsoleCP(1251); // Ввод с консоли в кодировке 1251
     SetConsoleOutputCP(1251);
     std::cout << "Курсовая работа запущена...\n";
-    bool isDebug = true;
+    bool isDebug = false;
     if (isDebug) {
         StudentNode* sn = new StudentNode();
         StudentClass* st = new StudentClass();
@@ -49,23 +49,18 @@ int main()
     //cout << sdb->GetRecordCount() << endl;
     ClassMenu* mainMenu = new ClassMenu();
     mainMenu->addTitleItem("Главное меню");
-    mainMenu->addItem("Вывести на экран список студентов");
-    mainMenu->addItem("Добавить данные о студенте в БД");
-    mainMenu->addItem("Сохранить БД студентов в файл");
-    mainMenu->addItem("Выбрать файл для загрузки БД студентов");
-    mainMenu->addItem("Выход");
-
+    mainMenu->addItem("Просмотреть список студетов (удалить или изменить данные)"); //0
+    mainMenu->addItem("Добавить данные о студенте в БД"); //1
+    mainMenu->addItem("Сохранить БД студентов в файл"); //2
+    mainMenu->addItem("Выбрать файл для загрузки БД студентов"); //3
+    mainMenu->addItem("Выход"); //4
     int resultSelectedItem = 0;
     int exitInt = 4;
-    //StudentClass Rusakov = StudentClass();
-    //Rusakov.addRusakov();
-    //Rusakov.faculty = "Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...Угу, в продакшене я просто беру питон, ставлю либу для парсинга PE и теку. Ещё не хватало на няшной или крестах эти структуры ковырять в сотый раз...";
     ClassMenu* studentsMenu = new ClassMenu();
     studentsMenu->addTitleItem("Список студентов");
     int resultStudentSelectedItem = 1;
-    studentsMenu->addItem("Выход");
     const int exitIntStudentMenu = 0;
-    StudentNode* sn = new StudentNode;
+    StudentNode* sn;
     StudentClass* st = new StudentClass();
     int curCount;
     while (resultSelectedItem != exitInt) {
@@ -73,44 +68,32 @@ int main()
         resultSelectedItem = mainMenu->getSelectedItem();
         switch (resultSelectedItem) {
         case 0:
-            //system("cls"); 
-            //cout << "*** Список студентов ***" << endl;
-            //sdb.printAllSurName();
-            sdb->getInit();
-            sn = sdb->getNext();
-            while (sn->isNULL==false){
-                string tmpString = sn->surName + " " + sn->name + " " + sn->middleName + " " + sn->group;
-                studentsMenu->addItem(tmpString); //добавить в меню студентов
-                sn = sdb->getNext();
-            }
+            resultStudentSelectedItem = 1;
             while (resultStudentSelectedItem != exitIntStudentMenu) {
+                studentsMenu->eraseItem();
+                studentsMenu->addItem("Выход");
+                sn = sdb->getInit();
+                while (sn) {
+                    string tmpString = sn->surName + " " + sn->name + " " + sn->middleName + " " + sn->group;
+                    studentsMenu->addItem(tmpString); //добавить в меню студентов
+                    sn = sn->next;
+                }
                 studentsMenu->run();
                 resultStudentSelectedItem = studentsMenu->getSelectedItem();
-                int curCount = 0;
-                int count = sdb->getCount();
-                if ((resultStudentSelectedItem > 0) and (resultStudentSelectedItem < count)) {
-                    sdb->getInit();
-                    sn = sdb->getNext();
-                    while (sn->isNULL == false) {
-                        if (curCount == resultStudentSelectedItem)
-                        {
-                            st->editStudent(sn);
-                                //
-                            break;
-                         }
-                        else 
-                        { sn = sdb->getNext(); } 
-                        curCount++;
-                    }
+                if (resultStudentSelectedItem == exitIntStudentMenu) {
+                    break;
+                }else{
+                int num = resultStudentSelectedItem - 1;
+                sn = sdb->getStudentNode(num);    
+                st->editStudent(sn);
                 }
-                /// загружать данные из списка и отображать
             }
             //resultSelectedItem = exitInt;
             break;
         case 1:
+            sn = new StudentNode();
             st->editStudent(sn);
-            // Добавить данные о студенте
-            //resultSelectedItem = exitInt;
+            sdb->Add(sn);
             break;        
         case 2:
             system("cls");
@@ -120,14 +103,14 @@ int main()
             //sdb.printAllSurName();
             resultSelectedItem = exitInt;
             break;
+        case 4:
+            resultSelectedItem = exitInt;
+            break;
         default:
             break;
         }
-
     }
-
-    _getch();
-
+    //_getch();
     }
 
 
