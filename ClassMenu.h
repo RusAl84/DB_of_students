@@ -94,7 +94,9 @@ public:
         itemsCount = 0;
         titleItemCount = 0;
     }
-
+    int getItemsCount() {
+        return itemsCount;
+    }
     void eraseTitle() {
         titleItemCount = 0;
     }
@@ -159,10 +161,8 @@ public:
             if (ch == 72) {
                 setUp();
                 draw();
-            }
-                
+            }      
         }
-
     }
     //friend class ClassEdit;
     friend  void drawLineUP(int size);

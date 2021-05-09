@@ -18,8 +18,8 @@ int main()
         StudentClass* st = new StudentClass();
         st->addRusakov();
         sn = st->getStudentNode();
-        st->editStudent(sn);
-        /*st->editExamsResults(sn);*/
+        //st->editStudent(sn);
+        st->editExamsResults(sn);
 
 
         //StringBuilderClass sb = StringBuilderClass();
@@ -108,14 +108,12 @@ int main()
             //resultSelectedItem = exitInt;
             break;
         case 1:
-            //system("cls");
-            
             st->editStudent(sn);
-            resultSelectedItem = exitInt;
+            // Добавить данные о студенте
+            //resultSelectedItem = exitInt;
             break;        
         case 2:
             system("cls");
-
             //cout << sizeof(Rusakov)*10000 << endl;
             //HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
             //SetConsoleTextAttribute(hConsole, 15);

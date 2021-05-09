@@ -1,9 +1,9 @@
 #pragma once
-
 struct ExamsRecords {
 	string name;
-	int mark; // 1 - зачет
-			  // 0 - не зачет    
+	int mark; 
+			  // 0 - не зачет  
+			  // 1 - зачет  
 			  // 2,3,4,5 - оценки
 	bool isEmpty; // заполнено ли поле?
 };
@@ -16,6 +16,7 @@ public:
 	ExamsResultsClass() {
 		emptpy();
 	}
+
 	void emptpy() {
 		for (int i = 0; i < 9; i++)
 			for (int j = 0; j < 10; j++)
@@ -48,24 +49,11 @@ public:
 		else
 			return false;
 	}
-	//void setData(StudentNode* sn) {
-	//	for (int i = 0; i < 9; i++)
-	//		for (int j = 0; j < 10; j++) {
-	//			sn->examsRecordsData[i][j].isEmpty =data[i][j].isEmpty;
-	//			sn->examsRecordsData[i][j].mark=data[i][j].mark;
-	//			sn->examsRecordsData[i][j].name=data[i][j].name;
-	//		}	
-	//}
-
-
-
 
 	int getFirstEmptyRow(int sessNum) {
-		for (int i = 0; i < 10; i++) {
-			bool flag = data[sessNum][i].isEmpty;
-			if (flag)
+		for (int i = 0; i < 10; i++) 
+			if (data[sessNum][i].isEmpty)
 				return i;
-		}
 		return -1;
 	}
 
