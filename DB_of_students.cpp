@@ -18,8 +18,8 @@ int main()
         StudentClass* st = new StudentClass();
         st->addRusakov();
         sn = st->getStudentNode();
-        //st->editStudent(sn);
-        st->editExamsResults(sn);
+        st->editStudent(sn);
+        /*st->editExamsResults(sn);*/
 
 
         //StringBuilderClass sb = StringBuilderClass();
