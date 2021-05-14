@@ -112,12 +112,14 @@ public:
 			cout << " \n Файл БД не найден \n";
 			_getch();
 		}
+		inFile.close();
 	}
 	void saveDataToFile(string inFileName) {
 		std::ofstream outFile;          // поток для записи
 		ifstream iff(inFileName); //если файл есть удаляем
 		if (iff.bad() == false) 
 		{
+			iff.close();
 			if (remove(inFileName.c_str())) {
 				printf("Error removing file");
 				_getch();
