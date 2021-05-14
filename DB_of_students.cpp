@@ -1,5 +1,4 @@
-﻿
-#include <iostream>
+﻿#include <iostream>
 #include "StringBuilderClass.h"
 #include "FileManagerClass.h"
 #include "ClassMenu.h"
@@ -20,8 +19,6 @@ int main()
         sn = st->getStudentNode();
         //st->editStudent(sn);
         st->editExamsResults(sn);
-
-
         //StringBuilderClass sb = StringBuilderClass();
         //cout << endl;
         //string s1 = sb.setParam("surName", "Ярошенко");
@@ -38,11 +35,9 @@ int main()
     }
     else
     {
-
     StudentDBClass* sdb = new StudentDBClass();
     sdb->FileName = "d:\\DB.txt";
     sdb->loadDataFromFile();
-
     //cout << sdb->GetRecordCount() << endl;
     ClassMenu* mainMenu = new ClassMenu();
     mainMenu->addTitleItem("Главное меню");

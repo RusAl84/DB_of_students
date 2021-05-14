@@ -147,6 +147,7 @@
     <ClInclude Include="ClassMenu.h" />
     <ClInclude Include="ExamsResultsClass.h" />
     <ClInclude Include="FileManagerClass.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="StringBuilderClass.h" />
     <ClInclude Include="StringMasClass.h" />
     <ClInclude Include="StudentClass.h" />
@@ -154,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DB_of_students.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
