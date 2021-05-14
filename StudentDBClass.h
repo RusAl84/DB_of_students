@@ -23,7 +23,6 @@ public:
 		return true;
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
-
 	void loadDataFromFile() {
 		string line;
 		int count = 0;
@@ -225,6 +224,9 @@ public:
 	}
 	int GetRecordCountOfList() {
 		return count;
+	};
+	int delRecord(int num) {
+		return num; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 	};
 };
 
