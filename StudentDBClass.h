@@ -97,7 +97,7 @@ public:
 							sn->id = studentId;  // сейчас здесь порядковый номер записи в файле
 						//должно быть value хорошо бы, но ладно;) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 						if (strcmp("startYear", valueName.c_str()) == 0)
-							sn->id = value;
+							sn->startYear = value;
 						if (strcmp("sex", valueName.c_str()) == 0)
 							if (value == 0)
 								sn->sex = false;

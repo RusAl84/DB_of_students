@@ -1,7 +1,8 @@
 ### Start Record
 name:015; value:str:010 -: birthDateString=27.12.1984
-name:009; value:int:001 -: startYear=0
+name:009; value:int:004 -: startYear=2002
 name:003; value:int:001 -: sex=1
+name:016; value:str:009 -: record—ardNumber=»“6105086
 name:005; value:str:010 -: group=¡»—Œ-01-20
 name:010; value:str:004 -: department= ¡-2
 name:007; value:str:005 -: faculty=» ¡—œ

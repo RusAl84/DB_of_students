@@ -78,6 +78,7 @@ public:
 		stringMas.Add(sb.setParam("faculty", sn->faculty));
 		stringMas.Add(sb.setParam("department", sn->department));
 		stringMas.Add(sb.setParam("group", sn->group));
+		stringMas.Add(sb.setParam("recordÑardNumber", sn->recordÑardNumber));
 		int intSex = 1;
 		if (sn->sex)
 			intSex = 1;
