@@ -1,11 +1,11 @@
 ### Start Record
-name:009; value:str:000 -: birthDate=
+name:015; value:str:010 -: birthDateString=27.12.1984
 name:009; value:int:001 -: startYear=0
-name:003; value:int:001 -: sex=0
-name:005; value:str:000 -: group=
-name:010; value:str:000 -: department=
-name:007; value:str:000 -: faculty=
-name:010; value:str:000 -: middleName=
-name:004; value:str:000 -: name=
+name:003; value:int:001 -: sex=1
+name:005; value:str:010 -: group=БИСО-01-20
+name:010; value:str:004 -: department=КБ-2
+name:007; value:str:005 -: faculty=ИКБСП
+name:010; value:str:010 -: middleName=Михайлович
+name:004; value:str:007 -: name=Алексей
 name:007; value:str:007 -: surName=Русаков
 ### End Record

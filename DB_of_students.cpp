@@ -11,30 +11,6 @@ int main()
     SetConsoleCP(1251); // Ввод с консоли в кодировке 1251
     SetConsoleOutputCP(1251);
     std::cout << "Курсовая работа запущена...\n";
-    bool isDebug = false;
-    if (isDebug) {
-        StudentNode* sn = new StudentNode();
-        StudentClass* st = new StudentClass();
-        st->addRusakov();
-        sn = st->getStudentNode();
-        //st->editStudent(sn);
-        st->editExamsResults(sn);
-        //StringBuilderClass sb = StringBuilderClass();
-        //cout << endl;
-        //string s1 = sb.setParam("surName", "Ярошенко");
-        //string s2 = sb.setParam("startYear", 2020);
-        //cout << endl << s1 << "  " << sb.getType(s1) << endl;
-        //cout << endl << s2 << "  " << sb.getType(s2) << endl;
-        //sb.getName(s2);
-        //sb.getValueInt(s2);
-        //FileManagerClass fb = FileManagerClass("d:\\DB.txt");
-        //fb.AddRusakovRecord();
-        //StringBuilderClass sb = StringBuilderClass();
-        //string tmpString = "27_12_1984";
-        //cout << sb.split(tmpString,'_',2)<< endl;
-    }
-    else
-    {
     StudentDBClass* sdb = new StudentDBClass();
     sdb->FileName = "DB.txt";
     sdb->loadDataFromFile();
@@ -102,7 +78,7 @@ int main()
         }
     }
     //_getch();
-    }
+    
 
 
 }

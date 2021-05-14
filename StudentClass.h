@@ -22,26 +22,13 @@ struct StudentNode
 			  // false - äåâî÷êà
 	int startYear;
 	int id;
-	ExamsRecords examsRecordsData[9][10];  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+	ExamsRecords examsRecordsData[9][10];  
 	StudentNode* next;
 };
 
 class StudentClass
 {
 private:
-	//string surName;
-	//string name;
-	//string middleName;
-	//string faculty;
-	//string department;
-	//string group;
-	//string recordÑardNumber;
-	//bool sex; // true - ìàëü÷èê
-	//		  // false - äåâî÷êà
-	//int startYear;
-	//int id;
-	//BirthDateClass birthDate;
-	//ExamsResultsClass examsResults;
 	StudentNode *sn;
 	StringMasClass stringMas;
 public:
@@ -98,7 +85,7 @@ public:
 			intSex = 0;
 		stringMas.Add(sb.setParam("sex", intSex));
 		stringMas.Add(sb.setParam("startYear", sn->startYear));
-		stringMas.Add(sb.setParam("birthDate", sn->birthDateString)); //27.12.1984
+		stringMas.Add(sb.setParam("birthDateString", sn->birthDateString)); //27.12.1984
 		int sem = 0;
 		int num = 0;
 		for (int sem=0;sem<9;sem++)
