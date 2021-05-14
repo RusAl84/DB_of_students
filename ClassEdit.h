@@ -38,11 +38,23 @@ public:
 		
 		label = label + " Предыдущее значение: " + dataString;
 		draw();
-		data = "";
+		data = dataString;
+		cout << data;
 		char ch=0;
-		while (ch!= 13){
+		while (ch!= 13){ //13 - код enter чтобы ввести значения
 			ch = _getch();
-			if (isDigit(ch) or isAlpha(ch) or isSpace(ch)) {
+			if (ch == 8) {
+				string tmpString = "";
+				tmpString = data;
+				data = "";
+				for (int i = 0; i < tmpString.length() - 1; i++)
+					data = data + tmpString[i];
+				draw();
+				cout << data;
+				
+				continue;
+			}
+			if (isDigit(ch) or isAlpha(ch) or isSpace(ch) or isSpec(ch)) {
 				cout << ch;
 				data = data + ch;
 			}
@@ -69,11 +81,17 @@ public:
 	bool isSpace(char ch) {
 		if (ch == 32)
 			return true;
+		else
+			return false;
+	}	
+	bool isSpec(char ch) {
 		if (ch >= 33 and ch <= 47)
 			return true;
 		else
 			return false;
 	}
+
+
 
 	int setDataInt(int startRange, int endRange) {
 		draw();

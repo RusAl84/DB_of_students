@@ -8,5 +8,17 @@ name:010; value:str:004 -: department=КБ-2
 name:007; value:str:005 -: faculty=ИКБСП
 name:010; value:str:010 -: middleName=Михайлович
 name:004; value:str:007 -: name=Алексей
-name:007; value:str:007 -: surName=Русаков
+name:007; value:str:008 -: surName=Русаков2
+### End Record
+### Start Record
+name:015; value:str:010 -: birthDateString=27.12.1984
+name:009; value:int:004 -: startYear=2002
+name:003; value:int:001 -: sex=1
+name:016; value:str:009 -: recordСardNumber=ИТ6105086
+name:005; value:str:010 -: group=БИСО-01-20
+name:010; value:str:004 -: department=КБ-2
+name:007; value:str:005 -: faculty=ИКБСП
+name:010; value:str:010 -: middleName=Михайлович
+name:004; value:str:007 -: name=Алексей
+name:007; value:str:008 -: surName=Русаков1
 ### End Record

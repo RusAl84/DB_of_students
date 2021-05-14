@@ -30,6 +30,7 @@ int main()
     const int exitIntStudentMenu = 0;
     StudentNode* sn;
     StudentClass* st = new StudentClass();
+    ClassMenu* delStudentsMenu = new ClassMenu();
     int curCount;
     while (resultSelectedItem != exitInt) {
         mainMenu->run();
@@ -40,8 +41,9 @@ int main()
             while (resultStudentSelectedItem != exitIntStudentMenu) {
                 studentsMenu->eraseItem();
                 studentsMenu->addItem("Выход");
+                studentsMenu->addItem("Удалить данные о студенте");
                 sn = sdb->getInit();
-                while (sn) {
+                while (sn) { // добавить пункты меню ФИО студентов
                     string tmpString = sn->surName + " " + sn->name + " " + sn->middleName + " " + sn->group;
                     studentsMenu->addItem(tmpString); //добавить в меню студентов
                     sn = sn->next;
@@ -50,10 +52,35 @@ int main()
                 resultStudentSelectedItem = studentsMenu->getSelectedItem();
                 if (resultStudentSelectedItem == exitIntStudentMenu) {
                     break;
-                }else{
-                int num = resultStudentSelectedItem - 1;
-                sn = sdb->getStudentNode(num);    
-                st->editStudent(sn);
+                }
+                if (resultStudentSelectedItem == 1) //удаление данных о студенте
+                {
+                    delStudentsMenu->eraseAll();
+                    delStudentsMenu->addTitleItem("Выберите студента для удаления данных");
+                    delStudentsMenu->addItem("Выход");
+                    int resultDel = 1;
+                    const int exitDel = 0;
+                    sn = sdb->getInit();
+                    while (sn) { // добавить пункты меню ФИО студентов
+                        string tmpString = sn->surName + " " + sn->name + " " + sn->middleName + " " + sn->group;
+                        delStudentsMenu->addItem(tmpString); //добавить в меню студентов
+                        sn = sn->next;
+                    }
+                    while (resultDel != exitDel){
+                        delStudentsMenu->run();
+                        resultDel = delStudentsMenu->getSelectedItem();
+                        //if (resultDel == exitDel) {
+                        //    break;
+                        //}
+                        int num = resultDel - 1;
+                        //sdb->delRecord();
+                    }
+                }
+                if (resultStudentSelectedItem>1)
+                {
+                    int num = resultStudentSelectedItem - 2; //!
+                    sn = sdb->getStudentNode(num);    
+                    st->editStudent(sn);
                 }
             }
             //resultSelectedItem = exitInt;
