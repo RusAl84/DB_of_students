@@ -67,26 +67,4 @@ name:010; value:str:010 -: middleName=Михайлович
 name:004; value:str:007 -: name=Алексей
 name:007; value:str:007 -: surName=Русаков
 ### End Record
-### Start Record
-name:018; value:str:001 -: examsResults_1_2_m=1
-name:018; value:str:013 -: examsResults_1_2_n=Физкультура 2
-name:018; value:str:001 -: examsResults_1_1_m=5
-name:018; value:str:012 -: examsResults_1_1_n=Математика 2
-name:018; value:str:001 -: examsResults_1_0_m=5
-name:018; value:str:023 -: examsResults_1_0_n=Яыки программирования 2
-name:018; value:str:001 -: examsResults_0_2_m=1
-name:018; value:str:013 -: examsResults_0_2_n=Физкультура 1
-name:018; value:str:001 -: examsResults_0_1_m=5
-name:018; value:str:012 -: examsResults_0_1_n=Математика 1
-name:018; value:str:001 -: examsResults_0_0_m=5
-name:018; value:str:023 -: examsResults_0_0_n=Яыки программирования 1
-name:009; value:str:010 -: birthDate=27_12_1984
-name:009; value:int:004 -: startYear=2021
-name:003; value:int:001 -: sex=1
-name:005; value:str:010 -: group=БИСО-01-21
-name:010; value:str:064 -: department=Институт комплексной безопасности и специального приборостроения
-name:007; value:str:057 -: faculty=10.05.04 Информационно-аналитические системы безопасности
-name:010; value:str:010 -: middleName=Михайлович
-name:004; value:str:007 -: name=Алексей
-name:007; value:str:007 -: surName=Русаков
-### End Record
+

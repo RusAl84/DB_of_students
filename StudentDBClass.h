@@ -61,19 +61,19 @@ public:
 						if (strcmp("name", valueName.c_str()) == 0)
 							sn->name = value;
 						if (strcmp("middleName", valueName.c_str()) == 0)
-						    sn->middleName = value;
+							sn->middleName = value;
 						if (strcmp("faculty", valueName.c_str()) == 0)
 							sn->faculty = value;
 						if (strcmp("department", valueName.c_str()) == 0)
-							sn->department = value;						
+							sn->department = value;
 						if (strcmp("group", valueName.c_str()) == 0)
-							sn->group = value;						
+							sn->group = value;
 						if (strcmp("recordÑardNumber", valueName.c_str()) == 0)
 							sn->recordÑardNumber = value;
 						if (strcmp("birthDateString", valueName.c_str()) == 0)
 							sn->birthDateString = value;
 						// ExamsRecords
-						for(int i=0;i<9;i++)
+						for (int i = 0; i < 9; i++)
 							for (int j = 0; j < 10; j++) {
 								//examsResults_0_2_n
 											// i j
@@ -81,11 +81,11 @@ public:
 								testNameString = testNameString + "examsResults_" + std::to_string(i) + "_" + std::to_string(j) + "_n";
 								string testMarkString = "";
 								testMarkString = testMarkString + "examsResults_" + std::to_string(i) + "_" + std::to_string(j) + "_m";
-								if (strcmp(testNameString.c_str(), valueName.c_str()) == 0){
+								if (strcmp(testNameString.c_str(), valueName.c_str()) == 0) {
 									sn->examsRecordsData[i][j].name = value;
 									sn->examsRecordsData[i][j].isEmpty = false;
 								}
-								if (strcmp(testMarkString.c_str(), valueName.c_str()) == 0){
+								if (strcmp(testMarkString.c_str(), valueName.c_str()) == 0) {
 									sn->examsRecordsData[i][j].mark = atoi(value.c_str());
 									sn->examsRecordsData[i][j].isEmpty = false;
 								}
@@ -108,6 +108,10 @@ public:
 				}
 			}
 			inFile.close();     // çàêğûâàåì ôàéë
+		}
+		else{
+			cout << " \n Ôàéë ÁÄ íå íàéäåí \n";
+			_getch();
 		}
 	}
 	void saveDataToFile() {
@@ -200,7 +204,6 @@ public:
 			curr = curr->next;
 		}
 	}
-
 	StudentNode* getStudentNode(int num) {
 		StudentNode* curr = NULL;
 		curr = head;
@@ -218,7 +221,6 @@ public:
 		}
 		return NULL;
 	}
-	
 };
 
 

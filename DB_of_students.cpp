@@ -36,7 +36,7 @@ int main()
     else
     {
     StudentDBClass* sdb = new StudentDBClass();
-    sdb->FileName = "d:\\DB.txt";
+    sdb->FileName = "DB.txt";
     sdb->loadDataFromFile();
     //cout << sdb->GetRecordCount() << endl;
     ClassMenu* mainMenu = new ClassMenu();

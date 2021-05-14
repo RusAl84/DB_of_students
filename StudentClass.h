@@ -190,7 +190,7 @@ public:
 				sn->middleName = ce->setDataString(sn->middleName);
 				break;
 			case 4:
-				ce->setLabel("Введите название институту. ");
+				ce->setLabel("Введите название института. ");
 				sn->faculty = ce->setDataString(sn->faculty);
 				break;
 			case 5:

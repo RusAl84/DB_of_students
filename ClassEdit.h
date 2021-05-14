@@ -35,16 +35,44 @@ public:
 	}
 
 	string setDataString(string dataString) {
-		data = dataString;
+		
 		label = label + " Предыдущее значение: " + dataString;
 		draw();
-		string inString = "";
-		while (inString.length()==0){
-			cin >> inString;
+		data = "";
+		char ch=0;
+		while (ch!= 13){
+			ch = _getch();
+			if (isDigit(ch) or isAlpha(ch) or isSpace(ch)) {
+				cout << ch;
+				data = data + ch;
+			}
 		}
-		data = inString;
+		//data = inString;
 		return data;
 	}
+	bool isDigit(char ch) {
+		if (ch >= 48 and ch <= 57)
+			return true;
+		else
+			return false;
+
+	}
+	bool isAlpha(int ch) {
+		if (ch >= 65 and ch <= 90)
+			return true;
+		if (ch >= 97 and ch <= 122)
+			return true;
+		if (ch >= -200 and ch <= -1)
+			return true;
+		return false;
+	}
+	bool isSpace(char ch) {
+		if (ch == 32)
+			return true;
+		else
+			return false;
+	}
+
 	int setDataInt(int startRange, int endRange) {
 		draw();
 		string inString = "";
