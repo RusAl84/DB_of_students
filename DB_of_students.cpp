@@ -84,11 +84,15 @@ int main()
             break;
         case 1:
             sn = new StudentNode();
+            for (int i = 0; i < 9; i++)
+                for (int j = 0; j < 10; j++)
+                    sn->examsRecordsData[i][j].isEmpty = true;
             st->editStudent(sn);
             sdb->Add(sn);
             break;        
         case 2: //Сохранить в файл
-            sdb->saveDataToFile();
+            sdb->saveDataToFile(sdb->FileName);
+            //sdb->saveDataToFile("d:\\db1.txt");
             break;
         case 3: //Выход
             resultSelectedItem = exitInt;

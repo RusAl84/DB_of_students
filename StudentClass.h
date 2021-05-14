@@ -211,7 +211,7 @@ public:
 				break;
 			case 9:
 				ce->setLabel("Введите год поступления в ВУЗ. ");
-				sn->startYear = ce->setDataInt(2002, 2021);
+				sn->startYear = ce->setDataInt(1900, 2021);
 				break;
 			case 10:
 				ce->setLabel("Введите день рождения. ");

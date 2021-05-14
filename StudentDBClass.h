@@ -44,7 +44,6 @@ public:
 					studentId++;
 					Add(sn);
 					/// add
-
 					continue;
 				}
 				if (isRecord) {
@@ -114,22 +113,23 @@ public:
 			_getch();
 		}
 	}
-	void saveDataToFile() {
+	void saveDataToFile(string inFileName) {
 		std::ofstream outFile;          // поток для записи
-       
-		string tmpFileName = "d:\\db1.txt";
-		ifstream iff(tmpFileName); //если файл есть удаляем
+		ifstream iff(inFileName); //если файл есть удаляем
 		if (iff.bad() == false) 
 		{
-			remove(tmpFileName.c_str());
+			if (remove(inFileName.c_str())) {
+				printf("Error removing file");
+				_getch();
+			}
+			
 		}
-        outFile.open(tmpFileName, std::ios::app); // окрываем файл для записи
+        outFile.open(inFileName, std::ios::app); // окрываем файл для записи
 		// outFile.open(FileName, std::ios::app); // окрываем файл для записи
         if (outFile.is_open())
         {
-            
             StudentClass st = StudentClass();
-			int recordsCount = GetRecordCount();
+			int recordsCount = GetRecordCountOfList();
 			StudentNode* sn;
 			for (int i = 0; i < recordsCount;i++) {
             //st.addRusakov();
@@ -221,6 +221,9 @@ public:
 		}
 		return NULL;
 	}
+	int GetRecordCountOfList() {
+		return count;
+	};
 };
 
 

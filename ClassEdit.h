@@ -69,6 +69,8 @@ public:
 	bool isSpace(char ch) {
 		if (ch == 32)
 			return true;
+		if (ch >= 33 and ch <= 47)
+			return true;
 		else
 			return false;
 	}
