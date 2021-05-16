@@ -43,15 +43,16 @@ public:
 		char ch=0;
 		while (ch!= 13){ //13 - код enter чтобы ввести значения
 			ch = _getch();
-			if (ch == 8) {
+			if (ch == 8) {  // Backspace удалить символ
 				string tmpString = "";
 				tmpString = data;
 				data = "";
-				for (int i = 0; i < tmpString.length() - 1; i++)
-					data = data + tmpString[i];
-				draw();
-				cout << data;
-				
+				if (tmpString.length()>0){
+					for (int i = 0; i < tmpString.length() - 1; i++)
+						data = data + tmpString[i];
+					draw();
+					cout << data;
+				}
 				continue;
 			}
 			if (isDigit(ch) or isAlpha(ch) or isSpace(ch) or isSpec(ch)) {

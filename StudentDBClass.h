@@ -228,17 +228,18 @@ public:
 	int delRecord(int num) {
 		return num; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 	};
-	bool isExistRecordÑardNumber(string inString) {
+	int getSameRecordÑardNumber(string inString) {
 		StudentNode* curr = NULL;
 		curr = head;
+		int count = 0;
 		while (curr) {
 			//cout << curr->surName << endl;
-			if (strcmp(inString.c_str(), curr->recordÑardNumber.c_str())==0)
-				return true;
+			if (strcmp(inString.c_str(), curr->recordÑardNumber.c_str()) == 0) {
+				count++;
+			}
 			curr = curr->next;
 		}
-		return false;
-
+		return count;
 	}
 
 };

@@ -79,8 +79,17 @@ int main()
                 if (resultStudentSelectedItem>1)
                 {
                     int num = resultStudentSelectedItem - 2; //!
-                    sn = sdb->getStudentNode(num);    
+                    sn = sdb->getStudentNode(num);   
+                    string oldRecordСardNumber = "";
+                    oldRecordСardNumber = sn->recordСardNumber;
                     st->editStudent(sn);
+
+                    if (sdb->getSameRecordСardNumber(sn->recordСardNumber)>1)
+                    {
+                        sn->recordСardNumber = oldRecordСardNumber;
+                        cout << "Ошибка введен номер зачетной книжки который уже есть в БД";
+                        _getch();
+                    }
                 }
             }
             //resultSelectedItem = exitInt;
@@ -91,7 +100,15 @@ int main()
                 for (int j = 0; j < 10; j++)
                     sn->examsRecordsData[i][j].isEmpty = true;
             st->editStudent(sn);
-            sdb->Add(sn);
+            if (sdb->getSameRecordСardNumber(sn->recordСardNumber)==1)
+            {
+                cout << "Ошибка введен номер зачетной книжки который уже есть в БД";
+                _getch();
+            }
+            else
+            {
+                sdb->Add(sn);
+            }
             break;        
         case 2: //Сохранить в файл
             sdb->saveDataToFile(sdb->FileName);

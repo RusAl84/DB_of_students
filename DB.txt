@@ -2,23 +2,23 @@
 name:015; value:str:010 -: birthDateString=27.12.1984
 name:009; value:int:004 -: startYear=2002
 name:003; value:int:001 -: sex=1
-name:016; value:str:009 -: recordÑardNumber=ÈÒ6105086
-name:005; value:str:010 -: group=ÁÈÑÎ-01-20
-name:010; value:str:004 -: department=ÊÁ-2
-name:007; value:str:005 -: faculty=ÈÊÁÑÏ
-name:010; value:str:010 -: middleName=Ìèõàéëîâè÷
-name:004; value:str:007 -: name=Àëåêñåé
-name:007; value:str:008 -: surName=Ğóñàêîâ2
-### End Record
-### Start Record
-name:015; value:str:010 -: birthDateString=27.12.1984
-name:009; value:int:004 -: startYear=2002
-name:003; value:int:001 -: sex=1
-name:016; value:str:009 -: recordÑardNumber=ÈÒ6105086
+name:016; value:str:001 -: recordÑardNumber=1
 name:005; value:str:010 -: group=ÁÈÑÎ-01-20
 name:010; value:str:004 -: department=ÊÁ-2
 name:007; value:str:005 -: faculty=ÈÊÁÑÏ
 name:010; value:str:010 -: middleName=Ìèõàéëîâè÷
 name:004; value:str:007 -: name=Àëåêñåé
 name:007; value:str:008 -: surName=Ğóñàêîâ1
+### End Record
+### Start Record
+name:015; value:str:010 -: birthDateString=27.12.1984
+name:009; value:int:004 -: startYear=2002
+name:003; value:int:001 -: sex=1
+name:016; value:str:001 -: recordÑardNumber=2
+name:005; value:str:010 -: group=ÁÈÑÎ-01-20
+name:010; value:str:004 -: department=ÊÁ-2
+name:007; value:str:005 -: faculty=ÈÊÁÑÏ
+name:010; value:str:010 -: middleName=Ìèõàéëîâè÷
+name:004; value:str:007 -: name=Àëåêñåé
+name:007; value:str:008 -: surName=Ğóñàêîâ2
 ### End Record
