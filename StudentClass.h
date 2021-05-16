@@ -165,6 +165,7 @@ public:
 			int year = 0;
 			int startYear = 0;
 			StringBuilderClass* sb = new StringBuilderClass();
+			ExamsRecords oldExamsRecordsData[9][10];
 			switch (resultStudDataMenu) {
 			case 0:
 				resultStudDataMenu = exitStudDataMenu;
@@ -245,7 +246,24 @@ public:
 			case 11:
 				ce->setLabel("Просмотреть/ изменить оценки.");
 				//sn = getStudentNode();
-				editExamsResults(sn);
+				for (int i = 0; i < 9; i++)
+					for (int j = 0; j < 10; j++) {
+						oldExamsRecordsData[i][j].name = sn->examsRecordsData[i][j].name;
+						oldExamsRecordsData[i][j].isEmpty = sn->examsRecordsData[i][j].isEmpty;
+						oldExamsRecordsData[i][j].mark = sn->examsRecordsData[i][j].mark;
+					}
+						
+				editExamsResults(sn); // "Ошибка есть одинаковые названия предметов"
+				if (isSameNameExamsResults(sn)){ 
+					cout << "Ошибка есть одинаковые названия предметов";
+					for (int i = 0; i < 9; i++)
+						for (int j = 0; j < 10; j++) {
+							sn->examsRecordsData[i][j].name = oldExamsRecordsData[i][j].name;
+							sn->examsRecordsData[i][j].isEmpty = oldExamsRecordsData[i][j].isEmpty;
+							sn->examsRecordsData[i][j].mark = oldExamsRecordsData[i][j].mark;
+						}
+					_getch();
+				}
 				break;
 			default:
 				break;
@@ -362,7 +380,6 @@ public:
 		const int exitS = 0;
 		ClassMenu* msMenu = new ClassMenu();
 		msMenu->addTitleItem("Выберите запись для удаления");
-
 		resultS = 1;
 		while (resultS != exitS) {
 			msMenu->eraseItem();
@@ -403,5 +420,14 @@ public:
 			}
 		}
 	}
-
+	bool isSameNameExamsResults(StudentNode* sn){
+		for(int curSess = 0; curSess < 9; curSess++) {
+			for (int i = 0; i < 10; i++)
+				for (int j = 0; j < 10; j++)
+					if (sn->examsRecordsData[curSess][i].isEmpty == false and sn->examsRecordsData[curSess][j].isEmpty == false and i != j)
+						if (strcmp(sn->examsRecordsData[curSess][i].name.c_str(), sn->examsRecordsData[curSess][j].name.c_str()) == 0)
+							return true;
+		}
+		return false;
+	}
 };

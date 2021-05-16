@@ -1,4 +1,6 @@
 ### Start Record
+name:018; value:str:001 -: examsResults_0_0_m=5
+name:018; value:str:024 -: examsResults_0_0_n=языки программировани€ 1
 name:015; value:str:010 -: birthDateString=27.12.1984
 name:009; value:int:004 -: startYear=2002
 name:003; value:int:001 -: sex=1
