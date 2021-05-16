@@ -24,3 +24,45 @@ name:010; value:str:010 -: middleName=Михайлович
 name:004; value:str:007 -: name=Алексей
 name:007; value:str:008 -: surName=Русаков2
 ### End Record
+### Start Record
+name:018; value:str:001 -: examsResults_0_0_m=2
+name:018; value:str:024 -: examsResults_0_0_n=Языки программирования 1
+name:015; value:str:010 -: birthDateString=27.12.2002
+name:009; value:int:004 -: startYear=2020
+name:003; value:int:001 -: sex=1
+name:016; value:str:001 -: recordСardNumber=3
+name:005; value:str:010 -: group=БИСО-01-20
+name:010; value:str:004 -: department=КБ-2
+name:007; value:str:005 -: faculty=ИКБСП
+name:010; value:str:010 -: middleName=Михайлович
+name:004; value:str:007 -: name=Алексей
+name:007; value:str:008 -: surName=Русаков3
+### End Record
+### Start Record
+name:018; value:str:001 -: examsResults_0_0_m=4
+name:018; value:str:024 -: examsResults_0_0_n=Языки программирования 1
+name:015; value:str:010 -: birthDateString=27.12.2003
+name:009; value:int:004 -: startYear=2020
+name:003; value:int:001 -: sex=1
+name:016; value:str:001 -: recordСardNumber=4
+name:005; value:str:010 -: group=БИСО-01-20
+name:010; value:str:004 -: department=КБ-2
+name:007; value:str:005 -: faculty=ИКБСП
+name:010; value:str:010 -: middleName=Михайлович
+name:004; value:str:007 -: name=Алексей
+name:007; value:str:008 -: surName=Русаков4
+### End Record
+### Start Record
+name:018; value:str:001 -: examsResults_0_0_m=5
+name:018; value:str:024 -: examsResults_0_0_n=Языки программирования 1
+name:015; value:str:010 -: birthDateString=27.12.2004
+name:009; value:int:004 -: startYear=2020
+name:003; value:int:001 -: sex=1
+name:016; value:str:001 -: recordСardNumber=5
+name:005; value:str:010 -: group=БИСО-01-20
+name:010; value:str:004 -: department=КБ-2
+name:007; value:str:005 -: faculty=ИКБСП
+name:010; value:str:010 -: middleName=Михайлович
+name:004; value:str:007 -: name=Алексей
+name:007; value:str:008 -: surName=Русаков4
+### End Record

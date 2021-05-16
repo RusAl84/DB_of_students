@@ -21,9 +21,11 @@ struct StudentNode
 	bool sex; // true - мальчик
 			  // false - девочка
 	int startYear;
-	int id;
+
 	ExamsRecords examsRecordsData[9][10];  
 	StudentNode* next;
+	int id;
+	double avrMarks;
 };
 
 class StudentClass
@@ -327,7 +329,7 @@ public:
 						int itemNum = msMenu->getItemsCount() - 3;
 						if (itemNum > 9) {
 							system("cls");
-							cout << "Ошибка в сессию бывает только 10 дисципли для зачетов или экзаменов";
+							cout << "Ошибка в сессию бывает только 10 дисциплин для зачетов или экзаменов";
 							_getch();  //!!!!!!!!!!!!!!!????????
 							_getch();
 						}
@@ -347,7 +349,6 @@ public:
 			result = curSess;
 		}
 	}
-
 	void addExamsResults(StudentNode* sn, int curSess, int curItem) {
 		ClassEdit* ce = new  ClassEdit();
 		ce->setLabel("Введите название предмета. ");
@@ -429,5 +430,19 @@ public:
 							return true;
 		}
 		return false;
+	}
+	double getAvrMarks(StudentNode* sn) {
+		double sum = 0;
+		double count = 0;
+		for (int i = 0; i < 9; i++)
+			for (int j = 0; j < 10; j++)
+				if (sn->examsRecordsData[i][j].isEmpty == false) {
+					sum = sum + sn->examsRecordsData[i][j].mark;
+					count++;
+				}
+		int avr = 0;
+		if (count > 0)
+			avr=sum / count;
+		return avr;
 	}
 };

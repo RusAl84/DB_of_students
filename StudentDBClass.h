@@ -31,6 +31,9 @@ public:
 		{
 			bool isRecord = false;
 			StudentNode* sn = new StudentNode();
+			for (int i = 0; i < 9; i++)
+				for (int j = 0; j < 10; j++)
+					sn->examsRecordsData[i][j].isEmpty = true;  
 			int studentId = 0;
 			while (getline(inFile, line))
 			{
@@ -41,14 +44,15 @@ public:
 				if (strcmp(endRecordString.c_str(), line.c_str()) == 0) {
 					isRecord = false;
 					studentId++;
-					Add(sn);
+					Add(sn);           //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					/// add
-					continue;
-				}
-				if (isRecord) {
 					for (int i = 0; i < 9; i++)
 						for (int j = 0; j < 10; j++)
 							sn->examsRecordsData[i][j].isEmpty = true;
+					continue;
+				}
+				if (isRecord) {
+
 					string valueName = getName(line);
 					if (strcmp(getType(line).c_str(), "str") == 0)
 					{
@@ -160,11 +164,14 @@ public:
 		tNode->sex = st->sex;
 		tNode->startYear = st->startYear;
 		tNode->birthDateString = st->birthDateString;
+		tNode->avrMarks = st->avrMarks; ///!!!!
 		// //ÔÓ ‡Ì‡ÎÓ„ËË
 		//ExamsRecords data[9][10];
 		for(int i=0;i<9;i++)
 			for (int j = 0; j < 10; j++) {
-				tNode->examsRecordsData[i][j] = st->examsRecordsData[i][j];
+				tNode->examsRecordsData[i][j].isEmpty = st->examsRecordsData[i][j].isEmpty;
+				tNode->examsRecordsData[i][j].name = st->examsRecordsData[i][j].name;
+				tNode->examsRecordsData[i][j].mark = st->examsRecordsData[i][j].mark;
 			}
 		//tNode->isNULL = false;
 	}
@@ -182,7 +189,7 @@ public:
 		else
 		{
 			StudentNode* tmp = new StudentNode();
-			setData(tmp, st);
+			setData(tmp, st); //!!!!
 			//tmp->data = st;
 			tmp->next = head;
 			head = tmp;
@@ -225,8 +232,37 @@ public:
 	int GetRecordCountOfList() {
 		return count;
 	};
-	int delRecord(int num) {
-		return num; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+	void delRecord(int num) {
+				StudentNode* curr = NULL;
+				curr = head;
+				if (num == 0) {
+					if (head->next == NULL) {
+						delete(head);
+					}
+					else {
+						head = head->next;
+						delete(curr);
+					}
+				}
+				else {
+					int cCount = 0;
+					while (curr) {
+						if (cCount == num-1) {  ///!!!!!!!!!!!!!!!111111
+							StudentNode* tmp;
+							tmp = curr->next;
+							if (curr->next->next == NULL) {
+								curr->next = NULL;
+							}
+							else
+								curr->next = curr->next->next;
+							delete(tmp);
+						}
+						else
+							curr = curr->next;
+						cCount++;
+					}
+				}
+				count--;
 	};
 	int getSameRecord—ardNumber(string inString) {
 		StudentNode* curr = NULL;
@@ -241,6 +277,70 @@ public:
 		}
 		return count;
 	}
+	void updateAvrMarks() {
+		StudentNode* curr = NULL;
+		StudentClass* stud = new StudentClass();
+		curr = head;
+		while (curr) {
+			curr->avrMarks = stud->getAvrMarks(curr);
+			curr = curr->next;
+		}
+		delete stud;
+	}
+	void printAllSurName_Name_MName_bYaear_avrMarks() {
+		StudentNode* curr = NULL;
+		StringBuilderClass* sb = new StringBuilderClass();
+		curr = head;
+		while (curr) {
+			cout << curr->surName + " " + curr->name + " " + curr->middleName + " " + sb->split(curr->birthDateString,'.',2) + " " + std::to_string(curr->avrMarks) << endl;
+			curr = curr->next;
+		}
+		delete sb;
+	}
+
+	double getMaxAvrMarks() {
+		StudentNode* curr = NULL;
+		curr = head;
+		int max = 0;
+		while (curr) {
+			if (max < curr->avrMarks)
+				max = curr->avrMarks;
+			curr = curr->next;
+		}
+		return max;
+
+	}
+	void sortByAvrMarks() {
+		StudentNode* curr = NULL;
+		curr = head;
+		int max = 0;
+		StudentDBClass* sdbT = new StudentDBClass();
+		while (count > 1){
+			curr = head;
+			max = getMaxAvrMarks();
+			int cCount = 0;
+			while (curr) {
+				if (curr->avrMarks == max)
+				{
+					sdbT->Add(curr);
+					delRecord(cCount);
+					break;
+				}
+				curr = curr->next;
+				cCount++;
+			}
+		}
+		//sdbT->Add(getStudentNode(0));
+		//delRecord(0);
+		while (sdbT->getCount() > 0) {
+			Add(sdbT->getStudentNode(0));
+			sdbT->delRecord(0);
+		}
+		delete sdbT;
+	}
+
+
+
 
 };
 
