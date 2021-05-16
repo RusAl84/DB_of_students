@@ -161,6 +161,10 @@ public:
 			studDataMenu->addTitleItem("Кафедра: " + sn->department);
 			studDataMenu->run();
 			resultStudDataMenu = studDataMenu->getSelectedItem();
+			string tmpString = "";
+			int year = 0;
+			int startYear = 0;
+			StringBuilderClass* sb = new StringBuilderClass();
 			switch (resultStudDataMenu) {
 			case 0:
 				resultStudDataMenu = exitStudDataMenu;
@@ -199,7 +203,23 @@ public:
 				break;
 			case 9:
 				ce->setLabel("Введите год поступления в ВУЗ. ");
-				sn->startYear = ce->setDataInt(1900, 2021);
+				startYear = ce->setDataInt(1900, 2021);
+				tmpString = sb->split(sn->birthDateString.c_str(), '.', 3);
+				year = atoi(tmpString.c_str());
+				if  (year==0)
+					sn->startYear = startYear;
+				else
+				{
+					if (startYear - year >= 15) {
+						sn->startYear = startYear;
+					}
+					else
+					{
+						cout << "Ошибка год поступления в институт должен быть на 15 лет больше чем год рождения";
+						_getch();
+					}
+				} 
+
 				break;
 			case 10:
 				ce->setLabel("Введите день рождения. ");
@@ -207,8 +227,20 @@ public:
 				ce->setLabel("Введите месяц рождения. ");
 				month = ce->setDataInt(1, 12);
 				ce->setLabel("Введите год рождения. ");
-				year = ce->setDataInt(1940, 2005);
-				sn->birthDateString = std::to_string(day) + "." + std::to_string(month) + "." + std::to_string(year);
+				year = ce->setDataInt(1900, 2005);
+				if (sn->startYear == 0)
+					sn->birthDateString = std::to_string(day) + "." + std::to_string(month) + "." + std::to_string(year);
+				else
+				{
+					if (sn->startYear - year >= 15) {
+						sn->birthDateString = std::to_string(day) + "." + std::to_string(month) + "." + std::to_string(year);
+					}
+					else
+					{
+						cout << "Ошибка год поступления в институт должен быть на 15 лет больше чем год рождения";
+						_getch();
+					}
+				}
 				break;
 			case 11:
 				ce->setLabel("Просмотреть/ изменить оценки.");
@@ -218,6 +250,7 @@ public:
 			default:
 				break;
 			}
+			delete sb;
 		}
 	}
 	void editExamsResults(StudentNode* sn) {

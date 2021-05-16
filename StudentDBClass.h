@@ -228,6 +228,19 @@ public:
 	int delRecord(int num) {
 		return num; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 	};
+	bool isExistRecord—ardNumber(string inString) {
+		StudentNode* curr = NULL;
+		curr = head;
+		while (curr) {
+			//cout << curr->surName << endl;
+			if (strcmp(inString.c_str(), curr->record—ardNumber.c_str())==0)
+				return true;
+			curr = curr->next;
+		}
+		return false;
+
+	}
+
 };
 
 
