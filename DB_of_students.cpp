@@ -142,7 +142,6 @@ int main()
             sn = sdb->getInit();
             sdb1->Erase();
             sdb2->Erase();
-
             while (sn) { // 
                 //studentsMenu->addItem(tmpString); //добавить в меню студентов
                 year = atoi(sb->split(sn->birthDateString, '.', 2).c_str());
