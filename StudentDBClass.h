@@ -2,26 +2,26 @@
 #include "StudentClass.h"
 #include <iostream>
 #include "FileManagerClass.h"
+#include "list.hpp"
 using namespace std;
 class StudentDBClass : public FileManagerClass
 {
 private:
-	StudentNode* head;
-	StudentNode* getNextNode;
-	int count;
+
+	//StudentNode* head;
+	//StudentNode* getNextNode;
+	//int count;
+	
 public:
+	List <StudentNode> DataBase;
 	StudentDBClass() {
-		head = NULL;
-		getNextNode = NULL;
-		count = 0;
+		//head = NULL;
+		//getNextNode = NULL;
+		//count = 0;
+		DataBase.clear();
 	}
 	~StudentDBClass() {
-		Erase();
-	}
-	bool Erase() {
-		head = NULL;
-		return true;
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		DataBase.clear();
 	}
 	void loadDataFromFile() {
 		string line;
@@ -44,7 +44,10 @@ public:
 				if (strcmp(endRecordString.c_str(), line.c_str()) == 0) {
 					isRecord = false;
 					studentId++;
-					Add(sn);           //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					DataBase.push_front(*sn);
+					//Add(sn);  
+					//
+					//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					/// add
 					for (int i = 0; i < 9; i++)
 						for (int j = 0; j < 10; j++)
@@ -134,14 +137,13 @@ public:
         if (outFile.is_open())
         {
             StudentClass st = StudentClass();
-			int recordsCount = GetRecordCountOfList();
+			int recordsCount = getRecordCount();
 			StudentNode* sn;
 			for (int i = 0; i < recordsCount;i++) {
             //st.addRusakov();
 				outFile << startRecordString << std::endl;
-				sn = getStudentNode(i);
+				sn = &DataBase.at(i);
 				st.UpdateMasString(sn);
-
 				while (!st.stringList.empty()) {
 					outFile << st.stringList.at(0) << std::endl;
 					st.stringList.erase(st.stringList.begin());
@@ -174,175 +176,163 @@ public:
 			}
 		//tNode->isNULL = false;
 	}
-	bool Add(StudentNode *st) {
-		if (!head)
-		{
-			head = new StudentNode();
-			//head->surName = st->surName;
-			setData(head, st);
-			//head->data = st;
-			head->next = NULL;
-			count++;
-			return true;
-		}
-		else
-		{
-			StudentNode* tmp = new StudentNode();
-			setData(tmp, st); //!!!!
-			//tmp->data = st;
-			tmp->next = head;
-			head = tmp;
-			count++;
-			return true;
-		}
-		return false;
-	}
-	StudentNode* getInit() {
-		return getNextNode = head;
-	}
-	int getCount() {
-		return count;
-	}
+	//bool Add(StudentNode *st) {
+	//	if (!head)
+	//	{
+	//		head = new StudentNode();
+	//		//head->surName = st->surName;
+	//		setData(head, st);
+	//		//head->data = st;
+	//		head->next = NULL;
+	//		count++;
+	//		return true;
+	//	}
+	//	else
+	//	{
+	//		StudentNode* tmp = new StudentNode();
+	//		setData(tmp, st); //!!!!
+	//		//tmp->data = st;
+	//		tmp->next = head;
+	//		head = tmp;
+	//		count++;
+	//		return true;
+	//	}
+	//	return false;
+	//}
+	//StudentNode* getInit() {
+	//	return getNextNode = head;
+	//}
+	//int getCount() {
+	//	return count;
+	//}
 	void printAllSurName() {
-		StudentNode* curr = NULL;
-		curr = head;
-		while (curr) {
-			cout << curr->surName << endl;
-			curr = curr->next;
+		for (int i = 0; i < DataBase.size(); i++) {
+			cout << DataBase.at(i).surName << endl;
 		}
 	}
-	StudentNode* getStudentNode(int num) {
-		StudentNode* curr = NULL;
-		curr = head;
-		int ind = 0;
-		while (curr) {
-			//cout << curr->surName << endl;
-			if (ind == num) {
-				return curr;
-				break;
-			}
-			else {
-				curr = curr->next;
-				ind++;
-			}
-		}
-		return NULL;
-	}
-	int GetRecordCountOfList() {
-		return count;
+	//StudentNode* getStudentNode(int num) {
+	//	StudentNode* curr = NULL;
+	//	curr = head;
+	//	int ind = 0;
+	//	while (curr) {
+	//		//cout << curr->surName << endl;
+	//		if (ind == num) {
+	//			return curr;
+	//			break;
+	//		}
+	//		else {
+	//			curr = curr->next;
+	//			ind++;
+	//		}
+	//	}
+	//	return NULL;
+	//}
+	int getRecordCount() {
+		return DataBase.size();
 	};
-	void delRecord(int num) {
-				StudentNode* curr = NULL;
-				curr = head;
-				if (num == 0) {
-					if (head->next == NULL) {
-						delete(head);
-					}
-					else {
-						head = head->next;
-						delete(curr);
-					}
-				}
-				else {
-					int cCount = 0;
-					while (curr) {
-						if (cCount == num-1) {  ///!!!!!!!!!!!!!!!111111
-							StudentNode* tmp;
-							tmp = curr->next;
-							if (curr->next->next == NULL) {
-								curr->next = NULL;
-							}
-							else
-								curr->next = curr->next->next;
-							delete(tmp);
-						}
-						else
-							curr = curr->next;
-						cCount++;
-					}
-				}
-				count--;
-	};
+	//void delRecord(int num) {
+	//			StudentNode* curr = NULL;
+	//			curr = head;
+	//			if (num == 0) {
+	//				if (head->next == NULL) {
+	//					delete(head);
+	//				}
+	//				else {
+	//					head = head->next;
+	//					delete(curr);
+	//				}
+	//			}
+	//			else {
+	//				int cCount = 0;
+	//				while (curr) {
+	//					if (cCount == num-1) {  ///!!!!!!!!!!!!!!!111111
+	//						StudentNode* tmp;
+	//						tmp = curr->next;
+	//						if (curr->next->next == NULL) {
+	//							curr->next = NULL;
+	//						}
+	//						else
+	//							curr->next = curr->next->next;
+	//						delete(tmp);
+	//					}
+	//					else
+	//						curr = curr->next;
+	//					cCount++;
+	//				}
+	//			}
+	//			count--;
+	//};
 	int getSameRecord—ardNumber(string inString) {
-		StudentNode* curr = NULL;
-		curr = head;
+		//StudentNode* curr = NULL;
+		//curr = head;
 		int count = 0;
-		while (curr) {
-			//cout << curr->surName << endl;
-			if (strcmp(inString.c_str(), curr->record—ardNumber.c_str()) == 0) {
-				count++;
-			}
-			curr = curr->next;
-		}
+		//while (curr) {
+		//	//cout << curr->surName << endl;
+		//	if (strcmp(inString.c_str(), curr->record—ardNumber.c_str()) == 0) {
+		//		count++;
+		//	}
+		//	curr = curr->next;
+		//}
 		return count;
 	}
 	void updateAvrMarks() {
 		StudentNode* curr = NULL;
 		StudentClass* stud = new StudentClass();
-		curr = head;
-		while (curr) {
-			curr->avrMarks = stud->getAvrMarks(curr);
+		for (int i = 0; i < DataBase.size(); i++) { 
+			DataBase.at(i).avrMarks= stud->getAvrMarks(&DataBase.at(i));
+			//curr->avrMarks = stud->getAvrMarks(curr);
 			curr = curr->next;
 		}
 		delete stud;
 	}
 	void printAllSurName_Name_MName_bYaear_avrMarks() {
-		StudentNode* curr = NULL;
 		StringBuilderClass* sb = new StringBuilderClass();
-		curr = head;
-		while (curr) {
-			cout << curr->surName + " " + curr->name + " " + curr->middleName + " " + sb->split(curr->birthDateString,'.',2) + " " + std::to_string(curr->avrMarks) << endl;
-			curr = curr->next;
+		for(int i=0;i<DataBase.size();i++){
+			cout << DataBase.at(i).surName + " " + DataBase.at(i).name + " " + DataBase.at(i).middleName + " " + sb->split(DataBase.at(i).birthDateString,'.',2) + " " + std::to_string(DataBase.at(i).avrMarks) << endl;
 		}
 		delete sb;
 	}
 
 	double getMaxAvrMarks() {
-		StudentNode* curr = NULL;
-		curr = head;
+		//StudentNode* curr = NULL;
+		//curr = head;
 		int max = 0;
-		while (curr) {
-			if (max < curr->avrMarks)
-				max = curr->avrMarks;
-			curr = curr->next;
-		}
+		//while (curr) {
+		//	if (max < curr->avrMarks)
+		//		max = curr->avrMarks;
+		//	curr = curr->next;
+		//}
 		return max;
 
 	}
 	void sortByAvrMarks() {
-		StudentNode* curr = NULL;
-		curr = head;
-		int max = 0;
-		StudentDBClass* sdbT = new StudentDBClass();
-		while (count > 1){
-			curr = head;
-			max = getMaxAvrMarks();
-			int cCount = 0;
-			while (curr) {
-				if (curr->avrMarks == max)
-				{
-					sdbT->Add(curr);
-					delRecord(cCount);
-					break;
-				}
-				curr = curr->next;
-				cCount++;
-			}
-		}
-		//sdbT->Add(getStudentNode(0));
-		//delRecord(0);
-		while (sdbT->getCount() > 0) {
-			Add(sdbT->getStudentNode(0));
-			sdbT->delRecord(0);
-		}
-		delete sdbT;
+		//StudentNode* curr = NULL;
+		//curr = head;
+		//int max = 0;
+		//StudentDBClass* sdbT = new StudentDBClass();
+		//while (count > 1){
+		//	curr = head;
+		//	max = getMaxAvrMarks();
+		//	int cCount = 0;
+		//	while (curr) {
+		//		if (curr->avrMarks == max)
+		//		{
+		//			sdbT->Add(curr);
+		//			delRecord(cCount);
+		//			break;
+		//		}
+		//		curr = curr->next;
+		//		cCount++;
+		//	}
+		//}
+		////sdbT->Add(getStudentNode(0));
+		////delRecord(0);
+		//while (sdbT->getCount() > 0) {
+		//	Add(sdbT->getStudentNode(0));
+		//	sdbT->delRecord(0);
+		//}
+		//delete sdbT;
 	}
-
-
-
-
-
-
 };
 
 

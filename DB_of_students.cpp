@@ -21,17 +21,17 @@ int main()
 
     bool debug = false;
     if (debug) {
-        List <int> lisaList;
-        lisaList.clear();
-        lisaList.insert(lisaList.begin(), 5);
-        lisaList.insert(lisaList.begin(), 4);
-        lisaList.insert(lisaList.begin(), 3);
-        lisaList.insert(lisaList.begin(), 2);
-        lisaList.insert(lisaList.begin(), 1);
-        while (!lisaList.empty()) {
-            cout << lisaList.at(0) << endl;
-            lisaList.erase(lisaList.begin());
-        }
+        List <int> TAV_List;
+        TAV_List.clear();
+        TAV_List.push_front(5);
+        TAV_List.insert(TAV_List.begin() , 7);
+        TAV_List.push_front(3);
+        TAV_List.push_front(2);
+        TAV_List.push_front(1);
+        //while (!TAV_List.empty()) {
+        //    cout << TAV_List.at(0) << endl;
+        //    TAV_List.erase(TAV_List.begin());
+        //}
     }
     else {
 
@@ -69,11 +69,13 @@ int main()
                 studentsMenu->eraseItem();
                 studentsMenu->addItem("Выход");
                 studentsMenu->addItem("Удалить данные о студенте");
-                sn = sdb->getInit();
-                while (sn) { // добавить пункты меню ФИО студентов
+                /*sn = sdb->getInit();*/
+                for(int i=0;i<sdb->DataBase.size();i++)
+                { // добавить пункты меню ФИО студентов
+                    sn = &sdb->DataBase.at(i);
                     string tmpString = sn->surName + " " + sn->name + " " + sn->middleName + " " + sn->group;
                     studentsMenu->addItem(tmpString); //добавить в меню студентов
-                    sn = sn->next;
+                    //sn = sn->next;
                 }
                 studentsMenu->run();
                 resultStudentSelectedItem = studentsMenu->getSelectedItem();
@@ -87,11 +89,13 @@ int main()
                     delStudentsMenu->addItem("Выход");
                     int resultDel = 1;
                     const int exitDel = 0;
-                    sn = sdb->getInit();
-                    while (sn) { // добавить пункты меню ФИО студентов
+                    //sn = sdb->getInit();
+                    for(int i=0; sdb->DataBase.size();i++)
+                    { // добавить пункты меню ФИО студентов
+                        sn = &sdb->DataBase.at(i);
                         string tmpString = sn->surName + " " + sn->name + " " + sn->middleName + " " + sn->group;
                         delStudentsMenu->addItem(tmpString); //добавить в меню студентов
-                        sn = sn->next;
+                        //sn = sn->next;
                     }
                     while (resultDel != exitDel){
                         delStudentsMenu->run();
@@ -106,7 +110,7 @@ int main()
                 if (resultStudentSelectedItem>1)
                 {
                     int num = resultStudentSelectedItem - 2; //!
-                    sn = sdb->getStudentNode(num);   
+                    sn = &sdb->DataBase.at(num);   
                     string oldRecordСardNumber = "";
                     oldRecordСardNumber = sn->recordСardNumber;
                     st->editStudent(sn);
@@ -134,7 +138,7 @@ int main()
             }
             else
             {
-                sdb->Add(sn);
+                sdb->DataBase.push_front(*sn);
             }
             break;        
         case 2: //Сохранить в файл
@@ -158,17 +162,21 @@ int main()
             sdb->sortByAvrMarks();
             cout << "Отсортированный список студентов" << endl;
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
-            sn = sdb->getInit();
-            sdb1->Erase();
-            sdb2->Erase();
-            while (sn) { // 
+            //sn = sdb->getInit();
+            sdb1->DataBase.clear();
+            sdb2->DataBase.clear();
+            /*while (sn) */
+            for(int i=0;i<sdb->DataBase.size();i++)
+            { // 
+                sn = &sdb->DataBase.at(i);
                 //studentsMenu->addItem(tmpString); //добавить в меню студентов
                 year = atoi(sb->split(sn->birthDateString, '.', 2).c_str());
                 if (year >= startYear and year <= endYear)
-                    sdb1->Add(sn);
+                    sdb1->DataBase.push_front(*sn);
+
                 else
-                    sdb2->Add(sn);
-                sn = sn->next;
+                    sdb2->DataBase.push_front(*sn);
+                //sn = sn->next;
             }
             cout << "Список студентов часть 1 (год рождения от " + std::to_string(startYear) + " до " + std::to_string(endYear) + " ): " << endl;
             sdb1->printAllSurName_Name_MName_bYaear_avrMarks();
