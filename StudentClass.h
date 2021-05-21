@@ -3,9 +3,10 @@
 #include "BirthDateClass.h"
 #include "ExamsResultsClass.h"
 #include "StringBuilderClass.h"
-#include "StringMasClass.h"
+//#include "StringMasClass.h"
 #include "ClassMenu.h"
 #include "ClassEdit.h"
+#include "list.hpp"
 using namespace std;
 
 struct StudentNode
@@ -32,8 +33,10 @@ class StudentClass
 {
 private:
 	StudentNode *sn;
-	StringMasClass stringMas;
+	//StringMasClass stringMas;
+	
 public:
+	List <string> stringList;
 	 StudentClass() {
 		 sn = new StudentNode();
 		 addRusakov();
@@ -72,41 +75,43 @@ public:
 			}
 	}
 	void UpdateMasString(StudentNode* sn) {
-		stringMas.Erase();
+		stringList.clear();
+		//stringMas.Erase();
 		StringBuilderClass sb = StringBuilderClass();
-		stringMas.Add(sb.setParam("surName", sn->surName));
-		stringMas.Add(sb.setParam("name", sn->name));
-		stringMas.Add(sb.setParam("middleName", sn->middleName));
-		stringMas.Add(sb.setParam("faculty", sn->faculty));
-		stringMas.Add(sb.setParam("department", sn->department));
-		stringMas.Add(sb.setParam("group", sn->group));
-		stringMas.Add(sb.setParam("recordÑardNumber", sn->recordÑardNumber));
+		stringList.insert(stringList.begin(), sb.setParam("surName", sn->surName));
+		stringList.insert(stringList.begin(), sb.setParam("name", sn->name));
+		stringList.insert(stringList.begin(), sb.setParam("middleName", sn->middleName));
+		stringList.insert(stringList.begin(), sb.setParam("faculty", sn->faculty));
+		stringList.insert(stringList.begin(), sb.setParam("department", sn->department));
+		stringList.insert(stringList.begin(), sb.setParam("group", sn->group));
+		stringList.insert(stringList.begin(), sb.setParam("recordÑardNumber", sn->recordÑardNumber));
 		int intSex = 1;
 		if (sn->sex)
 			intSex = 1;
 		else
 			intSex = 0;
-		stringMas.Add(sb.setParam("sex", intSex));
-		stringMas.Add(sb.setParam("startYear", sn->startYear));
-		stringMas.Add(sb.setParam("birthDateString", sn->birthDateString)); //27.12.1984
+		stringList.insert(stringList.begin(), sb.setParam("sex", intSex));
+		stringList.insert(stringList.begin(), sb.setParam("startYear", sn->startYear));
+		stringList.insert(stringList.begin(), sb.setParam("birthDateString", sn->birthDateString)); //27.12.1984
+
 		int sem = 0;
 		int num = 0;
 		for (int sem=0;sem<9;sem++)
 			for (int num=0;num<10;num++)
 				if (not sn->examsRecordsData[sem][num].isEmpty ){
 					//examsResults_sem_num_n - íàçâàíèå ýêçàìåíà èëè çà÷åòà
-					stringMas.Add(sb.setParam("examsResults_" + std::to_string(sem) + "_" + std::to_string(num) + "_n", sn->examsRecordsData[sem][num].name));
+					stringList.insert(stringList.begin(), sb.setParam("examsResults_" + std::to_string(sem) + "_" + std::to_string(num) + "_n", sn->examsRecordsData[sem][num].name));
 					//examsResults_sem_num_m - îöåíêà
-					stringMas.Add(sb.setParam("examsResults_" + std::to_string(sem) + "_" + std::to_string(num) + "_m", std::to_string(sn->examsRecordsData[sem][num].mark)));
+					stringList.insert(stringList.begin(), sb.setParam("examsResults_" + std::to_string(sem) + "_" + std::to_string(num) + "_m", std::to_string(sn->examsRecordsData[sem][num].mark)));
 				}
 		//stringMas.dislay();
 	}
-	string getStringRecord() {
-		return stringMas.getNext();
-	}
-	bool getInitStringRecord() {
-		return stringMas.getInit();
-	}
+	//string getStringRecord() {
+	//	return stringMas.getNext();
+	//}
+	//bool getInitStringRecord() {
+	//	return stringMas.getInit();
+	//}
 	bool editSex() {
 		ClassMenu* sexMenu = new ClassMenu();
 		int resultSelectedItem = 1;
@@ -444,5 +449,8 @@ public:
 		if (count > 0)
 			avr=sum / count;
 		return avr;
+	}
+	List <string> getStringMas() {
+		return stringList;
 	}
 };

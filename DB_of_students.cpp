@@ -5,6 +5,7 @@
 #include "StudentDBClass.h"
 #include "StudentClass.h"
 #include "ClassEdit.h"
+#include "list.hpp"
 using namespace std;
 int main()
 {
@@ -17,6 +18,24 @@ int main()
     StudentDBClass* sdb2 = new StudentDBClass();
     sdb->FileName = "DB.txt";
     sdb->loadDataFromFile();
+
+    bool debug = false;
+    if (debug) {
+        List <int> lisaList;
+        lisaList.clear();
+        lisaList.insert(lisaList.begin(), 5);
+        lisaList.insert(lisaList.begin(), 4);
+        lisaList.insert(lisaList.begin(), 3);
+        lisaList.insert(lisaList.begin(), 2);
+        lisaList.insert(lisaList.begin(), 1);
+        while (!lisaList.empty()) {
+            cout << lisaList.at(0) << endl;
+            lisaList.erase(lisaList.begin());
+        }
+    }
+    else {
+
+    
     //cout << sdb->GetRecordCount() << endl;
     ClassMenu* mainMenu = new ClassMenu();
     mainMenu->addTitleItem("Главное меню");
@@ -162,6 +181,6 @@ int main()
         }
     }
     //_getch();
-    
+    }
 }
 

@@ -141,11 +141,10 @@ public:
 				outFile << startRecordString << std::endl;
 				sn = getStudentNode(i);
 				st.UpdateMasString(sn);
-				st.getInitStringRecord();
-				string resultString = st.getStringRecord();
-				while (resultString.length() > 0) {
-					outFile << resultString << std::endl;
-					resultString = st.getStringRecord();
+
+				while (!st.stringList.empty()) {
+					outFile << st.stringList.at(0) << std::endl;
+					st.stringList.erase(st.stringList.begin());
 				}
 				outFile << endRecordString << std::endl;
 			}
@@ -338,6 +337,8 @@ public:
 		}
 		delete sdbT;
 	}
+
+
 
 
 
