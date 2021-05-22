@@ -6,7 +6,22 @@
 #include "StudentClass.h"
 #include "ClassEdit.h"
 #include "list.hpp"
+//#include <algorithm>
 using namespace std;
+
+List<string>::iterator mMin(List <string> *_lst) {
+    List<string>::iterator pos = _lst->begin();
+    List<string>::iterator mMinPos = _lst->begin();
+    string tmpString = *pos;
+    while (pos != _lst->end()){
+        if (*pos> tmpString)
+            mMinPos = pos;
+        ++pos;
+    }
+    return mMinPos;
+   // return std::max_element(_lst->begin(), _lst->end());// #include <algorithm>
+   
+}
 int main()
 {
     setlocale(LC_ALL, "Russian");
@@ -21,17 +36,26 @@ int main()
 
     bool debug = false;
     if (debug) {
-        List <int> TAV_List;
-        TAV_List.clear();
-        TAV_List.push_front(5);
-        TAV_List.insert(TAV_List.begin() , 7);
-        TAV_List.push_front(3);
-        TAV_List.push_front(2);
-        TAV_List.push_front(1);
-        //while (!TAV_List.empty()) {
-        //    cout << TAV_List.at(0) << endl;
-        //    TAV_List.erase(TAV_List.begin());
-        //}
+
+
+        //Сортировка строк
+        List <string> lst = { "Яна" , "Алина Рогова", "Ксюша","Данила", "Алексей" ,"Армен" };
+        //Просмотреть список
+        for (auto item : lst) {
+            cout << item << endl;
+        }
+        List <string> sortedLst;
+        sortedLst.clear();
+        //cout << *mMin(&lst);
+        while (!lst.empty()) {
+            sortedLst.push_front(*mMin(&lst));
+            lst.erase(mMin(&lst));
+        }
+        //Просмотреть отсортированный список
+        cout << endl << "------------" << endl;
+        for (auto item : sortedLst) {
+            cout << item<<endl;
+        }
     }
     else {
 
@@ -89,22 +113,24 @@ int main()
                     delStudentsMenu->addItem("Выход");
                     int resultDel = 1;
                     const int exitDel = 0;
-                    //sn = sdb->getInit();
-                    for(int i=0; sdb->DataBase.size();i++)
+                    for(int i=0; i<sdb->DataBase.size();i++)
                     { // добавить пункты меню ФИО студентов
                         sn = &sdb->DataBase.at(i);
                         string tmpString = sn->surName + " " + sn->name + " " + sn->middleName + " " + sn->group;
                         delStudentsMenu->addItem(tmpString); //добавить в меню студентов
                         //sn = sn->next;
                     }
-                    while (resultDel != exitDel){
+                    while (resultDel != exitDel) {
                         delStudentsMenu->run();
                         resultDel = delStudentsMenu->getSelectedItem();
-                        //if (resultDel == exitDel) {
-                        //    break;
-                        //}
-                        int num = resultDel - 1;
-                        //sdb->delRecord();
+                        if (resultDel == exitDel) {
+                            break;
+                        }
+                        else {
+                            int num = resultDel - 1;
+                            sdb->DataBase.erase(std::next(sdb->DataBase.begin(), num));
+                            break;
+                        }
                     }
                 }
                 if (resultStudentSelectedItem>1)
@@ -131,7 +157,7 @@ int main()
                 for (int j = 0; j < 10; j++)
                     sn->examsRecordsData[i][j].isEmpty = true;
             st->editStudent(sn);
-            if (sdb->getSameRecordСardNumber(sn->recordСardNumber)==1)
+            if (sdb->getSameRecordСardNumber(sn->recordСardNumber)>=1)
             {
                 cout << "Ошибка введен номер зачетной книжки который уже есть в БД";
                 _getch();
@@ -146,43 +172,37 @@ int main()
             //sdb->saveDataToFile("d:\\db1.txt");
             break;
         case 3: //Вариант 77
-            
             //ce->setLabel("Введите начальный год рождения для интервала выборки. ");
             //startYear = ce->setDataInt(1900, 2021);
             //ce->setLabel("Введите rjytxysq год рождения для интервала выборки. ");
             //endYear = ce->setDataInt(1900, 2021);
-
             startYear = 1900;
             endYear = 2000;
-            sdb->updateAvrMarks();
+
             system("cls");
             cout << "Полный список студентов" << endl;
-            //sdb->delRecord(2);
+            sdb->updateAvrMarks();  //Перерасчитать поле средний балл 
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
             sdb->sortByAvrMarks();
             cout << "Отсортированный список студентов" << endl;
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
-            //sn = sdb->getInit();
             sdb1->DataBase.clear();
             sdb2->DataBase.clear();
-            /*while (sn) */
-            for(int i=0;i<sdb->DataBase.size();i++)
-            { // 
-                sn = &sdb->DataBase.at(i);
-                //studentsMenu->addItem(tmpString); //добавить в меню студентов
+            for(auto item: sdb->DataBase)
+            { 
+                sn = &item;
                 year = atoi(sb->split(sn->birthDateString, '.', 2).c_str());
                 if (year >= startYear and year <= endYear)
                     sdb1->DataBase.push_front(*sn);
-
                 else
                     sdb2->DataBase.push_front(*sn);
-                //sn = sn->next;
             }
             cout << "Список студентов часть 1 (год рождения от " + std::to_string(startYear) + " до " + std::to_string(endYear) + " ): " << endl;
             sdb1->printAllSurName_Name_MName_bYaear_avrMarks();
             cout << "Список студентов часть 2 (год рождения НЕ от " + std::to_string(startYear) + " до " + std::to_string(endYear) + " ): " << endl;
             sdb2->printAllSurName_Name_MName_bYaear_avrMarks();
             _getch();
+            resultSelectedItem = -1;
             break;
         case 4:
             resultSelectedItem = exitInt;

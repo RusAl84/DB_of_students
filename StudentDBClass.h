@@ -6,18 +6,9 @@
 using namespace std;
 class StudentDBClass : public FileManagerClass
 {
-private:
-
-	//StudentNode* head;
-	//StudentNode* getNextNode;
-	//int count;
-	
 public:
 	List <StudentNode> DataBase;
 	StudentDBClass() {
-		//head = NULL;
-		//getNextNode = NULL;
-		//count = 0;
 		DataBase.clear();
 	}
 	~StudentDBClass() {
@@ -216,74 +207,49 @@ public:
 	};
 
 	int getSameRecord—ardNumber(string inString) {
-		//StudentNode* curr = NULL;
-		//curr = head;
 		int count = 0;
-		//while (curr) {
-		//	//cout << curr->surName << endl;
-		//	if (strcmp(inString.c_str(), curr->record—ardNumber.c_str()) == 0) {
-		//		count++;
-		//	}
-		//	curr = curr->next;
-		//}
+		for (auto item : DataBase) {
+			if (item.record—ardNumber == inString)
+				count++;
+		}
 		return count;
 	}
 	void updateAvrMarks() {
-		StudentNode* curr = NULL;
+
 		StudentClass* stud = new StudentClass();
 		for (int i = 0; i < DataBase.size(); i++) { 
 			DataBase.at(i).avrMarks= stud->getAvrMarks(&DataBase.at(i));
-			//curr->avrMarks = stud->getAvrMarks(curr);
 		}
 		delete stud;
 	}
 	void printAllSurName_Name_MName_bYaear_avrMarks() {
 		StringBuilderClass* sb = new StringBuilderClass();
-		for(int i=0;i<DataBase.size();i++){
-			cout << DataBase.at(i).surName + " " + DataBase.at(i).name + " " + DataBase.at(i).middleName + " " + sb->split(DataBase.at(i).birthDateString,'.',2) + " " + std::to_string(DataBase.at(i).avrMarks) << endl;
+		for(auto item:DataBase){
+			cout << item.surName + " " + item.name + " " + item.middleName + " " + sb->split(item.birthDateString,'.',2) + " " + std::to_string(item.avrMarks) << endl;
 		}
 		delete sb;
 	}
 
-	double getMaxAvrMarks() {
-		//StudentNode* curr = NULL;
-		//curr = head;
-		int max = 0;
-		//while (curr) {
-		//	if (max < curr->avrMarks)
-		//		max = curr->avrMarks;
-		//	curr = curr->next;
-		//}
-		return max;
-
+	List <StudentNode>::iterator getMaxAvrMarks() {
+		List<StudentNode>::iterator pos = DataBase.begin();
+		List<StudentNode>::iterator mMinPos = pos;
+		while (pos != DataBase.end()) {
+			if ((*pos).avrMarks > (*mMinPos).avrMarks)
+				mMinPos = pos;
+			++pos;
+		}
+		return mMinPos;
 	}
 	void sortByAvrMarks() {
-		//StudentNode* curr = NULL;
-		//curr = head;
-		//int max = 0;
-		//StudentDBClass* sdbT = new StudentDBClass();
-		//while (count > 1){
-		//	curr = head;
-		//	max = getMaxAvrMarks();
-		//	int cCount = 0;
-		//	while (curr) {
-		//		if (curr->avrMarks == max)
-		//		{
-		//			sdbT->Add(curr);
-		//			delRecord(cCount);
-		//			break;
-		//		}
-		//		curr = curr->next;
-		//		cCount++;
-		//	}
-		//}
-		////sdbT->Add(getStudentNode(0));
-		////delRecord(0);
-		//while (sdbT->getCount() > 0) {
-		//	Add(sdbT->getStudentNode(0));
-		//	sdbT->delRecord(0);
-		//}
-		//delete sdbT;
+
+		List<StudentNode>::iterator pos = getMaxAvrMarks();
+		List <StudentNode> sortedLst;
+		while (!DataBase.empty()) {
+			sortedLst.push_front(*getMaxAvrMarks());
+			DataBase.erase(getMaxAvrMarks());
+		}
+		for (auto item : sortedLst) 
+			DataBase.push_front(item);
 	}
 };
 

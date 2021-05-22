@@ -441,7 +441,7 @@ public:
 		double count = 0;
 		for (int i = 0; i < 9; i++)
 			for (int j = 0; j < 10; j++)
-				if (sn->examsRecordsData[i][j].isEmpty == false) {
+				if (sn->examsRecordsData[i][j].isEmpty == false and sn->examsRecordsData[i][j].mark>1) {
 					sum = sum + sn->examsRecordsData[i][j].mark;
 					count++;
 				}
