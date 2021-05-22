@@ -184,6 +184,9 @@ int main()
             sdb2->printAllSurName_Name_MName_bYaear_avrMarks();
             _getch();
             break;
+        case 4:
+            resultSelectedItem = exitInt;
+            break;
         default:
             break;
         }

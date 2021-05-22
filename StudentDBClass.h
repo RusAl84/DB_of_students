@@ -210,58 +210,11 @@ public:
 			cout << DataBase.at(i).surName << endl;
 		}
 	}
-	//StudentNode* getStudentNode(int num) {
-	//	StudentNode* curr = NULL;
-	//	curr = head;
-	//	int ind = 0;
-	//	while (curr) {
-	//		//cout << curr->surName << endl;
-	//		if (ind == num) {
-	//			return curr;
-	//			break;
-	//		}
-	//		else {
-	//			curr = curr->next;
-	//			ind++;
-	//		}
-	//	}
-	//	return NULL;
-	//}
+
 	int getRecordCount() {
 		return DataBase.size();
 	};
-	//void delRecord(int num) {
-	//			StudentNode* curr = NULL;
-	//			curr = head;
-	//			if (num == 0) {
-	//				if (head->next == NULL) {
-	//					delete(head);
-	//				}
-	//				else {
-	//					head = head->next;
-	//					delete(curr);
-	//				}
-	//			}
-	//			else {
-	//				int cCount = 0;
-	//				while (curr) {
-	//					if (cCount == num-1) {  ///!!!!!!!!!!!!!!!111111
-	//						StudentNode* tmp;
-	//						tmp = curr->next;
-	//						if (curr->next->next == NULL) {
-	//							curr->next = NULL;
-	//						}
-	//						else
-	//							curr->next = curr->next->next;
-	//						delete(tmp);
-	//					}
-	//					else
-	//						curr = curr->next;
-	//					cCount++;
-	//				}
-	//			}
-	//			count--;
-	//};
+
 	int getSameRecord—ardNumber(string inString) {
 		//StudentNode* curr = NULL;
 		//curr = head;
@@ -281,7 +234,6 @@ public:
 		for (int i = 0; i < DataBase.size(); i++) { 
 			DataBase.at(i).avrMarks= stud->getAvrMarks(&DataBase.at(i));
 			//curr->avrMarks = stud->getAvrMarks(curr);
-			curr = curr->next;
 		}
 		delete stud;
 	}
