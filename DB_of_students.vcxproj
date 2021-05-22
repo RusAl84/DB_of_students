@@ -150,7 +150,6 @@
     <ClInclude Include="list.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="StringBuilderClass.h" />
-    <ClInclude Include="StringMasClass.h" />
     <ClInclude Include="StudentClass.h" />
     <ClInclude Include="StudentDBClass.h" />
   </ItemGroup>
