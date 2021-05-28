@@ -222,11 +222,33 @@ public:
 		}
 		delete stud;
 	}
+	void updateMarks45() {
+		StudentClass* stud = new StudentClass();
+		for (int i = 0; i < DataBase.size(); i++) {
+			DataBase.at(i).Marks45 = stud->getMarks45(&DataBase.at(i));
+		}
+		delete stud;
+	}
+
+
 	void printAllSurName_Name_MName_bYaear_avrMarks() {
 		StringBuilderClass* sb = new StringBuilderClass();
 		for(auto item:DataBase){
 			cout << item.surName + " " + item.name + " " + item.middleName + " " + sb->split(item.birthDateString,'.',2) + " " + std::to_string(item.avrMarks) << endl;
 		}
+		delete sb;
+	}
+	void printAllSurName_Name_MName_bYaear_Marks45() {
+		StringBuilderClass* sb = new StringBuilderClass();
+		for (auto item : DataBase) {
+			cout << item.surName + " " + item.name + " " + item.middleName + " " + sb->split(item.birthDateString, '.', 2) + " " + std::to_string(item.Marks45) << endl;
+		}
+		delete sb;
+	}
+
+	void printAllSurName_Name_MName_bYaear_Marks45(List<StudentNode>::iterator pos) {
+		StringBuilderClass* sb = new StringBuilderClass();
+		cout << (*pos).surName + " " + (*pos).name + " " + (*pos).middleName + " " + sb->split((*pos).birthDateString, '.', 2) + " " + std::to_string((*pos).Marks45) << endl;
 		delete sb;
 	}
 
@@ -249,6 +271,41 @@ public:
 			DataBase.erase(getMaxAvrMarks());
 		}
 		for (auto item : sortedLst) 
+			DataBase.push_front(item);
+	}
+
+	List <StudentNode>::iterator getMaxMarks45() {
+		List<StudentNode>::iterator pos = DataBase.begin();
+		List<StudentNode>::iterator mMinPos = pos;
+		while (pos != DataBase.end()) {
+			if ((*pos).Marks45 > (*mMinPos).Marks45)
+				mMinPos = pos;
+			++pos;
+		}
+		return mMinPos;
+	}
+
+	List <StudentNode>::iterator getMinMarks45() {
+		List<StudentNode>::iterator pos = DataBase.begin();
+		List<StudentNode>::iterator mMaxPos = pos;
+		while (pos != DataBase.end()) {
+			if ((*pos).Marks45 < (*mMaxPos).Marks45)
+				mMaxPos = pos;
+			++pos;
+		}
+		return mMaxPos;
+	}
+
+
+	void sortByMarks45() {
+
+		List<StudentNode>::iterator pos = getMaxMarks45();
+		List <StudentNode> sortedLst;
+		while (!DataBase.empty()) {
+			sortedLst.push_front(*getMaxMarks45());
+			DataBase.erase(getMaxMarks45());
+		}
+		for (auto item : sortedLst)
 			DataBase.push_front(item);
 	}
 };

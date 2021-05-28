@@ -1,0 +1,42 @@
+### Start Record
+name:018; value:str:001 -: examsResults_0_0_m=5
+name:018; value:str:023 -: examsResults_0_0_n=Языки программирования 
+name:015; value:str:010 -: birthDateString=12.12.2002
+name:009; value:int:001 -: startYear=0
+name:003; value:int:001 -: sex=0
+name:016; value:str:003 -: recordСardNumber=ИТ2
+name:005; value:str:000 -: group=
+name:010; value:str:000 -: department=
+name:007; value:str:000 -: faculty=
+name:010; value:str:000 -: middleName=
+name:004; value:str:000 -: name=
+name:007; value:str:003 -: surName=Яна
+### End Record
+### Start Record
+name:018; value:str:001 -: examsResults_0_0_m=3
+name:018; value:str:023 -: examsResults_0_0_n=Языки программирования 
+name:015; value:str:010 -: birthDateString=27.12.1984
+name:009; value:int:001 -: startYear=0
+name:003; value:int:001 -: sex=0
+name:016; value:str:009 -: recordСardNumber=ИТ6105086
+name:005; value:str:000 -: group=
+name:010; value:str:000 -: department=
+name:007; value:str:000 -: faculty=
+name:010; value:str:000 -: middleName=
+name:004; value:str:000 -: name=
+name:007; value:str:007 -: surName=Русаков
+### End Record
+### Start Record
+name:018; value:str:001 -: examsResults_0_0_m=2
+name:018; value:str:006 -: examsResults_0_0_n=Фитнес
+name:015; value:str:010 -: birthDateString=10.10.2001
+name:009; value:int:001 -: startYear=0
+name:003; value:int:001 -: sex=0
+name:016; value:str:002 -: recordСardNumber=И2
+name:005; value:str:000 -: group=
+name:010; value:str:000 -: department=
+name:007; value:str:000 -: faculty=
+name:010; value:str:000 -: middleName=
+name:004; value:str:000 -: name=
+name:007; value:str:004 -: surName=Вика
+### End Record

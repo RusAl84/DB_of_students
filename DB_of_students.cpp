@@ -31,6 +31,7 @@ int main()
     StudentDBClass* sdb = new StudentDBClass();    
     StudentDBClass* sdb1 = new StudentDBClass();
     StudentDBClass* sdb2 = new StudentDBClass();
+    StudentDBClass* sdb3 = new StudentDBClass();
     sdb->FileName = "DB.txt";
     sdb->loadDataFromFile();
 
@@ -67,9 +68,10 @@ int main()
     mainMenu->addItem("Добавить данные о студенте в БД"); //1
     mainMenu->addItem("Сохранить БД студентов в файл"); //2
     mainMenu->addItem("Выполнить вариант 77"); //3
-    mainMenu->addItem("Выход"); //4
+    mainMenu->addItem("Выполнить вариант 71"); //4
+    mainMenu->addItem("Выход"); //5
     int resultSelectedItem = 0;
-    int exitInt = 3;
+    int exitInt = 5;
     ClassMenu* studentsMenu = new ClassMenu();
     studentsMenu->addTitleItem("Список студентов");
     int resultStudentSelectedItem = 1;
@@ -83,6 +85,8 @@ int main()
     int endYear = 0;
     int year = 0;
     StringBuilderClass* sb = new StringBuilderClass();
+    List<StudentNode>::iterator pos();
+    List <StudentNode> printLst;
     while (resultSelectedItem != exitInt) {
         mainMenu->run();
         resultSelectedItem = mainMenu->getSelectedItem();
@@ -204,7 +208,51 @@ int main()
             _getch();
             resultSelectedItem = -1;
             break;
-        case 4:
+        case 4: //Вариант 71
+
+            startYear = 1900;
+            endYear = 2005;
+            system("cls");
+            cout << "Полный список студентов" << endl;
+            sdb->updateMarks45(); //50% хороших и отличных оценокк
+            sdb->printAllSurName_Name_MName_bYaear_Marks45();
+            sdb->sortByMarks45();
+            cout << "\nОтсортированный список студентов" << endl;
+            sdb->printAllSurName_Name_MName_bYaear_Marks45();
+            sdb1->DataBase.clear();
+            sdb2->DataBase.clear();
+            for (auto item : sdb->DataBase)
+            {
+                sn = &item;
+                year = atoi(sb->split(sn->birthDateString, '.', 2).c_str());
+                if (year >= startYear and year <= endYear){
+                    if (sn->Marks45>=0.5)
+                        sdb1->DataBase.push_front(*sn);
+                    else
+                        sdb2->DataBase.push_front(*sn);
+                }
+            }
+            cout << "\nСписок студентов 4 и 5 > 50%: " << endl;
+            sdb1->printAllSurName_Name_MName_bYaear_Marks45();
+            cout << "\nСписок студентов 4 и 5 < 50%: " << endl;
+            sdb2->printAllSurName_Name_MName_bYaear_Marks45();            
+            cout << "\nСписок студентов 4 и 5 > 50%: два лучших " << endl;
+            sdb3->DataBase.push_front(*sdb1->getMinMarks45());
+            sdb1->DataBase.erase(sdb1->getMinMarks45());
+            sdb3->DataBase.push_front(*sdb1->getMinMarks45());
+            sdb3->printAllSurName_Name_MName_bYaear_Marks45();
+            cout << "\nСписок студентов 4 и 5 < 50%: два худших" << endl;
+            sdb3->DataBase.clear();
+            sdb3->DataBase.push_front(*sdb2->getMaxMarks45());
+            sdb1->DataBase.erase(sdb2->getMaxMarks45());
+            sdb3->DataBase.push_front(*sdb2->getMaxMarks45());
+            sdb3->printAllSurName_Name_MName_bYaear_Marks45();
+            
+
+            _getch();
+            resultSelectedItem = -1;
+            break;
+        case 5:
             resultSelectedItem = exitInt;
             break;
         default:

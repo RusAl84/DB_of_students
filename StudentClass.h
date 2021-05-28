@@ -27,6 +27,7 @@ struct StudentNode
 	StudentNode* next;
 	int id;
 	double avrMarks;
+	double Marks45;
 };
 
 class StudentClass
@@ -450,6 +451,23 @@ public:
 			avr=sum / count;
 		return avr;
 	}
+
+	double getMarks45(StudentNode* sn) {
+		double sum = 0;
+		double count = 0;
+		for (int i = 0; i < 9; i++)
+			for (int j = 0; j < 10; j++)
+				if (sn->examsRecordsData[i][j].isEmpty == false and sn->examsRecordsData[i][j].mark > 1) {
+					count++;
+					if (sn->examsRecordsData[i][j].mark > 3)
+						sum ++;
+				}
+		double proc = 0;
+		if (count > 0)
+			proc = sum / count;
+		return proc;
+	}
+
 	List <string> getStringMas() {
 		return stringList;
 	}

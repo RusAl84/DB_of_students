@@ -1,42 +1,136 @@
 ### Start Record
+name:018; value:str:001 -: examsResults_0_1_m=5
+name:018; value:str:006 -: examsResults_0_1_n=Физика
+name:018; value:str:001 -: examsResults_0_0_m=4
+name:018; value:str:024 -: examsResults_0_0_n=Языки программирования 1
+name:015; value:str:009 -: birthDateString=18.7.2002
+name:009; value:int:004 -: startYear=2019
+name:003; value:int:001 -: sex=0
+name:016; value:str:007 -: recordСardNumber=Б108394
+name:005; value:str:010 -: group=БАСО-01-19
+name:010; value:str:004 -: department=КБ-1
+name:007; value:str:005 -: faculty=ИКБСП
+name:010; value:str:012 -: middleName=Вячеславовна
+name:004; value:str:006 -: name=Иоанна
+name:007; value:str:007 -: surName=Шеншина
+### End Record
+### Start Record
+name:018; value:str:001 -: examsResults_0_1_m=5
+name:018; value:str:006 -: examsResults_0_1_n=Физика
 name:018; value:str:001 -: examsResults_0_0_m=5
-name:018; value:str:023 -: examsResults_0_0_n=Языки программирования 
-name:015; value:str:010 -: birthDateString=12.12.2002
-name:009; value:int:001 -: startYear=0
+name:018; value:str:024 -: examsResults_0_0_n=Языки программирования 1
+name:015; value:str:009 -: birthDateString=17.8.2002
+name:009; value:int:004 -: startYear=2020
 name:003; value:int:001 -: sex=0
-name:016; value:str:003 -: recordСardNumber=ИТ2
-name:005; value:str:000 -: group=
-name:010; value:str:000 -: department=
-name:007; value:str:000 -: faculty=
-name:010; value:str:000 -: middleName=
-name:004; value:str:000 -: name=
-name:007; value:str:003 -: surName=Яна
+name:016; value:str:001 -: recordСardNumber=5
+name:005; value:str:010 -: group=БАСО-05-20
+name:010; value:str:004 -: department=КБ-1
+name:007; value:str:005 -: faculty=ИКБСП
+name:010; value:str:009 -: middleName=Андреевна
+name:004; value:str:009 -: name=Екатерина
+name:007; value:str:008 -: surName=Сазонова
 ### End Record
 ### Start Record
-name:018; value:str:001 -: examsResults_0_0_m=3
-name:018; value:str:023 -: examsResults_0_0_n=Языки программирования 
-name:015; value:str:010 -: birthDateString=27.12.1984
-name:009; value:int:001 -: startYear=0
+name:018; value:str:001 -: examsResults_0_1_m=4
+name:018; value:str:007 -: examsResults_0_1_n=Физика 
+name:018; value:str:001 -: examsResults_0_0_m=5
+name:018; value:str:022 -: examsResults_0_0_n=Языки программирования
+name:015; value:str:008 -: birthDateString=8.3.2003
+name:009; value:int:004 -: startYear=2020
 name:003; value:int:001 -: sex=0
-name:016; value:str:009 -: recordСardNumber=ИТ6105086
-name:005; value:str:000 -: group=
-name:010; value:str:000 -: department=
-name:007; value:str:000 -: faculty=
-name:010; value:str:000 -: middleName=
-name:004; value:str:000 -: name=
-name:007; value:str:007 -: surName=Русаков
+name:016; value:str:007 -: recordСardNumber=20Б1271
+name:005; value:str:010 -: group=БАСО-05-20
+name:010; value:str:004 -: department=КБ-1
+name:007; value:str:005 -: faculty=ИКБСП
+name:010; value:str:009 -: middleName=Сергеевич
+name:004; value:str:009 -: name=Александр
+name:007; value:str:010 -: surName=Спиридонов
 ### End Record
 ### Start Record
+name:018; value:str:001 -: examsResults_0_1_m=3
+name:018; value:str:016 -: examsResults_0_1_n=Линейная алгебра
+name:018; value:str:001 -: examsResults_0_0_m=5
+name:018; value:str:006 -: examsResults_0_0_n=Физика
+name:015; value:str:009 -: birthDateString=17.8.2002
+name:009; value:int:001 -: startYear=0
+name:003; value:int:001 -: sex=0
+name:016; value:str:006 -: recordСardNumber=245896
+name:005; value:str:010 -: group=БАСО-05-20
+name:010; value:str:000 -: department=
+name:007; value:str:000 -: faculty=
+name:010; value:str:013 -: middleName=Александрович
+name:004; value:str:006 -: name=Михаил
+name:007; value:str:009 -: surName=Скляренко
+### End Record
+### Start Record
+name:018; value:str:001 -: examsResults_0_1_m=2
+name:018; value:str:002 -: examsResults_0_1_n=ЯП
 name:018; value:str:001 -: examsResults_0_0_m=2
-name:018; value:str:006 -: examsResults_0_0_n=Фитнес
-name:015; value:str:010 -: birthDateString=10.10.2001
+name:018; value:str:006 -: examsResults_0_0_n=Физика
+name:015; value:str:009 -: birthDateString=20.4.2002
 name:009; value:int:001 -: startYear=0
 name:003; value:int:001 -: sex=0
-name:016; value:str:002 -: recordСardNumber=И2
-name:005; value:str:000 -: group=
+name:016; value:str:005 -: recordСardNumber=55555
+name:005; value:str:010 -: group=БАСО-05-20
 name:010; value:str:000 -: department=
 name:007; value:str:000 -: faculty=
-name:010; value:str:000 -: middleName=
-name:004; value:str:000 -: name=
-name:007; value:str:004 -: surName=Вика
+name:010; value:str:008 -: middleName=Иванович
+name:004; value:str:009 -: name=Александр
+name:007; value:str:008 -: surName=Козмолич
+### End Record
+### Start Record
+name:018; value:str:001 -: examsResults_2_2_m=5
+name:018; value:str:007 -: examsResults_2_2_n=Матанал
+name:018; value:str:001 -: examsResults_2_1_m=2
+name:018; value:str:002 -: examsResults_2_1_n=ЯП
+name:018; value:str:001 -: examsResults_2_0_m=2
+name:018; value:str:006 -: examsResults_2_0_n=Физика
+name:018; value:str:001 -: examsResults_0_1_m=2
+name:018; value:str:006 -: examsResults_0_1_n=Физика
+name:018; value:str:001 -: examsResults_0_0_m=2
+name:018; value:str:002 -: examsResults_0_0_n=ЯП
+name:015; value:str:009 -: birthDateString=29.4.2001
+name:009; value:int:004 -: startYear=2020
+name:003; value:int:001 -: sex=1
+name:016; value:str:009 -: recordСardNumber=502515005
+name:005; value:str:010 -: group=БАСО-05-20
+name:010; value:str:000 -: department=
+name:007; value:str:004 -: faculty=КБСП
+name:010; value:str:013 -: middleName=Александрович
+name:004; value:str:004 -: name=Илья
+name:007; value:str:007 -: surName=Косилко
+### End Record
+### Start Record
+name:018; value:str:001 -: examsResults_0_1_m=2
+name:018; value:str:006 -: examsResults_0_1_n=Физика
+name:018; value:str:001 -: examsResults_0_0_m=2
+name:018; value:str:002 -: examsResults_0_0_n=ЯП
+name:015; value:str:008 -: birthDateString=5.6.2002
+name:009; value:int:004 -: startYear=2020
+name:003; value:int:001 -: sex=0
+name:016; value:str:000 -: recordСardNumber=
+name:005; value:str:010 -: group=БАСО-05-20
+name:010; value:str:000 -: department=
+name:007; value:str:000 -: faculty=
+name:010; value:str:009 -: middleName=Сергеевич
+name:004; value:str:006 -: name=Сергей
+name:007; value:str:007 -: surName=Назаров
+### End Record
+### Start Record
+name:018; value:str:001 -: examsResults_0_2_m=2
+name:018; value:str:007 -: examsResults_0_2_n=История
+name:018; value:str:001 -: examsResults_0_1_m=3
+name:018; value:str:006 -: examsResults_0_1_n=Физика
+name:018; value:str:001 -: examsResults_0_0_m=2
+name:018; value:str:022 -: examsResults_0_0_n=Языки Программирования
+name:015; value:str:009 -: birthDateString=20.3.2003
+name:009; value:int:004 -: startYear=2020
+name:003; value:int:001 -: sex=1
+name:016; value:str:009 -: recordСardNumber=455454654
+name:005; value:str:010 -: group=БАСО-05-20
+name:010; value:str:000 -: department=
+name:007; value:str:000 -: faculty=
+name:010; value:str:010 -: middleName=Георгиевич
+name:004; value:str:009 -: name=Александр
+name:007; value:str:007 -: surName=Симанин
 ### End Record
