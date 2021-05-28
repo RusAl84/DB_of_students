@@ -8,6 +8,7 @@ class StudentDBClass : public FileManagerClass
 {
 public:
 	List <StudentNode> DataBase;
+	List <int> rangeSem;
 	StudentDBClass() {
 		DataBase.clear();
 	}
@@ -230,6 +231,14 @@ public:
 		delete stud;
 	}
 
+	void updateCountMarks5() {
+		StudentClass* stud = new StudentClass();
+		for (int i = 0; i < DataBase.size(); i++) {
+			DataBase.at(i).countMarks5 = stud->getCountMarks5(&DataBase.at(i),rangeSem);
+		}
+		delete stud;
+	}
+
 
 	void printAllSurName_Name_MName_bYaear_avrMarks() {
 		StringBuilderClass* sb = new StringBuilderClass();
@@ -238,6 +247,14 @@ public:
 		}
 		delete sb;
 	}
+	void printAllSurName_Name_MName_bYaear_countMarks5() {
+		StringBuilderClass* sb = new StringBuilderClass();
+		for (auto item : DataBase) {
+			cout << item.surName + " " + item.name + " " + item.middleName + " " + sb->split(item.birthDateString, '.', 2) + " " + std::to_string(item.countMarks5) << endl;
+		}
+		delete sb;
+	}
+
 	void printAllSurName_Name_MName_bYaear_Marks45() {
 		StringBuilderClass* sb = new StringBuilderClass();
 		for (auto item : DataBase) {
@@ -296,9 +313,7 @@ public:
 		return mMaxPos;
 	}
 
-
 	void sortByMarks45() {
-
 		List<StudentNode>::iterator pos = getMaxMarks45();
 		List <StudentNode> sortedLst;
 		while (!DataBase.empty()) {
@@ -307,6 +322,68 @@ public:
 		}
 		for (auto item : sortedLst)
 			DataBase.push_front(item);
+	}
+
+	////
+
+	List <StudentNode>::iterator getMaxCountMarks5() {
+		List<StudentNode>::iterator pos = DataBase.begin();
+		List<StudentNode>::iterator mMinPos = pos;
+		while (pos != DataBase.end()) {
+			if ((*pos).countMarks5 > (*mMinPos).countMarks5)
+				mMinPos = pos;
+			++pos;
+		}
+		return mMinPos;
+	}
+	void sortByCountMarks5() {
+
+		List<StudentNode>::iterator pos = getMaxCountMarks5();
+		List <StudentNode> sortedLst;
+		while (!DataBase.empty()) {
+			sortedLst.push_front(*getMaxCountMarks5());
+			DataBase.erase(getMaxCountMarks5());
+		}
+		for (auto item : sortedLst)
+			DataBase.push_front(item);
+	}
+
+	void getRangeSem() {
+		ClassMenu* semMenu = new ClassMenu();
+		int resultSelectedItem = 1;
+		const int exitItem = 0;
+		semMenu->addTitleItem("Выберите семестр для добавления в выборку: ");
+		semMenu->addTitleItem("\nТекущий список семестров:");
+		semMenu->addItem("Выход"); //0
+		semMenu->addItem("Очистить список"); //
+		for(int i=1; i<=9;i++)
+			semMenu->addItem("Семестр " + std::to_string(i));
+		while (resultSelectedItem != exitItem) {
+			semMenu->eraseTitle();
+			semMenu->addTitleItem("Выберите семестр для добавления в выборку: ");
+			string tmpString = "";
+			if (rangeSem.size() >0)
+				for (auto item : rangeSem) {
+					tmpString = tmpString + " " + std::to_string(item);
+				}
+			semMenu->addTitleItem("Текущий список семестров: " + tmpString);
+			semMenu->run();
+			resultSelectedItem = semMenu->getSelectedItem();
+			if (resultSelectedItem == 1)
+				rangeSem.clear();
+			if (resultSelectedItem > 1) {
+				bool isExist = false;
+				for (auto item : rangeSem)
+					if (item == resultSelectedItem - 1) {
+						isExist = true;
+						break;
+					}
+				if (!isExist)
+					rangeSem.push_back(resultSelectedItem - 1);
+			}
+
+		}
+
 	}
 };
 

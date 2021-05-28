@@ -69,9 +69,10 @@ int main()
     mainMenu->addItem("Сохранить БД студентов в файл"); //2
     mainMenu->addItem("Выполнить вариант 77"); //3
     mainMenu->addItem("Выполнить вариант 71"); //4
+    mainMenu->addItem("Выполнить вариант 31"); //5
     mainMenu->addItem("Выход"); //5
     int resultSelectedItem = 0;
-    int exitInt = 5;
+    int exitInt = 6;
     ClassMenu* studentsMenu = new ClassMenu();
     studentsMenu->addTitleItem("Список студентов");
     int resultStudentSelectedItem = 1;
@@ -247,12 +248,25 @@ int main()
             sdb1->DataBase.erase(sdb2->getMaxMarks45());
             sdb3->DataBase.push_front(*sdb2->getMaxMarks45());
             sdb3->printAllSurName_Name_MName_bYaear_Marks45();
-            
-
             _getch();
             resultSelectedItem = -1;
             break;
-        case 5:
+        case 5: 
+            //Вариант 31. Распечатать всех студентов в порядке убывания 5 в одном, 
+            //    нескольких или всех семестрах, которые выбираются по желанию пользователя.
+            //    Предусмотреть распечатывать лиц определенного пола.
+            system("cls");
+            sdb->getRangeSem();
+            cout << "Полный список студентов" << endl;
+            sdb->updateCountMarks5();
+            sdb->printAllSurName_Name_MName_bYaear_countMarks5();
+            sdb->sortByCountMarks5();
+            cout << "\nОтсортированный список студентов" << endl;
+            sdb->printAllSurName_Name_MName_bYaear_countMarks5();
+            _getch();
+            break;
+
+        case 6:
             resultSelectedItem = exitInt;
             break;
         default:

@@ -28,6 +28,7 @@ struct StudentNode
 	int id;
 	double avrMarks;
 	double Marks45;
+	int countMarks5;
 };
 
 class StudentClass
@@ -467,6 +468,17 @@ public:
 			proc = sum / count;
 		return proc;
 	}
+
+	int getCountMarks5(StudentNode* sn, List <int> rangeSem) {
+		int count = 0;
+		for (auto i: rangeSem)
+			for (int j = 0; j < 10; j++)
+				if (sn->examsRecordsData[i][j].isEmpty == false and sn->examsRecordsData[i][j].mark > 4) {
+					count++;
+				}
+		return count;
+	}
+
 
 	List <string> getStringMas() {
 		return stringList;
