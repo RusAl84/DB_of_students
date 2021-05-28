@@ -216,13 +216,20 @@ public:
 		return count;
 	}
 	void updateAvrMarks() {
-
 		StudentClass* stud = new StudentClass();
 		for (int i = 0; i < DataBase.size(); i++) { 
 			DataBase.at(i).avrMarks= stud->getAvrMarks(&DataBase.at(i));
 		}
 		delete stud;
 	}
+	void updateAvrMarksRangeSem() {
+		StudentClass* stud = new StudentClass();
+		for (int i = 0; i < DataBase.size(); i++) {
+			DataBase.at(i).avrMarks = stud->getAvrMarks(&DataBase.at(i), rangeSem);
+		}
+		delete stud;
+	}
+
 	void updateMarks45() {
 		StudentClass* stud = new StudentClass();
 		for (int i = 0; i < DataBase.size(); i++) {

@@ -453,6 +453,21 @@ public:
 		return avr;
 	}
 
+	double getAvrMarks(StudentNode* sn,  List <int> rangeSem) {
+		double sum = 0;
+		double count = 0;
+		for (auto item:rangeSem)
+			for (int j = 0; j < 10; j++)
+				if (sn->examsRecordsData[item -1][j].isEmpty == false and sn->examsRecordsData[i][j].mark > 1) {
+					sum = sum + sn->examsRecordsData[i][j].mark;
+					count++;
+				}
+		int avr = 0;
+		if (count > 0)
+			avr = sum / count;
+		return avr;
+	}
+
 	double getMarks45(StudentNode* sn) {
 		double sum = 0;
 		double count = 0;

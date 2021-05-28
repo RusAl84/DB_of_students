@@ -70,9 +70,10 @@ int main()
     mainMenu->addItem("Выполнить вариант 77"); //3
     mainMenu->addItem("Выполнить вариант 71"); //4
     mainMenu->addItem("Выполнить вариант 31"); //5
+    mainMenu->addItem("Выполнить вариант 27"); //6
     mainMenu->addItem("Выход"); //5
     int resultSelectedItem = 0;
-    int exitInt = 6;
+    int exitInt = 7;
     ClassMenu* studentsMenu = new ClassMenu();
     studentsMenu->addTitleItem("Список студентов");
     int resultStudentSelectedItem = 1;
@@ -265,8 +266,21 @@ int main()
             sdb->printAllSurName_Name_MName_bYaear_countMarks5();
             _getch();
             break;
-
         case 6:
+            //Вариант 27. Отсортировать группу по успеваемости в каждой сессии 
+            // или вводимой по требованию пользователя
+            system("cls");
+            sdb->getRangeSem();
+            cout << "Полный список студентов" << endl;
+            sdb->updateAvrMarksRangeSem();  //Перерасчитать поле средний балл 
+            sdb->printAllSurName_Name_MName_bYaear_avrMarks();
+            sdb->sortByAvrMarks();
+            cout << "\nОтсортированный список студентов" << endl;
+            sdb->printAllSurName_Name_MName_bYaear_avrMarks();
+            _getch();
+            break;
+
+        case 7:
             resultSelectedItem = exitInt;
             break;
         default:
