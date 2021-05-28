@@ -246,6 +246,15 @@ public:
 		delete stud;
 	}
 
+	void updateCountMarks543() {
+		StudentClass* stud = new StudentClass();
+		for (int i = 0; i < DataBase.size(); i++) {
+			stud->getCountMarks543(&DataBase.at(i));
+		}
+		delete stud;
+		
+	}
+
 
 	void printAllSurName_Name_MName_bYaear_avrMarks() {
 		StringBuilderClass* sb = new StringBuilderClass();
@@ -275,6 +284,15 @@ public:
 		cout << (*pos).surName + " " + (*pos).name + " " + (*pos).middleName + " " + sb->split((*pos).birthDateString, '.', 2) + " " + std::to_string((*pos).Marks45) << endl;
 		delete sb;
 	}
+
+	void printAllSurName_Name_MName_bYaear_Marks543() {
+		StringBuilderClass* sb = new StringBuilderClass();
+		for (auto item : DataBase) {
+			cout << item.surName + " " + item.name + " " + item.middleName + " " + sb->split(item.birthDateString, '.', 2) + " " + std::to_string(item.countMarks5) + " " + std::to_string(item.countMarks4) + " " + std::to_string(item.countMarks3) << endl;
+		}
+		delete sb;
+	}
+
 
 	List <StudentNode>::iterator getMaxAvrMarks() {
 		List<StudentNode>::iterator pos = DataBase.begin();
@@ -392,6 +410,8 @@ public:
 		}
 
 	}
+
+
 };
 
 

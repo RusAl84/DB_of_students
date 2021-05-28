@@ -28,7 +28,10 @@ struct StudentNode
 	int id;
 	double avrMarks;
 	double Marks45;
-	int countMarks5;
+	double countMarks5;
+	double countMarks4;
+	double countMarks3;
+
 };
 
 class StudentClass
@@ -456,10 +459,10 @@ public:
 	double getAvrMarks(StudentNode* sn,  List <int> rangeSem) {
 		double sum = 0;
 		double count = 0;
-		for (auto item:rangeSem)
+		for (auto i:rangeSem)
 			for (int j = 0; j < 10; j++)
-				if (sn->examsRecordsData[item -1][j].isEmpty == false and sn->examsRecordsData[i][j].mark > 1) {
-					sum = sum + sn->examsRecordsData[i][j].mark;
+				if (sn->examsRecordsData[i -1][j].isEmpty == false and sn->examsRecordsData[i-1][j].mark > 1) {
+					sum = sum + sn->examsRecordsData[i-1][j].mark;
 					count++;
 				}
 		int avr = 0;
@@ -493,7 +496,31 @@ public:
 				}
 		return count;
 	}
-
+	StudentNode* getCountMarks543(StudentNode* sn) {
+		int count = 0;
+		for (int i=0;i<9;i++)
+			for (int j = 0; j < 10; j++)
+				if (sn->examsRecordsData[i][j].isEmpty == false and sn->examsRecordsData[i][j].mark > 1) {
+					if (sn->examsRecordsData[i][j].mark == 5)
+						sn->countMarks5++;					
+					if (sn->examsRecordsData[i][j].mark == 4)
+						sn->countMarks4++;
+					if (sn->examsRecordsData[i][j].mark == 3)
+						sn->countMarks3++;
+					count++;
+				}
+		if (count > 0) {
+			sn->countMarks5 = sn->countMarks5 / count;
+			sn->countMarks4 = sn->countMarks4 / count;
+			sn->countMarks3 = sn->countMarks3 / count;
+		}
+		else {
+			sn->countMarks5 = 0;
+			sn->countMarks4 = 0;
+			sn->countMarks3 = 0;
+		}
+		return sn;
+	}
 
 	List <string> getStringMas() {
 		return stringList;

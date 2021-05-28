@@ -9,6 +9,33 @@
 //#include <algorithm>
 using namespace std;
 
+void var57(StudentDBClass* sdb) {
+    ClassMenu* varMenu = new ClassMenu();
+    int resultSelectedItem = 1;
+    const int exitItem = 0;
+    varMenu->addTitleItem("Выберите выборку: ");
+    for (auto item : sdb->DataBase) {
+        StringBuilderClass* sb = new StringBuilderClass();
+        string tmpString = "";
+        tmpString= item.surName + " " + item.name + " " + item.middleName + " " + sb->split(item.birthDateString, '.', 2) + " " + std::to_string(item.countMarks5) + " " + std::to_string(item.countMarks4) + " " + std::to_string(item.countMarks3);
+        varMenu->addTitleItem(tmpString);
+        delete sb;
+    }
+    varMenu->addItem("Выход"); //0
+    varMenu->addItem("а) 3;"); //1
+    varMenu->addItem("б) 3 и 4;"); //2
+    varMenu->addItem("в) 5;"); //3
+    varMenu->addItem("г) 3 и 5;"); //4
+    varMenu->addItem("д) 4 и 5."); //5
+
+    while (resultSelectedItem != exitItem) {
+        varMenu->run();
+        resultSelectedItem = varMenu->getSelectedItem();
+
+    }
+}
+
+
 List<string>::iterator mMin(List <string> *_lst) {
     List<string>::iterator pos = _lst->begin();
     List<string>::iterator mMinPos = _lst->begin();
@@ -22,6 +49,7 @@ List<string>::iterator mMin(List <string> *_lst) {
    // return std::max_element(_lst->begin(), _lst->end());// #include <algorithm>
    
 }
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
@@ -71,9 +99,10 @@ int main()
     mainMenu->addItem("Выполнить вариант 71"); //4
     mainMenu->addItem("Выполнить вариант 31"); //5
     mainMenu->addItem("Выполнить вариант 27"); //6
-    mainMenu->addItem("Выход"); //5
+    mainMenu->addItem("Выполнить вариант 57"); //7
+    mainMenu->addItem("Выход"); //8
     int resultSelectedItem = 0;
-    int exitInt = 7;
+    int exitInt = 8;
     ClassMenu* studentsMenu = new ClassMenu();
     studentsMenu->addTitleItem("Список студентов");
     int resultStudentSelectedItem = 1;
@@ -279,8 +308,32 @@ int main()
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
             _getch();
             break;
-
         case 7:
+            //Вариант 57. Распечатать всех студентов, у которых за все время обучения не более 25 % оценок 
+            //а) 3 б) 3 и 4 в) 5 г) 3 и 5 д) 4 и 5. 
+            //Варианты а - д выбираются по желанию пользователя.
+            //Их можно выбрать как 1, так и несколько или все варианты, 
+            //с указанием интервала года рождения...
+            
+            //Таня раскоменть
+            //ce->setLabel("Введите начальный год рождения для интервала выборки. ");
+            //startYear = ce->setDataInt(1900, 2021);
+            //ce->setLabel("Введите rjytxysq год рождения для интервала выборки. ");
+            //endYear = ce->setDataInt(1900, 2021);
+            startYear = 1900;
+            endYear = 2005;
+
+            system("cls");
+            cout << "Полный список студентов" << endl;
+            sdb->updateCountMarks543();  //Перерасчитать поля 
+            sdb->printAllSurName_Name_MName_bYaear_Marks543();
+
+            var57(sdb);
+            _getch();
+            break;
+
+
+        case 8:
             resultSelectedItem = exitInt;
             break;
         default:
