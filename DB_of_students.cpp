@@ -15,11 +15,9 @@ void var57(StudentDBClass* sdb) {
     const int exitItem = 0;
     varMenu->addTitleItem("Выберите выборку: ");
     for (auto item : sdb->DataBase) {
-        StringBuilderClass* sb = new StringBuilderClass();
         string tmpString = "";
-        tmpString= item.surName + " " + item.name + " " + item.middleName + " " + sb->split(item.birthDateString, '.', 2) + " " + std::to_string(item.countMarks5) + " " + std::to_string(item.countMarks4) + " " + std::to_string(item.countMarks3);
+        tmpString = item.surName + " " + item.name + " " + item.middleName +  " " + std::to_string(item.countMarks5) + " " + std::to_string(item.countMarks4) + " " + std::to_string(item.countMarks3) + " " + item.birthDateString;
         varMenu->addTitleItem(tmpString);
-        delete sb;
     }
     varMenu->addItem("Выход"); //0
     varMenu->addItem("а) 3;"); //1
@@ -27,11 +25,60 @@ void var57(StudentDBClass* sdb) {
     varMenu->addItem("в) 5;"); //3
     varMenu->addItem("г) 3 и 5;"); //4
     varMenu->addItem("д) 4 и 5."); //5
-
+    StudentDBClass* sdb1 = new StudentDBClass();
     while (resultSelectedItem != exitItem) {
         varMenu->run();
         resultSelectedItem = varMenu->getSelectedItem();
-
+        if (resultSelectedItem == 1) {
+            sdb1->DataBase.clear();
+            for (auto item : sdb->DataBase) {
+                if (item.countMarks3 > 0.25) {
+                    sdb1->DataBase.push_front(item);
+                }
+            }
+            sdb1->printAllSurName_Name_MName_bYaear_Marks543();
+            _getch();
+        }
+        if (resultSelectedItem == 2) {
+            sdb1->DataBase.clear();
+            for (auto item : sdb->DataBase) {
+                if ((item.countMarks3 > 0.25) and (item.countMarks4 > 0.25)){
+                    sdb1->DataBase.push_front(item);
+                }
+            }
+            sdb1->printAllSurName_Name_MName_bYaear_Marks543();
+            _getch();
+        }
+        if (resultSelectedItem == 3) {
+            sdb1->DataBase.clear();
+            for (auto item : sdb->DataBase) {
+                if (item.countMarks5 > 0.25) {
+                    sdb1->DataBase.push_front(item);
+                }
+            }
+            sdb1->printAllSurName_Name_MName_bYaear_Marks543();
+            _getch();
+        }
+        if (resultSelectedItem == 4) {
+            sdb1->DataBase.clear();
+            for (auto item : sdb->DataBase) {
+                if ((item.countMarks3 > 0.25) and (item.countMarks5 > 0.25)) {
+                    sdb1->DataBase.push_front(item);
+                }
+            }
+            sdb1->printAllSurName_Name_MName_bYaear_Marks543();
+            _getch();
+        }
+        if (resultSelectedItem == 5) {
+            sdb1->DataBase.clear();
+            for (auto item : sdb->DataBase) {
+                if ((item.countMarks4 > 0.25) and (item.countMarks5 > 0.25)) {
+                    sdb1->DataBase.push_front(item);
+                }
+            }
+            sdb1->printAllSurName_Name_MName_bYaear_Marks543();
+            _getch();
+        }
     }
 }
 
@@ -100,9 +147,10 @@ int main()
     mainMenu->addItem("Выполнить вариант 31"); //5
     mainMenu->addItem("Выполнить вариант 27"); //6
     mainMenu->addItem("Выполнить вариант 57"); //7
-    mainMenu->addItem("Выход"); //8
+    mainMenu->addItem("Выполнить вариант 43"); //8
+    mainMenu->addItem("Выход"); //9
     int resultSelectedItem = 0;
-    int exitInt = 8;
+    int exitInt = 9;
     ClassMenu* studentsMenu = new ClassMenu();
     studentsMenu->addTitleItem("Список студентов");
     int resultStudentSelectedItem = 1;
@@ -314,25 +362,26 @@ int main()
             //Варианты а - д выбираются по желанию пользователя.
             //Их можно выбрать как 1, так и несколько или все варианты, 
             //с указанием интервала года рождения...
-            
-            //Таня раскоменть
-            //ce->setLabel("Введите начальный год рождения для интервала выборки. ");
-            //startYear = ce->setDataInt(1900, 2021);
-            //ce->setLabel("Введите rjytxysq год рождения для интервала выборки. ");
-            //endYear = ce->setDataInt(1900, 2021);
-            startYear = 1900;
-            endYear = 2005;
-
-            system("cls");
-            cout << "Полный список студентов" << endl;
-            sdb->updateCountMarks543();  //Перерасчитать поля 
-            sdb->printAllSurName_Name_MName_bYaear_Marks543();
-
-            var57(sdb);
+            ce->setLabel("Введите начальный год рождения для интервала выборки. ");
+            startYear = ce->setDataInt(1900, 2021);
+            ce->setLabel("Введите конечный год рождения для интервала выборки. ");
+            endYear = ce->setDataInt(1900, 2021);
+            //startYear = 1900;
+            //endYear = 2005;
+            sdb1->DataBase.clear();
+            for (auto item : sdb->DataBase)           {
+                sn = &item;
+                year = atoi(sb->split(sn->birthDateString, '.', 2).c_str());
+                if (year >= startYear and year <= endYear)
+                    sdb1->DataBase.push_front(*sn);
+            }
+            sdb1->updateCountMarks543();  //Перерасчитать поля 
+            var57(sdb1);
             _getch();
             break;
-
-
+        case 9:
+            //43
+            break;
         case 8:
             resultSelectedItem = exitInt;
             break;
