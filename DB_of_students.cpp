@@ -166,6 +166,7 @@ int main()
     StringBuilderClass* sb = new StringBuilderClass();
     List<StudentNode>::iterator pos();
     List <StudentNode> printLst;
+    string firstPartString;
     while (resultSelectedItem != exitInt) {
         mainMenu->run();
         resultSelectedItem = mainMenu->getSelectedItem();
@@ -379,11 +380,43 @@ int main()
             var57(sdb1);
             _getch();
             break;
-        case 9:
-            //43
-
-            break;
         case 8:
+            //Вариант 43. Разбить группу на 2 части, с поиском среди лиц определенного пола:
+            //1) по алфавиту от А до П;
+            //2) по алфавиту от Р до Я.
+            //Каждую часть отсортировать в порядке увеличения среднего бала за все время
+            system("cls");
+            cout << "Полный список студентов" << endl;
+            sdb->updateAvrMarks();  //Перерасчитать поле средний балл 
+            sdb->printAllSurName_Name_MName_bYaear_avrMarks();
+            sdb->sortByAvrMarks();
+            cout << "\nОтсортированный список студентов" << endl;
+            sdb->printAllSurName_Name_MName_bYaear_avrMarks();
+            firstPartString = "АБВГДЕЖЗИКЛМНОПабвгдежзиклмноп";
+            sdb1->DataBase.clear();
+            sdb2->DataBase.clear();
+            for (auto item : sdb->DataBase) {
+                for (int i = 0; i<firstPartString.length(); i++)
+                    if (item.surName[0] == firstPartString[i]){
+                        sdb1->DataBase.push_front(item);
+                    }
+            }
+            cout << "\nCписок студентов по алфавиту от А до П" << endl;
+            sdb1->printAllSurName_Name_MName_bYaear_avrMarks();     
+            for (auto item : sdb->DataBase){
+                bool isExist = false;
+                for (auto item1 : sdb1->DataBase)
+                    if (strcmp(item.surName.c_str(), item1.surName.c_str()) == 0)
+                        isExist = true;
+                if (isExist == false)
+                    sdb2->DataBase.push_front(item);
+            }
+
+            cout << "\nCписок студентов по алфавиту от Р до Я" << endl;
+            sdb2->printAllSurName_Name_MName_bYaear_avrMarks();
+            _getch();
+            break;
+        case 9:
             resultSelectedItem = exitInt;
             break;
         default:
