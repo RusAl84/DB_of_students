@@ -93,7 +93,6 @@ public:
 		return "";
 	}
 
-
 	int getValueInt(string inString) {
 		string tmpString = "000";
 		int lengthName = 0;
@@ -139,7 +138,7 @@ public:
 		//cout << endl << valueString << endl;
 		return valueString;
 	}
-	string split(string inString, char delimiter, int num) {
+	string split(const string inString, char delimiter, int num) {
 		string outString = "";
 		int numDelimeter = 0;
 		for (int i = 0; i <= inString.length(); i++) {

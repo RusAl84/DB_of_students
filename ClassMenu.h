@@ -14,6 +14,7 @@ void drawLineUP(int size) {
     SetConsoleTextAttribute(hConsole, 15);
     cout << tmpString << endl;
 }
+
 void drawLineDown(int size) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     string tmpString = "|";
@@ -23,6 +24,7 @@ void drawLineDown(int size) {
     tmpString += "|";
     cout << tmpString << endl;
 }
+
 class ClassMenu
 {
 private:
