@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="StudentDBClass">
-    <Position X="2.5" Y="0.5" Width="1.5" />
+    <Position X="3" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAECgAAAAIAIAIIABkAsgAAkAgACAAAAABAAgCKAAAA=</HashCode>
+      <HashCode>AAECgAAAAIAIAIIABkAsgAAkAgACAAQAABAAgCKAAQA=</HashCode>
       <FileName>StudentDBClass.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BirthDateClass">
-    <Position X="4.25" Y="0.5" Width="1.5" />
+    <Position X="6.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAJAAAAAAAAAAAQAAAAAQAAAAEAAAAQAQAAAA=</HashCode>
       <FileName>BirthDateClass.h</FileName>
@@ -29,7 +32,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="FileManagerClass">
-    <Position X="6.75" Y="3.25" Width="1.5" />
+    <Position X="3" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAABAAgA=</HashCode>
       <FileName>FileManagerClass.h</FileName>
@@ -45,7 +48,7 @@
   <Class Name="StudentClass">
     <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAIAAAAAAAAAACEAAEAAMAAAACQAAAAECigBiAAAAA=</HashCode>
+      <HashCode>EAAIAEAAAAAAAACEAAEAAMAAAACQAAAAECigBiAAAAA=</HashCode>
       <FileName>StudentClass.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -66,7 +69,7 @@
   <Struct Name="StudentNode">
     <Position X="14.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>wAAAAAgIgAAAAAAAAASAAAAQFAAEAAAEgAAAAAICAgA=</HashCode>
+      <HashCode>wAAAAAgIgAAAAAAAAASAAAAYFAAEAAQEgAAAAAICAgA=</HashCode>
       <FileName>StudentClass.h</FileName>
     </TypeIdentifier>
   </Struct>

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <cstdint>
 #include <iterator>
 #include <initializer_list>
