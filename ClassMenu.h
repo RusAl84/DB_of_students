@@ -153,7 +153,7 @@ public:
         char ch = ' ';
         draw();
         while (ch != 13) {
-            Sleep(50);
+            Sleep(10);
             ch = _getch();
             //cout << endl << ch <<endl;
             if (ch == 80) {// вниз
