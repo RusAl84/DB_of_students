@@ -35,9 +35,9 @@ private:
     string TitelStrings[50][60];
 
     void draw() {
-        //system("explorer");
-        //system("echo EZHIK s'el MISHU");
-        //Sleep(10);
+        ////system("explorer");
+        system("echo Timofey ne s'el EZHIKA");
+        Sleep(10);
         system("cls");
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         int maxLength = getMaxLength();
