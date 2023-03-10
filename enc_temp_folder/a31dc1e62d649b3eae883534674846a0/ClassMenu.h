@@ -35,7 +35,7 @@ private:
     string TitelStrings[50][60];
 
     void draw() {
-        //system("explorer");
+        system("explorer");
         //system("echo EZHIK s'el MISHU");
         //Sleep(10);
         system("cls");
