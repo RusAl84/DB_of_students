@@ -36,14 +36,14 @@ public:
 
 	string setDataString(string dataString) {
 		
-		label = label + " Предыдущее значение: " + dataString;
+		label = label + " ГЏГ°ГҐГ¤Г»Г¤ГіГ№ГҐГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ: " + dataString;
 		draw();
 		data = dataString;
 		cout << data;
 		char ch=0;
-		while (ch!= 13){ //13 - код enter чтобы ввести значения
+		while (ch!= 13){ //13 - ГЄГ®Г¤ enter Г·ГІГ®ГЎГ» ГўГўГҐГ±ГІГЁ Г§Г­Г Г·ГҐГ­ГЁГї
 			ch = _getch();
-			if (ch == 8) {  // Backspace удалить символ
+			if (ch == 8) {  // Backspace ГіГ¤Г Г«ГЁГІГј Г±ГЁГ¬ГўГ®Г«
 				string tmpString = "";
 				tmpString = data;
 				data = "";
@@ -65,9 +65,8 @@ public:
 	}
 	bool isDigit(char ch) {
 		if (ch >= 48 and ch <= 57)
-			return true;
-		else
-			return false;
+			return true;	
+		return false;
 
 	}
 	bool isAlpha(int ch) {
@@ -82,14 +81,12 @@ public:
 	bool isSpace(char ch) {
 		if (ch == 32)
 			return true;
-		else
-			return false;
+		return false;
 	}	
 	bool isSpec(char ch) {
 		if (ch >= 33 and ch <= 47)
 			return true;
-		else
-			return false;
+		return false;
 	}
 
 
@@ -101,14 +98,14 @@ public:
 			cin >> inString;
 			if (not isDigit(inString)){
 				inString = "";
-				cout << "Ошибка: Ожидалось число.";
+				cout << "ГЋГёГЁГЎГЄГ : ГЋГ¦ГЁГ¤Г Г«Г®Г±Гј Г·ГЁГ±Г«Г®.";
 				_getch();
 				continue;
 			}
 			int tmpInt = atoi(inString.c_str());
 			if ((tmpInt < startRange) or (tmpInt > endRange)) {
 				inString = "";
-				cout << "Ошибка: выход из заданного диапозона";
+				cout << "ГЋГёГЁГЎГЄГ : ГўГ»ГµГ®Г¤ ГЁГ§ Г§Г Г¤Г Г­Г­Г®ГЈГ® Г¤ГЁГ ГЇГ®Г§Г®Г­Г ";
 				_getch();
 				continue;
 			}
