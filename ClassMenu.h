@@ -1,177 +1,93 @@
-#pragma once
-#include "windows.h"
-#include <iostream>
-#include <string.h>
-#include <conio.h>
-#include <stdio.h>
-using namespace std;
+package org.example;
 
-void drawLineUP(int size) {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    string tmpString = " ";
-    for (int i = 0; i < size; i++)
-        tmpString += "_";
-    SetConsoleTextAttribute(hConsole, 15);
-    cout << tmpString << endl;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
+public class Drawer {
+    private static void fill(int width, String sym) {
+        for (int i = 0; i < width; i++) {
+            System.out.print(sym);
+        }
+    }
+
+    public static void drawBorder(int tableWidth) {
+        System.out.println();
+        System.out.print(" ");
+        fill(tableWidth - 1, "-");
+        System.out.println("-");
+    }
+
+    public static void formatColumn(String str, int maxLen, int tableWidth, boolean header) {
+        System.out.print("| ");
+        System.out.print(str);
+        fill((header ? tableWidth : maxLen) - str.length() - 2, " ");
+        System.out.print(" |");
+    }
+
+    public static void drawBottom(int tableWidth) {
+        ArrayList<String> bottom = new ArrayList<>(2);
+        bottom.add("| РџСЂРёРјРµС‡Р°РЅРёРµ: РҐ - С…СѓРґРѕР¶РµСЃС‚РІРµРЅРЅР°СЏ Р»РёС‚РµСЂР°С‚СѓСЂР°; РЈ - СѓС‡РµР±РЅР°СЏ Р»РёС‚РµСЂР°С‚СѓСЂР°;");
+        bottom.add("| РЎ - СЃРїСЂР°РІРѕС‡РЅР°СЏ Р»РёС‚РµСЂР°С‚СѓСЂР°;");
+
+        for (int i = 0; i < 2; i++) {
+            System.out.print(bottom.get(i));
+            fill(tableWidth - bottom.get(i).length(), " ");
+            System.out.print(" |");
+            if (i == 0) {
+                System.out.println();
+            }
+        }
+        drawBorder(tableWidth);
+    }
+
+    public static void drawLine(@NotNull ArrayList<String> columns, @NotNull ArrayList<Integer> params, int tableWidth) {
+        for (int i = 0; i < columns.size(); i++) {
+            formatColumn(columns.get(i), params.get(i), tableWidth, false);
+        }
+    }
+
+    public static int getMaxLen(@NotNull ArrayList<String> names) {
+        int max = 0;
+        for (String str : names) {
+            max = Math.max(str.length(), max);
+        }
+        return max + 4;
+    }
+
+    public static void drawTable(ArrayList<ArrayList<String>> lines, @NotNull ArrayList<String> columns, String title, boolean shouldDrawBottom) {
+        ArrayList<Integer> params = new ArrayList<>();
+        for (int i = 0; i < columns.size(); i++) {
+            ArrayList<String> columnValues = new ArrayList<>();
+            columnValues.add(columns.get(i));
+            for (ArrayList<String> line : lines) {
+                columnValues.add(line.get(i));
+            }
+            params.add(getMaxLen(columnValues));
+        }
+
+        int tableWidth = columns.size() + 3;
+        for (Integer i : params) {
+            tableWidth += i;
+        }
+        drawBorder(tableWidth);
+        if (title.length() != 0) {
+            formatColumn(title, title.length(), tableWidth, true);
+            drawBorder(tableWidth);
+        }
+
+        for (int i = 0; i < lines.size() + 1; i++) {
+            if (i == 0) {
+                drawLine(columns, params, tableWidth);
+                drawBorder(tableWidth);
+                continue;
+            }
+
+            drawLine(lines.get(i - 1), params, tableWidth);
+            drawBorder(tableWidth);
+        }
+
+        if (shouldDrawBottom)
+            drawBottom(tableWidth);
+    }
 }
-
-void drawLineDown(int size) {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    string tmpString = "|";
-    for (int i = 0; i < size - 1; i++)
-        tmpString += "_";
-    SetConsoleTextAttribute(hConsole, 15);
-    tmpString += "|";
-    cout << tmpString << endl;
-}
-
-class ClassMenu
-{
-private:
-    int itemsCount;
-    int titleItemCount;
-    int selectedItem;
-    string items[300][50];
-    string TitelStrings[50][60];
-
-    void draw() {
-        ////system("explorer");
-        system("echo Timofey ne s'el EZHIKA");
-        Sleep(10);
-        system("cls");
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        int maxLength = getMaxLength();
-        drawLineUP(maxLength + 6);
-        for (int i = 0; i < titleItemCount; i++) {
-            SetConsoleTextAttribute(hConsole, 15);
-            string tmpString = "";
-            tmpString = "|   ";
-            tmpString = tmpString + TitelStrings[i]->c_str();
-            while (tmpString.length() < maxLength + 7)
-                tmpString += " ";
-            tmpString += "|";
-            cout << tmpString << endl;
-        }
-        drawLineDown(maxLength + 7);
-        for (int i = 0; i < itemsCount; i++) {
-            if (i == selectedItem) {
-
-                SetConsoleTextAttribute(hConsole, 15);
-                cout << "|";
-                SetConsoleTextAttribute(hConsole, 13);
-                cout << " * " << items[i]->c_str();
-                SetConsoleTextAttribute(hConsole, 15);
-                string tmpString = "";
-                while (tmpString.length() < maxLength - items[i]->length() + 3)
-                    tmpString += " ";
-                tmpString += "|";
-                cout << tmpString << endl;
-            }
-            else {
-                SetConsoleTextAttribute(hConsole, 15);
-                string tmpString = "";
-                tmpString = "|   ";
-                tmpString = tmpString + items[i]->c_str();
-                while (tmpString.length() < maxLength + 7)
-                    tmpString += " ";
-                tmpString += "|";
-                cout << tmpString << endl;
-            }
-        }
-        drawLineDown(maxLength + 7);
-        //cout << getMaxLength() <<  endl;
-    }
-
-    int getMaxLength() {
-        int maxLength = 0;
-        for (int i = 0; i < 300; i++)
-            if (items[i]->length() > maxLength)
-                maxLength = items[i]->length();        
-        for (int i = 0; i < 50; i++)
-            if (TitelStrings[i]->length() > maxLength)
-                maxLength = TitelStrings[i]->length();
-        return maxLength;
-    }
-
-
-public:
-    ClassMenu() {
-        selectedItem = 0;
-        itemsCount = 0;
-        titleItemCount = 0;
-    }
-    int getItemsCount() {
-        return itemsCount;
-    }
-    void eraseTitle() {
-        titleItemCount = 0;
-    }
-    void eraseItem() {
-        itemsCount = 0;
-    }
-    void eraseAll() {
-        eraseTitle();
-        eraseItem();
-    }
-    int getSelectedItem() {
-        return selectedItem;
-    }
-    void addItem(string inString) {
-        items[itemsCount]->assign(inString.c_str());
-        itemsCount++;
-    }
-    void addTitleItem(string inString) {
-        TitelStrings[titleItemCount]->assign(inString.c_str());
-        titleItemCount++;
-    }
-    void setDown() {
-        selectedItem++;
-        if (selectedItem > itemsCount - 1)
-            selectedItem = 0;
-    }
-    void setUp() {
-        selectedItem--;
-        if (selectedItem < 0)
-            selectedItem = itemsCount - 1;
-    }
-    //где <A> и <B> — шестнадцатеричные цифры — первая задает цвет фона, а вторая — цвет переднего плана(цвет шрифта).
-    //    Значения цифр
-    //    0 — черный
-    //    1 — синий
-    //    2 — зеленый
-    //    3 — голубой
-    //    4 — красный
-    //    5 — лиловый
-    //    6 — желтый
-    //    7 — белый
-    //    8 — серый
-    //    9 — свело - синий
-    //    A — светло - зеленый
-    //    B — светло - голубой
-    //    С — светло - красный
-    //    E — светло - желтый
-    //    F — ярко - белый
-    //system("Color 15");
-
-    void run() {
-        char ch = ' ';
-        draw();
-        while (ch != 13) {
-            Sleep(10);
-            ch = _getch();
-            //cout << endl << ch <<endl;
-            if (ch == 80) {// вниз
-                setDown();
-                draw();
-            }
-            if (ch == 72) {
-                setUp();
-                draw();
-            }      
-        }
-    }
-    //friend class ClassEdit;
-    friend  void drawLineUP(int size);
-    friend  void drawLineDown(int size);
-};
-
