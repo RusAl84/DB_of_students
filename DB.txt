@@ -135,6 +135,8 @@ name:007; value:str:007 -: surName=Назаров
 ### Start Record
 name:018; value:str:001 -: examsResults_2_0_m=1
 name:018; value:str:036 -: examsResults_2_0_n=Физическое взаимодействие с кошечкой
+name:018; value:str:001 -: examsResults_1_1_m=5
+name:018; value:str:027 -: examsResults_1_1_n=Как задолбить преподавателя
 name:018; value:str:001 -: examsResults_1_0_m=1
 name:018; value:str:034 -: examsResults_1_0_n=Применение игрушек в брачных играх
 name:018; value:str:001 -: examsResults_0_3_m=3

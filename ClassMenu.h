@@ -36,7 +36,7 @@ private:
 
     void draw() {
         ////system("explorer");
-        system("echo Timofey ne s'el EZHIKA");
+        //system("echo Timofey ne s'el EZHIKA");
         Sleep(10);
         system("cls");
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
